@@ -1,0 +1,5 @@
+-- create database MYCAR;
+-- use MYCAR;
+-- CREATE TABLE CAR(
+--
+-- )

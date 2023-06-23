@@ -5,8 +5,10 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum CarType {
-    SUV("A", "SUV"), SEDAN("B", "승용");
+public enum OptionCategory {
+    DETAIL("D", "Detail"),
+    HGA("H", "H Genuine Accessories"),
+    NPF("N", "N Performance");
     private final String code;
-    private final String detail;
+    private final String desc;
 }
