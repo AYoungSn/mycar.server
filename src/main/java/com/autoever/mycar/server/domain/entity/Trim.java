@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Entity
-@Table(name = "Trim")
+@Table(name = "trim")
 public class Trim {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
