@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.entity;
+package com.autoever.mycar.server.domain.entity.options;
 
 import lombok.Getter;
 
@@ -7,14 +7,13 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Entity
-@Table(name = "engine")
-public class Engine {
+@Table(name = "duplicate_option")
+public class DuplicateOption {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Column(length = 30)
-    private String name;
-    private String contents;
-    private String img_uri;
+    private Long option_id;
+    @NotNull
+    private Long duplicate_id;
 }

@@ -19,6 +19,8 @@ public class Model {
     @NotNull
     @Column(length = 50)
     private String name;
+    @Column(length = 30)
+    private String basic_info;
     @Column(length = 10)
     private String engineDisplacement;
     @Column(length = 10)
