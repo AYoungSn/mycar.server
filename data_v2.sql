@@ -54,3 +54,15 @@ INSERT INTO model_tooltips (tooltips_id, model_id) values (4, 15);
 INSERT INTO model_tooltips (tooltips_id, model_id) values (4, 16);
 INSERT INTO model_tooltips (tooltips_id, model_id) values (3, 17);
 INSERT INTO model_tooltips (tooltips_id, model_id) values (3, 18);
+
+CREATE or REPLACE VIEW v_engines as
+select * FROM tooltips t
+WHERE t.type = 'ENGINE';
+
+CREATE or REPLACE VIEW v_gearbox as
+select * FROM tooltips t
+WHERE t.type = 'GEARBOX';
+
+CREATE or REPLACE VIEW v_driving as
+select * FROM tooltips t
+WHERE t.type = 'DRIVING';
