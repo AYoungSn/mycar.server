@@ -25,6 +25,6 @@ public class CarController {
 
     @GetMapping("/model-filter")
     public ToolTipListDto getToolTips(@Valid ModelFilterReqDto reqDto) {
-        carService
+        return carService.findToolTips(reqDto);
     }
 }

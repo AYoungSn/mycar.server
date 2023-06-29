@@ -1,17 +1,15 @@
 package com.autoever.mycar.server.domain.car.dto.res;
 
-import com.autoever.mycar.server.domain.entity.tooltips.ToolTips;
+import com.autoever.mycar.server.domain.tooltips.dto.view.ToolTipsInfo;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
-public class DrivingFilterResDto {
+public class DrivingFilterResDto extends FilterEnableDto{
     private Long drivingId;
     private String drivingName;
-    private Boolean isSelect;
 
-    public DrivingFilterResDto(ToolTips toolTips) {
+    public DrivingFilterResDto(ToolTipsInfo toolTips) {
+        super(true);
         this.drivingId = toolTips.getId();
         this.drivingName = toolTips.getName();
     }
