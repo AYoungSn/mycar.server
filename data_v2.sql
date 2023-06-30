@@ -56,7 +56,7 @@ INSERT INTO model_tooltips (tooltips_id, model_id) values (3, 17);
 INSERT INTO model_tooltips (tooltips_id, model_id) values (3, 18);
 
 CREATE or REPLACE VIEW v_engines as
-SELECT t.id toolId, t.contents contents, t.img_uri, t.name name, t.type type, mt.model_id model_id
+SELECT t.id tool_id, t.contents contents, t.img_uri, t.name name, t.type type, mt.model_id model_id
 FROM tooltips t, model_tooltips mt
 WHERE t.type = 'ENGINE' and mt.tooltips_id = t.id;
 
@@ -75,7 +75,7 @@ from model m left join v_engines e, v_gearbox g
 on m.id = e.model_id
 where m.id = g.model_id;
 
-select c.id car_id, m.id model_id, e.toolId engines_id, g.toolId gearbox_id, d.toolId driving_id
+select c.id car_id, m.id model_id, e.tool_id engines_id, g.tool_id gearbox_id, d.tool_id driving_id
 from model m
     left outer join v_engines e
         on m.id = e.model_id

@@ -60,48 +60,48 @@ values(17, '투싼 1.6 가솔린 터보 Inspiration 2WD DCT', '1.6 가솔린 터
 INSERT INTO model (id, name, basic_info, price, trim_id)
 values(18, '투싼 1.6 가솔린 터보 Inspiration 4WD DCT', '1.6 가솔린 터보 4WD DCT', 34980000, 6);
 
-INSERT INTO model_driving (driving_id, model_id) values (1, 7);
-INSERT INTO model_driving (driving_id, model_id) values (2, 8);
-INSERT INTO model_driving (driving_id, model_id) values (1, 9);
-INSERT INTO model_driving (driving_id, model_id) values (2, 10);
-INSERT INTO model_driving (driving_id, model_id) values (1, 11);
-INSERT INTO model_driving (driving_id, model_id) values (2, 12);
-INSERT INTO model_driving (driving_id, model_id) values (1, 13);
-INSERT INTO model_driving (driving_id, model_id) values (2, 14);
-INSERT INTO model_driving (driving_id, model_id) values (1, 15);
-INSERT INTO model_driving (driving_id, model_id) values (2, 16);
-INSERT INTO model_driving (driving_id, model_id) values (1, 17);
-INSERT INTO model_driving (driving_id, model_id) values (2, 18);
-
-INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 7);
-INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 8);
-INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 9);
-INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 10);
-INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 11);
-INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 12);
-INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 13);
-INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 14);
-INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 15);
-INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 16);
-INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 17);
-INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 18);
-
-INSERT INTO model_engine (engine_id, model_id) values (1, 1);
-INSERT INTO model_engine (engine_id, model_id) values (2, 2);
-INSERT INTO model_engine (engine_id, model_id) values(1, 3);
-INSERT INTO model_engine (engine_id, model_id) values (2, 4);
-INSERT INTO model_engine (engine_id, model_id) values (1, 5);
-INSERT INTO model_engine (engine_id, model_id) values (2, 6);
--- # 가솔린 터보 - 3 디젤 - 4
-INSERT INTO model_engine (engine_id, model_id) values (4, 7);
-INSERT INTO model_engine (engine_id, model_id) values (4, 8);
-INSERT INTO model_engine (engine_id, model_id) values (3, 9);
-INSERT INTO model_engine (engine_id, model_id) values (3, 10);
-INSERT INTO model_engine (engine_id, model_id) values (4, 11);
-INSERT INTO model_engine (engine_id, model_id) values (4, 12);
-INSERT INTO model_engine (engine_id, model_id) values (3, 13);
-INSERT INTO model_engine (engine_id, model_id) values (3, 14);
-INSERT INTO model_engine (engine_id, model_id) values (4, 15);
-INSERT INTO model_engine (engine_id, model_id) values (4, 16);
-INSERT INTO model_engine (engine_id, model_id) values (3, 17);
-INSERT INTO model_engine (engine_id, model_id) values (3, 18);
+-- INSERT INTO model_driving (driving_id, model_id) values (1, 7);
+-- INSERT INTO model_driving (driving_id, model_id) values (2, 8);
+-- INSERT INTO model_driving (driving_id, model_id) values (1, 9);
+-- INSERT INTO model_driving (driving_id, model_id) values (2, 10);
+-- INSERT INTO model_driving (driving_id, model_id) values (1, 11);
+-- INSERT INTO model_driving (driving_id, model_id) values (2, 12);
+-- INSERT INTO model_driving (driving_id, model_id) values (1, 13);
+-- INSERT INTO model_driving (driving_id, model_id) values (2, 14);
+-- INSERT INTO model_driving (driving_id, model_id) values (1, 15);
+-- INSERT INTO model_driving (driving_id, model_id) values (2, 16);
+-- INSERT INTO model_driving (driving_id, model_id) values (1, 17);
+-- INSERT INTO model_driving (driving_id, model_id) values (2, 18);
+--
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 7);
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 8);
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 9);
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 10);
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 11);
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 12);
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 13);
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 14);
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 15);
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (1, 16);
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 17);
+-- INSERT INTO model_gearbox (gearbox_id, model_id) values (2, 18);
+--
+-- INSERT INTO model_engine (engine_id, model_id) values (1, 1);
+-- INSERT INTO model_engine (engine_id, model_id) values (2, 2);
+-- INSERT INTO model_engine (engine_id, model_id) values(1, 3);
+-- INSERT INTO model_engine (engine_id, model_id) values (2, 4);
+-- INSERT INTO model_engine (engine_id, model_id) values (1, 5);
+-- INSERT INTO model_engine (engine_id, model_id) values (2, 6);
+-- -- # 가솔린 터보 - 3 디젤 - 4
+-- INSERT INTO model_engine (engine_id, model_id) values (4, 7);
+-- INSERT INTO model_engine (engine_id, model_id) values (4, 8);
+-- INSERT INTO model_engine (engine_id, model_id) values (3, 9);
+-- INSERT INTO model_engine (engine_id, model_id) values (3, 10);
+-- INSERT INTO model_engine (engine_id, model_id) values (4, 11);
+-- INSERT INTO model_engine (engine_id, model_id) values (4, 12);
+-- INSERT INTO model_engine (engine_id, model_id) values (3, 13);
+-- INSERT INTO model_engine (engine_id, model_id) values (3, 14);
+-- INSERT INTO model_engine (engine_id, model_id) values (4, 15);
+-- INSERT INTO model_engine (engine_id, model_id) values (4, 16);
+-- INSERT INTO model_engine (engine_id, model_id) values (3, 17);
+-- INSERT INTO model_engine (engine_id, model_id) values (3, 18);

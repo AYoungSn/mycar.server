@@ -11,6 +11,7 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 public class ModelFilterReqDto {
     @NotNull(message = "carId 는 필수 값 입니다.")
+    @Positive(message = "양수만 입력 가능")
     private Long carId;
     @Positive(message = "양수만 입력 가능")
     private Long engineId;
