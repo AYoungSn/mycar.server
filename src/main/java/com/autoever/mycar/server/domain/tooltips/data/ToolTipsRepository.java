@@ -16,12 +16,12 @@ public interface ToolTipsRepository extends JpaRepository<ToolTips, Long> {
             "and c.id = :carId", nativeQuery = true)
     List<ToolTipsInfo> findAllToolTips(Long carId);
 
-    @Query(value = "select distinct g.toolId id, g.name, g.type " +
+    @Query(value = "select distinct g.tool_id id, g.name, g.type " +
             "from model m left outer join v_engines e " +
             "on m.id = e.model_id " +
             "left join v_gearbox g " +
             "on m.id = g.model_id " +
             "join car c, trim t " +
-            "where c.id = t.car_id and t.id = m.trim_id and c.id = :carId and e.toolId = :enginesId", nativeQuery = true)
+            "where c.id = t.car_id and t.id = m.trim_id and c.id = :carId and e.tool_id = :enginesId", nativeQuery = true)
     List<ToolTipsInfo> findAllEnableToolTips(Long carId, Long enginesId);
 }

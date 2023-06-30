@@ -15,7 +15,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             "group by car.id", nativeQuery = true)
     List<CarResDto> findAllByCarInfo();
 
-    @Query(value = "select distinct e.toolId " +
+    @Query(value = "select distinct e.tool_id " +
             "from model m " +
             "    left outer join v_engines e " +
             "        on m.id = e.model_id " +
@@ -23,7 +23,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             "where c.id = t.car_id and t.id = m.trim_id " +
             "and c.id = :carId", nativeQuery = true)
     List<Long> findAllEngineId(Long carId);
-    @Query(value = "select distinct g.toolId " +
+    @Query(value = "select distinct g.toolI_id " +
             "from model m " +
             "    left join v_gearbox g " +
             "        on m.id = g.model_id " +
@@ -32,7 +32,7 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             "and c.id = :carId", nativeQuery = true)
     List<Long> findAllGearboxId(Long carId);
 
-    @Query(value = "select distinct d.toolId " +
+    @Query(value = "select distinct d.tool_id " +
             "from model m " +
             "    left join v_driving d " +
             "        on m.id = d.model_id " +
