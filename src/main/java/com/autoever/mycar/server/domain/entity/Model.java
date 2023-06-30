@@ -4,6 +4,7 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Getter
 @Entity
@@ -15,7 +16,7 @@ public class Model {
     @NotNull
     private Long trim_id;
     @NotNull
-    private Long price;
+    private BigDecimal price;
     @NotNull
     @Column(length = 50)
     private String name;

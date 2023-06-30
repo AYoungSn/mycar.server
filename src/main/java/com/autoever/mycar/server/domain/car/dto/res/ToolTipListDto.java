@@ -1,7 +1,7 @@
 package com.autoever.mycar.server.domain.car.dto.res;
 
 import com.autoever.mycar.server.domain.entity.type.ToolType;
-import com.autoever.mycar.server.domain.tooltips.dto.view.ToolTipsInfo;
+import com.autoever.mycar.server.domain.car.view.ToolTipsInfo;
 import lombok.Getter;
 
 import java.util.ArrayList;

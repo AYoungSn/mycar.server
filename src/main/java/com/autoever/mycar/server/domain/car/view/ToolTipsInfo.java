@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.tooltips.dto.view;
+package com.autoever.mycar.server.domain.car.view;
 
 import com.autoever.mycar.server.domain.entity.type.ToolType;
 

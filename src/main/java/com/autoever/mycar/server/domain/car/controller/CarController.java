@@ -2,6 +2,7 @@ package com.autoever.mycar.server.domain.car.controller;
 
 import com.autoever.mycar.server.domain.car.dto.req.ModelFilterReqDto;
 import com.autoever.mycar.server.domain.car.dto.res.ToolTipListDto;
+import com.autoever.mycar.server.domain.car.dto.res.TrimListResDto;
 import com.autoever.mycar.server.domain.car.service.CarService;
 import com.autoever.mycar.server.domain.car.view.CarResDto;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +27,10 @@ public class CarController {
     @GetMapping("/model-filter")
     public ToolTipListDto getToolTips(@Valid ModelFilterReqDto reqDto) {
         return carService.findToolTips(reqDto);
+    }
+
+    @GetMapping("/trims")
+    public TrimListResDto getTrims(@Valid ModelFilterReqDto reqDto) {
+        return new TrimListResDto(carService.findModelsByToolTips(reqDto));
     }
 }
