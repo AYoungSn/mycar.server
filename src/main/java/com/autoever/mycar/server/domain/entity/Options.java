@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Getter
 @Entity
@@ -17,7 +18,7 @@ public class Options {
     @Column(length = 50)
     private String name;
     @NotNull
-    private Long price;
+    private BigDecimal price;
     @Enumerated(EnumType.STRING)
     @Column(length = 10)
     @NotNull

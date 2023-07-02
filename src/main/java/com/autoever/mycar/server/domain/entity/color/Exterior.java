@@ -1,9 +1,11 @@
 package com.autoever.mycar.server.domain.entity.color;
 
 import lombok.Getter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Getter
 @Entity
@@ -16,4 +18,6 @@ public class Exterior {
     @Column(length = 30)
     private String name;
     private String img_uri;
+    @ColumnDefault("0")
+    private BigDecimal price;
 }

@@ -13,7 +13,7 @@ public class ColorCombi {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private Long option_id;
+    private Long exterior_id;
     @NotNull
-    private Long del_id;
+    private Long interior_id;
 }
