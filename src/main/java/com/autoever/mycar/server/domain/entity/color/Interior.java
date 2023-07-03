@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Entity
-@Table(name = "exterior")
+@Table(name = "interior")
 public class Interior {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
