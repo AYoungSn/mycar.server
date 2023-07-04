@@ -7,13 +7,13 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Entity
-@Table(name = "option_color")
-public class OptionColor {
+@Table(name = "option_interior")
+public class OptionInterior {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private Long option_id;
     @NotNull
-    private Long color_id;
+    private Long interior_id;
 }

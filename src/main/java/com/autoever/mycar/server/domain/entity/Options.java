@@ -24,7 +24,6 @@ public class Options {
     @Column(length = 10)
     @NotNull
     private OptionCategory category;
-
     @Column(length = 200)
     @ColumnDefault(value = "'https://www.hyundai.com/contents/spec/NX4-23/noimage.jpg'")
     private String img_uri;

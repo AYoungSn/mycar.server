@@ -13,7 +13,8 @@ public enum ErrorCode {
     METHOD_NOT_ALLOWED(405, "CM005", "METHOD NOT ALLOWED"),
     PAGE_NOT_FOUND(404, "CM006", "PAGE NOT FOUND"),
     VALID_FAILED(400, "CM007" , "Valid Test Failed."),
-    BAD_ARGU(400, "CM008", "잘못된 argument 입니다.")
+    BAD_ARGU(400, "CM008", "잘못된 argument 입니다."),
+    MODEL_NOT_FOUND(404, "MO001", "존재하지 않는 모델입니다.")
     ;
     private int status;
     private String errCode;

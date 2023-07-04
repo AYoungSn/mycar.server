@@ -1,11 +1,13 @@
 package com.autoever.mycar.server.domain.car.data;
 
+import com.autoever.mycar.server.domain.car.dto.res.ModelResDto;
 import com.autoever.mycar.server.domain.car.view.TrimResDto;
 import com.autoever.mycar.server.domain.entity.Model;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ModelRepository extends JpaRepository<Model, Long>{
     @Query(value = "select distinct m.id modelId, t.name trimName, m.price, m.basic_info basicInfo " +
@@ -30,4 +32,9 @@ public interface ModelRepository extends JpaRepository<Model, Long>{
             "c.id = :carId and e.tool_id = :engineId and g.tool_id = :gearboxId and d.tool_id = :drivingId",
             nativeQuery = true)
     List<TrimResDto> findAllByCarIdAndTooltipId(Long carId, Long engineId, Long gearboxId, Long drivingId);
+
+    @Query(value = "select c.id carId, c.name carName, t.id trimId, t.name trimName, m.id modelId, m.name modelName, m.price price " +
+            "from car c, trim t, model m " +
+            "where c.id = t.car_id and t.id = m.trim_id and m.id = :modelId", nativeQuery = true)
+    Optional<ModelResDto> findByModelId(Long modelId);
 }

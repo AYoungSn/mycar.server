@@ -15,6 +15,8 @@ public interface CarRepository extends JpaRepository<Car, Long> {
             "group by car.id", nativeQuery = true)
     List<CarResDto> findAllByCarInfo();
 
+
+
     @Query(value = "select distinct e.tool_id " +
             "from model m " +
             "    left outer join v_engines e " +
