@@ -1,5 +1,5 @@
-INSERT INTO car (id, name, type) values(1, '투싼', 'SUV');
-INSERT INTO car (id, name, type) values(2, '더 뉴 아반떼', 'SEDAN');
+INSERT INTO car (id, name, type, code) values(1, '더 뉴 아반떼', 'SEDAN', 'CN01');
+INSERT INTO car (id, name, type, code) values(2, '투싼', 'SUV', 'NX01');
 
 INSERT INTO trim (id, car_id, name) values(1, 1, 'Smart');
 INSERT INTO trim (id, car_id, name) values(2, 1, 'Modern');
