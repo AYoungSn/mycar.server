@@ -1,6 +1,6 @@
-package com.autoever.mycar.server.domain.entity.tooltips;
+package com.autoever.mycar.server.domain.car.entity.tooltips;
 
-import com.autoever.mycar.server.domain.entity.type.ToolType;
+import com.autoever.mycar.server.domain.car.entity.type.ToolType;
 import lombok.Getter;
 
 import javax.persistence.*;

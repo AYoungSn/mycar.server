@@ -386,6 +386,11 @@ insert into model_option(model_id, option_id) values(8, 6);
 insert into model_option(model_id, option_id) values(8, 7);
 insert into model_option(model_id, option_id) values(8, 8);
 
+insert into model_option(model_id, option_id) values(8, 34);
+insert into model_option(model_id, option_id) values(8, 36);
+insert into model_option(model_id, option_id) values(8, 37);
+insert into model_option(model_id, option_id) values(8, 39);
+
 insert into model_option(model_id, option_id) values(9, 1);
 insert into model_option(model_id, option_id) values(9, 2);
 insert into model_option(model_id, option_id) values(9, 3);
@@ -395,6 +400,11 @@ insert into model_option(model_id, option_id) values(9, 6);
 insert into model_option(model_id, option_id) values(9, 7);
 insert into model_option(model_id, option_id) values(9, 8);
 
+insert into model_option(model_id, option_id) values(9, 34);
+insert into model_option(model_id, option_id) values(9, 36);
+insert into model_option(model_id, option_id) values(9, 37);
+insert into model_option(model_id, option_id) values(9, 39);
+
 insert into model_option(model_id, option_id) values(10, 1);
 insert into model_option(model_id, option_id) values(10, 2);
 insert into model_option(model_id, option_id) values(10, 3);
@@ -403,6 +413,11 @@ insert into model_option(model_id, option_id) values(10, 5);
 insert into model_option(model_id, option_id) values(10, 6);
 insert into model_option(model_id, option_id) values(10, 7);
 insert into model_option(model_id, option_id) values(10, 8);
+
+insert into model_option(model_id, option_id) values(10, 34);
+insert into model_option(model_id, option_id) values(10, 36);
+insert into model_option(model_id, option_id) values(10, 37);
+insert into model_option(model_id, option_id) values(10, 39);
 -- tuscon premium
 insert into model_option(model_id, option_id) values(11, 8);
 insert into model_option(model_id, option_id) values(11, 9);
@@ -412,6 +427,12 @@ insert into model_option(model_id, option_id) values(11, 12);
 insert into model_option(model_id, option_id) values(11, 13);
 insert into model_option(model_id, option_id) values(11, 15);
 
+insert into model_option(model_id, option_id) values(11, 34);
+insert into model_option(model_id, option_id) values(11, 36);
+insert into model_option(model_id, option_id) values(11, 37);
+insert into model_option(model_id, option_id) values(11, 38);
+insert into model_option(model_id, option_id) values(11, 39);
+
 insert into model_option(model_id, option_id) values(12, 8);
 insert into model_option(model_id, option_id) values(12, 9);
 insert into model_option(model_id, option_id) values(12, 10);
@@ -419,6 +440,12 @@ insert into model_option(model_id, option_id) values(12, 11);
 insert into model_option(model_id, option_id) values(12, 12);
 insert into model_option(model_id, option_id) values(12, 13);
 insert into model_option(model_id, option_id) values(12, 15);
+
+insert into model_option(model_id, option_id) values(12, 34);
+insert into model_option(model_id, option_id) values(12, 36);
+insert into model_option(model_id, option_id) values(12, 37);
+insert into model_option(model_id, option_id) values(12, 38);
+insert into model_option(model_id, option_id) values(12, 39);
 
 insert into model_option(model_id, option_id) values(13, 8);
 insert into model_option(model_id, option_id) values(13, 9);
@@ -428,6 +455,12 @@ insert into model_option(model_id, option_id) values(13, 12);
 insert into model_option(model_id, option_id) values(13, 13);
 insert into model_option(model_id, option_id) values(13, 14);
 
+insert into model_option(model_id, option_id) values(13, 34);
+insert into model_option(model_id, option_id) values(13, 36);
+insert into model_option(model_id, option_id) values(13, 37);
+insert into model_option(model_id, option_id) values(13, 38);
+insert into model_option(model_id, option_id) values(13, 39);
+
 insert into model_option(model_id, option_id) values(14, 8);
 insert into model_option(model_id, option_id) values(14, 9);
 insert into model_option(model_id, option_id) values(14, 10);
@@ -436,25 +469,86 @@ insert into model_option(model_id, option_id) values(14, 12);
 insert into model_option(model_id, option_id) values(14, 13);
 insert into model_option(model_id, option_id) values(14, 14);
 
+insert into model_option(model_id, option_id) values(14, 34);
+insert into model_option(model_id, option_id) values(14, 36);
+insert into model_option(model_id, option_id) values(14, 37);
+insert into model_option(model_id, option_id) values(14, 38);
+insert into model_option(model_id, option_id) values(14, 39);
+
+-- tuscon inspiration
+
 insert into model_option(model_id, option_id) values(15, 9);
 insert into model_option(model_id, option_id) values(15, 16);
 insert into model_option(model_id, option_id) values(15, 18);
+
+insert into model_option(model_id, option_id) values(15, 33);
+insert into model_option(model_id, option_id) values(15, 34);
+insert into model_option(model_id, option_id) values(15, 36);
+insert into model_option(model_id, option_id) values(15, 37);
+insert into model_option(model_id, option_id) values(15, 38);
+insert into model_option(model_id, option_id) values(15, 39);
+
+insert into model_option(model_id, option_id) values(15, 40);
+insert into model_option(model_id, option_id) values(15, 41);
 
 insert into model_option(model_id, option_id) values(16, 9);
 insert into model_option(model_id, option_id) values(16, 16);
 insert into model_option(model_id, option_id) values(16, 18);
 
+insert into model_option(model_id, option_id) values(16, 33);
+insert into model_option(model_id, option_id) values(16, 34);
+insert into model_option(model_id, option_id) values(16, 36);
+insert into model_option(model_id, option_id) values(16, 37);
+insert into model_option(model_id, option_id) values(16, 38);
+insert into model_option(model_id, option_id) values(16, 39);
+
+insert into model_option(model_id, option_id) values(16, 40);
+insert into model_option(model_id, option_id) values(16, 41);
+
 insert into model_option(model_id, option_id) values(17, 9);
 insert into model_option(model_id, option_id) values(17, 16);
 insert into model_option(model_id, option_id) values(17, 17);
+
+insert into model_option(model_id, option_id) values(17, 33);
+insert into model_option(model_id, option_id) values(17, 34);
+insert into model_option(model_id, option_id) values(17, 36);
+insert into model_option(model_id, option_id) values(17, 37);
+insert into model_option(model_id, option_id) values(17, 38);
+insert into model_option(model_id, option_id) values(17, 39);
+
+insert into model_option(model_id, option_id) values(17, 40);
+insert into model_option(model_id, option_id) values(17, 41);
 
 insert into model_option(model_id, option_id) values(18, 9);
 insert into model_option(model_id, option_id) values(18, 16);
 insert into model_option(model_id, option_id) values(18, 17);
 
+insert into model_option(model_id, option_id) values(18, 33);
+insert into model_option(model_id, option_id) values(18, 34);
+insert into model_option(model_id, option_id) values(18, 36);
+insert into model_option(model_id, option_id) values(18, 37);
+insert into model_option(model_id, option_id) values(18, 38);
+insert into model_option(model_id, option_id) values(18, 39);
+
+insert into model_option(model_id, option_id) values(18, 40);
+insert into model_option(model_id, option_id) values(18, 41);
+-- dependency_id 선택해야 option_id 선택 가능
 insert into dependency_option(option_id, dependency_id) values(20, 19);
 insert into dependency_option(option_id, dependency_id) values(35, 32);
-insert into dependency_option(option_id, dependency_id) values(35, 1);
+insert into dependency_option(option_id, dependency_id) values(33, 1);
+insert into dependency_option(option_id, dependency_id) values(33, 10);
+insert into dependency_option(option_id, dependency_id) values(40, 7);
+insert into dependency_option(option_id, dependency_id) values(41, 7);
+insert into dependency_option(option_id, dependency_id) values(40, 13);
+insert into dependency_option(option_id, dependency_id) values(41, 13);
 
 insert into del_option(option_id, del_id) values(32, 40);
 insert into del_option(option_id, del_id) values(32, 41);
+insert into del_option(option_id, del_id) values(32, 34);
+
+insert into duplicate_option(option_id, duplicate_id) values(40, 41);
+insert into duplicate_option(option_id, duplicate_id) values(41, 40);
+insert into duplicate_option(option_id, duplicate_id) values(2, 3);
+insert into duplicate_option(option_id, duplicate_id) values(3, 2);
+insert into duplicate_option(option_id, duplicate_id) values(6, 7);
+insert into duplicate_option(option_id, duplicate_id) values(7, 6);

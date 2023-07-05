@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.car.view;
+package com.autoever.mycar.server.domain.car.dto.view;
 
 import java.math.BigDecimal;
 

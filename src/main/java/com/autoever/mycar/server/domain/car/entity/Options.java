@@ -1,6 +1,6 @@
-package com.autoever.mycar.server.domain.entity;
+package com.autoever.mycar.server.domain.car.entity;
 
-import com.autoever.mycar.server.domain.entity.type.OptionCategory;
+import com.autoever.mycar.server.domain.car.entity.type.OptionCategory;
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 

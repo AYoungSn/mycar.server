@@ -1,6 +1,6 @@
 package com.autoever.mycar.server.domain.car.dto.res;
 
-import com.autoever.mycar.server.domain.car.view.ToolTipsInfo;
+import com.autoever.mycar.server.domain.car.dto.view.ToolTipsInfo;
 import lombok.Getter;
 @Getter
 public class ToolTipFilterResDto {

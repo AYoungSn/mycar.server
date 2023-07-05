@@ -1,7 +1,7 @@
 package com.autoever.mycar.server.domain.car.dto.res.options;
 
-import com.autoever.mycar.server.domain.entity.Options;
-import com.autoever.mycar.server.domain.entity.type.OptionCategory;
+import com.autoever.mycar.server.domain.car.entity.Options;
+import com.autoever.mycar.server.domain.car.entity.type.OptionCategory;
 import lombok.Getter;
 
 import java.util.ArrayList;

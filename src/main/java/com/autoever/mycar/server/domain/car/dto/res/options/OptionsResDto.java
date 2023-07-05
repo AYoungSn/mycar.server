@@ -1,6 +1,6 @@
 package com.autoever.mycar.server.domain.car.dto.res.options;
 
-import com.autoever.mycar.server.domain.entity.Options;
+import com.autoever.mycar.server.domain.car.entity.Options;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

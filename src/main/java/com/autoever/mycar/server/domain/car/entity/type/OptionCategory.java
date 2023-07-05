@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.entity.type;
+package com.autoever.mycar.server.domain.car.entity.type;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

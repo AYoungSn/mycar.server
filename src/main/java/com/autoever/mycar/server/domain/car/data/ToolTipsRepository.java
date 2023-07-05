@@ -1,7 +1,7 @@
 package com.autoever.mycar.server.domain.car.data;
 
-import com.autoever.mycar.server.domain.entity.tooltips.ToolTips;
-import com.autoever.mycar.server.domain.car.view.ToolTipsInfo;
+import com.autoever.mycar.server.domain.car.entity.tooltips.ToolTips;
+import com.autoever.mycar.server.domain.car.dto.view.ToolTipsInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

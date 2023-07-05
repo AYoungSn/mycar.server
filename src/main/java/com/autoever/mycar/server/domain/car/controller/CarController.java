@@ -5,7 +5,7 @@ import com.autoever.mycar.server.domain.car.dto.res.ModelDetailResDto;
 import com.autoever.mycar.server.domain.car.dto.res.ToolTipListDto;
 import com.autoever.mycar.server.domain.car.dto.res.TrimListResDto;
 import com.autoever.mycar.server.domain.car.service.CarService;
-import com.autoever.mycar.server.domain.car.view.CarResDto;
+import com.autoever.mycar.server.domain.car.dto.view.CarResDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

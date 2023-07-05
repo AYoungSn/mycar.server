@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.entity.options;
+package com.autoever.mycar.server.domain.car.entity.options;
 
 import lombok.Getter;
 

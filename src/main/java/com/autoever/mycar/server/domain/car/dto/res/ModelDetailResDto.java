@@ -1,10 +1,12 @@
 package com.autoever.mycar.server.domain.car.dto.res;
 
 import com.autoever.mycar.server.domain.car.dto.res.options.*;
-import com.autoever.mycar.server.domain.entity.Options;
+import com.autoever.mycar.server.domain.car.dto.view.ExteriorDto;
+import com.autoever.mycar.server.domain.car.dto.view.InteriorDto;
+import com.autoever.mycar.server.domain.car.dto.view.ModelResDto;
+import com.autoever.mycar.server.domain.car.entity.Options;
 import lombok.Getter;
 
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;

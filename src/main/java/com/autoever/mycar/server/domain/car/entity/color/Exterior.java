@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.entity.color;
+package com.autoever.mycar.server.domain.car.entity.color;
 
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;

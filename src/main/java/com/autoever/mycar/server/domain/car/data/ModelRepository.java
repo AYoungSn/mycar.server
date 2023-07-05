@@ -1,8 +1,8 @@
 package com.autoever.mycar.server.domain.car.data;
 
-import com.autoever.mycar.server.domain.car.dto.res.ModelResDto;
-import com.autoever.mycar.server.domain.car.view.TrimResDto;
-import com.autoever.mycar.server.domain.entity.Model;
+import com.autoever.mycar.server.domain.car.dto.view.ModelResDto;
+import com.autoever.mycar.server.domain.car.dto.view.TrimResDto;
+import com.autoever.mycar.server.domain.car.entity.Model;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

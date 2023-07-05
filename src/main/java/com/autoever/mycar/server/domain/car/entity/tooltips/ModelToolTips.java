@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.entity.options;
+package com.autoever.mycar.server.domain.car.entity.tooltips;
 
 import lombok.Getter;
 
@@ -7,13 +7,13 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Entity
-@Table(name = "duplicate_option")
-public class DuplicateOption {
+@Table(name = "model_tooltips")
+public class ModelToolTips {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private Long option_id;
+    private Long model_id;
     @NotNull
-    private Long duplicate_id;
+    private Long tooltips_id;
 }

@@ -1,6 +1,6 @@
 package com.autoever.mycar.server.domain.car.data;
 
-import com.autoever.mycar.server.domain.entity.Options;
+import com.autoever.mycar.server.domain.car.entity.Options;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

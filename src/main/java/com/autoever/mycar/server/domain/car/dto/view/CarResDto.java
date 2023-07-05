@@ -1,6 +1,6 @@
-package com.autoever.mycar.server.domain.car.view;
+package com.autoever.mycar.server.domain.car.dto.view;
 
-import com.autoever.mycar.server.domain.entity.type.CarType;
+import com.autoever.mycar.server.domain.car.entity.type.CarType;
 
 public interface CarResDto {
     Long getCarId();

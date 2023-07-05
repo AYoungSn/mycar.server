@@ -1,5 +1,6 @@
 package com.autoever.mycar.server.domain.car.dto.res.options;
 
+import com.autoever.mycar.server.domain.car.dto.view.InteriorDto;
 import lombok.Getter;
 
 @Getter

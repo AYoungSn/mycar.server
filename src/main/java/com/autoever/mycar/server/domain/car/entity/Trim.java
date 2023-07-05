@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.entity.options;
+package com.autoever.mycar.server.domain.car.entity;
 
 import lombok.Getter;
 
@@ -7,13 +7,14 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Entity
-@Table(name = "option_interior")
-public class OptionInterior {
+@Table(name = "trim")
+public class Trim {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private Long option_id;
+    private Long car_id;
     @NotNull
-    private Long interior_id;
+    @Column(length = 20)
+    private String name;
 }

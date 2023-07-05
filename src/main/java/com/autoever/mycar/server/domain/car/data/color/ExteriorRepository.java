@@ -1,7 +1,7 @@
 package com.autoever.mycar.server.domain.car.data.color;
 
-import com.autoever.mycar.server.domain.car.dto.res.options.ExteriorDto;
-import com.autoever.mycar.server.domain.entity.color.Exterior;
+import com.autoever.mycar.server.domain.car.dto.view.ExteriorDto;
+import com.autoever.mycar.server.domain.car.entity.color.Exterior;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

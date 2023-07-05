@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.entity.options;
+package com.autoever.mycar.server.domain.car.entity.color;
 
 import lombok.Getter;
 
@@ -7,13 +7,13 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Entity
-@Table(name = "model_option")
-public class ModelOption {
+@Table(name = "interior")
+public class Interior {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private Long option_id;
-    @NotNull
-    private Long model_id;
+    @Column(length = 30)
+    private String name;
+    private String img_uri;
 }
