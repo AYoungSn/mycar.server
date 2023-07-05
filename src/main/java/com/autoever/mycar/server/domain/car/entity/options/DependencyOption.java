@@ -14,7 +14,11 @@ public class DependencyOption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    @Column(length = 5)
+    @Enumerated(EnumType.STRING)
     private OptionCode option_code;
     @NotNull
+    @Column(length = 5)
+    @Enumerated(EnumType.STRING)
     private OptionCode dependency_code;
 }

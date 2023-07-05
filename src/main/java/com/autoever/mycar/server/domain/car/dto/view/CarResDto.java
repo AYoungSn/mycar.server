@@ -8,5 +8,5 @@ public interface CarResDto {
     CarType getCarType();
     String getCarName();
     Long getPrice();
-    CarCode getCode();
+    CarCode getCarCode();
 }

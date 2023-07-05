@@ -16,9 +16,15 @@ public class ColorCombi {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    @Column(length = 5)
+    @Enumerated(EnumType.STRING)
     private TrimCode trim_code;
     @NotNull
+    @Column(length = 5)
+    @Enumerated(EnumType.STRING)
     private ExteriorCode exterior_code;
     @NotNull
+    @Column(length = 5)
+    @Enumerated(EnumType.STRING)
     private InteriorCode interior_code;
 }

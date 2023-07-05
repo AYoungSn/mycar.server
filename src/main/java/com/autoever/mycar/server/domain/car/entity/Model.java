@@ -15,6 +15,8 @@ public class Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    @Column(length = 5)
+    @Enumerated(EnumType.STRING)
     private TrimCode trim_code;
     @NotNull
     private BigDecimal price;

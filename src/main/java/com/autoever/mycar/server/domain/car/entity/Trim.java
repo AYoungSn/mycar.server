@@ -1,5 +1,6 @@
 package com.autoever.mycar.server.domain.car.entity;
 
+import com.autoever.mycar.server.domain.car.entity.code.CarCode;
 import com.autoever.mycar.server.domain.car.entity.code.TrimCode;
 import lombok.Getter;
 
@@ -14,11 +15,14 @@ public class Trim {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private Long car_id;
+    @Column(length = 5)
+    @Enumerated(EnumType.STRING)
+    private CarCode car_code;
     @NotNull
     @Column(length = 20)
     private String name;
 
+    @NotNull
     @Column(length = 5, unique = true)
     @Enumerated(EnumType.STRING)
     private TrimCode code;

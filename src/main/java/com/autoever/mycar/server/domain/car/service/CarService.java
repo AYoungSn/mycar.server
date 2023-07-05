@@ -38,9 +38,9 @@ public class CarService {
     @Transactional(readOnly = true)
     public ToolTipListDto findToolTips(ModelFilterReqDto reqDto) {
         // engine 선택 안된 경우
-        ToolTipListDto result = new ToolTipListDto(toolTipsRepository.findAllToolTips(reqDto.getCarId()));
+        ToolTipListDto result = new ToolTipListDto(toolTipsRepository.findAllToolTips(reqDto.getCarCode().name()));
         if (reqDto.getEngineId() != null) {
-            result.setGearbox(toolTipsRepository.findAllEnableToolTips(reqDto.getCarId(), reqDto.getEngineId()));
+            result.setGearbox(toolTipsRepository.findAllEnableToolTips(reqDto.getCarCode().name(), reqDto.getEngineId()));
         }
         return result;
     }
@@ -48,20 +48,20 @@ public class CarService {
     @Transactional(readOnly = true)
     public List<TrimResDto> findModelsByToolTips(ModelFilterReqDto reqDto) {
         if (reqDto.getDrivingId() == null || reqDto.getGearboxId() == null)
-            return modelRepository.findAllByCarIdAndTooltipId(reqDto.getCarId(), reqDto.getEngineId());
-        return modelRepository.findAllByCarIdAndTooltipId(reqDto.getCarId(), reqDto.getEngineId(), reqDto.getGearboxId(), reqDto.getDrivingId());
+            return modelRepository.findAllByCarIdAndTooltipId(reqDto.getCarCode().name(), reqDto.getEngineId());
+        return modelRepository.findAllByCarIdAndTooltipId(reqDto.getCarCode().name(), reqDto.getEngineId(), reqDto.getGearboxId(), reqDto.getDrivingId());
     }
 
     public ModelDetailResDto myCarInit(Long modelId) {
         ModelResDto modelResDto = modelRepository.findByModelId(modelId)
                 .orElseThrow(ModelNotFoundException::new);
         // car 종류별로 선택 가능한 외장, 내장 색상 가져오기
-        List<ExteriorDto> exteriors = exteriorRepository.findAllByCarId(modelResDto.getCarId());
-        List<InteriorDto> interiors = interiorRepository.findAllByCarId(modelResDto.getCarId());
+        List<ExteriorDto> exteriors = exteriorRepository.findAllByCarCode(modelResDto.getCarCode().name());
+        List<InteriorDto> interiors = interiorRepository.findAllByCarCode(modelResDto.getCarCode().name());
         List<Options> options = optionsRepository.findAllByModelId(modelId);
         ModelDetailResDto result = new ModelDetailResDto(modelResDto, exteriors, interiors, options);
-        result.exteriorChoiceCheck(exteriorRepository.findAllByTrimId(modelResDto.getTrimId()));
-        result.interiorChoiceCheck(interiorRepository.findAllByTrimId(modelResDto.getTrimId()));
+        result.exteriorChoiceCheck(exteriorRepository.findAllByTrimCode(modelResDto.getTrimCode().name()));
+        result.interiorChoiceCheck(interiorRepository.findAllByTrimCode(modelResDto.getTrimCode().name()));
         return result;
     }
 }

@@ -1,13 +1,13 @@
 INSERT INTO car (id, name, type, code) values(1, '더 뉴 아반떼', 'SEDAN', 'AT01');
 INSERT INTO car (id, name, type, code) values(2, '투싼', 'SUV', 'TC01');
 
-INSERT INTO trim (id, car_code, name, trim_code) values(1, 'AT01', 'Smart', 'ATS');
-INSERT INTO trim (id, car_code, name, trim_code) values(2, 'AT01', 'Modern', 'ATM');
-INSERT INTO trim (id, car_code, name, trim_code) values(3, 'AT01', 'Inspiration', 'ATI');
+INSERT INTO trim (id, car_code, name, code) values(1, 'AT01', 'Smart', 'ATS');
+INSERT INTO trim (id, car_code, name, code) values(2, 'AT01', 'Modern', 'ATM');
+INSERT INTO trim (id, car_code, name, code) values(3, 'AT01', 'Inspiration', 'ATI');
 
-INSERT INTO trim (id, car_code, name, trim_code) values(4, 'TC01', 'Modern', 'TCM');
-INSERT INTO trim (id, car_code, name, trim_code) values(5, 'TC01', 'Premium', 'TCP');
-INSERT INTO trim (id, car_code, name, trim_code) values(6, 'TC01', 'Inspiration', 'TCI');
+INSERT INTO trim (id, car_code, name, code) values(4, 'TC01', 'Modern', 'TCM');
+INSERT INTO trim (id, car_code, name, code) values(5, 'TC01', 'Premium', 'TCP');
+INSERT INTO trim (id, car_code, name, code) values(6, 'TC01', 'Inspiration', 'TCI');
 
 INSERT INTO model (id, name, basic_info, price, trim_code, engine_displacement, fuel_efficiency)
 values(1, '더 뉴 아반떼 자가용 가솔린 1.6 Smart A/T', '자가용 가솔린 1.6 A/T', 19750000, 'ATS', '1,598cc', '15.3 km/ℓ');
@@ -68,16 +68,16 @@ insert into exterior(id, name, img_uri, code) values(15, '얼티메이트 레드
 insert into exterior(id, name, img_uri, code) values(16, '어비스블랙펄', 'https://www.hyundai.com/contents/vr360/CN12/exterior/A2B/colorchip-exterior.png', 'A2B');
 insert into exterior(id, name, img_uri, code) values(17, '사이버 그레이 메탈릭', 'https://www.hyundai.com/contents/vr360/CN12/exterior/C5G/colorchip-exterior.png', 'C5G');
 
-insert into interior(id, name, img_uri) values(1, '블랙모노톤', 'https://www.hyundai.com/contents/vr360/NX05/interior/I34/colorchip-interior.png', 'I34');
-insert into interior(id, name, img_uri) values(2, '블랙 모노톤(가죽 시트)', 'https://www.hyundai.com/contents/vr360/NX05/interior/I35/colorchip-interior.png', 'I35');
-insert into interior(id, name, img_uri) values(3, '블랙/그레이 투톤(그레이 가죽시트)', 'https://www.hyundai.com/contents/vr360/NX05/interior/I36/colorchip-interior.png','I36');
-insert into interior(id, name, img_uri) values(4, '네이비 원톤(인디고 모노톤)', 'https://www.hyundai.com/contents/vr360/NX05/interior/I37/colorchip-interior.png', 'I37');
-insert into interior(id, name, img_uri) values(5, '블랙모노톤(레드스티치)', 'https://www.hyundai.com/contents/vr360/NX05/interior/I38/colorchip-interior.png', 'I38');
-insert into interior(id, name, img_uri) values(6, '블랙 / 브라운 투톤(브라운 가죽시트)', 'https://www.hyundai.com/contents/vr360/NX05/interior/PRF/colorchip-interior.png', 'PRF');
+insert into interior(id, name, img_uri, code) values(1, '블랙모노톤', 'https://www.hyundai.com/contents/vr360/NX05/interior/I34/colorchip-interior.png', 'I34');
+insert into interior(id, name, img_uri, code) values(2, '블랙 모노톤(가죽 시트)', 'https://www.hyundai.com/contents/vr360/NX05/interior/I35/colorchip-interior.png', 'I35');
+insert into interior(id, name, img_uri, code) values(3, '블랙/그레이 투톤(그레이 가죽시트)', 'https://www.hyundai.com/contents/vr360/NX05/interior/I36/colorchip-interior.png','I36');
+insert into interior(id, name, img_uri, code) values(4, '네이비 원톤(인디고 모노톤)', 'https://www.hyundai.com/contents/vr360/NX05/interior/I37/colorchip-interior.png', 'I37');
+insert into interior(id, name, img_uri, code) values(5, '블랙모노톤(레드스티치)', 'https://www.hyundai.com/contents/vr360/NX05/interior/I38/colorchip-interior.png', 'I38');
+insert into interior(id, name, img_uri, code) values(6, '블랙 / 브라운 투톤(브라운 가죽시트)', 'https://www.hyundai.com/contents/vr360/NX05/interior/PRF/colorchip-interior.png', 'PRF');
 -- avante
-insert into interior(id, name, img_uri) values(7, '블랙모노톤', 'https://www.hyundai.com/contents/vr360/CN12/interior/NNB/colorchip-interior.png', 'NNB');
-insert into interior(id, name, img_uri) values(8, '세이지그린', 'https://www.hyundai.com/contents/vr360/CN12/interior/SSS/colorchip-interior.png', 'SSS');
-insert into interior(id, name, img_uri) values(9, '캐쉬미어 베이지', 'https://www.hyundai.com/contents/vr360/CN12/interior/VHC/colorchip-interior.png', 'VHC');
+insert into interior(id, name, img_uri, code) values(7, '블랙모노톤', 'https://www.hyundai.com/contents/vr360/CN12/interior/NNB/colorchip-interior.png', 'NNB');
+insert into interior(id, name, img_uri, code) values(8, '세이지그린', 'https://www.hyundai.com/contents/vr360/CN12/interior/SSS/colorchip-interior.png', 'SSS');
+insert into interior(id, name, img_uri, code) values(9, '캐쉬미어 베이지', 'https://www.hyundai.com/contents/vr360/CN12/interior/VHC/colorchip-interior.png', 'VHC');
 
 -- avante - 1
 -- smart - 1
@@ -229,7 +229,7 @@ insert into options(id, code, category, name, price) values(18, 'PL4', 'DETAIL',
 insert into options(id, code, category, name, price) values(19, 'CV1', 'DETAIL', '컨비니언스 I', 690000);
 insert into options(id, code, category, name, price) values(20, 'IFN', 'DETAIL', '인포테인먼트 내비', 790000);
 insert into options(id, code, category, name, price) values(21, 'HS3', 'DETAIL', '현대스마트센스 III', 690000);
-insert into options(id, code, category, name, price) values(22, 'AT1', 'DETAIL', '17인치 알로이 휠 & 타이어 I', 490000); --smart
+insert into options(id, code, category, name, price) values(22, 'AT1', 'DETAIL', '17인치 알로이 휠 & 타이어 I', 490000); -- smart
 insert into options(id, code, category, name, price) values(23, 'SLP', 'DETAIL', '선루프', 450000);
 insert into options(id, code, category, name, price) values(24, 'PAP', 'DETAIL', '파킹 어시스트 플러스', 1290000);
 insert into options(id, code, category, name, price) values(25, 'HS1', 'DETAIL', '현대스마트센스 Ⅰ', 940000);
@@ -569,18 +569,3 @@ SELECT t.id tool_id, t.contents contents, t.img_uri, t.name name, t.type type, m
 FROM tooltips t, model_tooltips mt
 WHERE t.type = 'DRIVING' and mt.tooltips_id = t.id;
 
-select m.id model_id, e.id engines_id, g.id gearbox_id
-from model m left join v_engines e, v_gearbox g
-on m.id = e.model_id
-where m.id = g.model_id;
-
-select c.id car_id, m.id model_id, e.tool_id engines_id, g.tool_id gearbox_id, d.tool_id driving_id
-from model m
-    left outer join v_engines e
-        on m.id = e.model_id
-    left join v_gearbox g
-        on m.id = g.model_id
-    left join v_driving d
-        on m.id = d.model_id
-    join car c, trim t
-where c.id = t.car_id and t.id = m.trim_id;
