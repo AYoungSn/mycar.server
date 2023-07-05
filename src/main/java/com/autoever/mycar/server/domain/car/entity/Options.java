@@ -1,5 +1,6 @@
 package com.autoever.mycar.server.domain.car.entity;
 
+import com.autoever.mycar.server.domain.car.entity.code.OptionCode;
 import com.autoever.mycar.server.domain.car.entity.type.OptionCategory;
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
@@ -27,4 +28,8 @@ public class Options {
     @Column(length = 200)
     @ColumnDefault(value = "'https://www.hyundai.com/contents/spec/NX4-23/noimage.jpg'")
     private String img_uri;
+
+    @Column(length = 5, unique = true)
+    @Enumerated(EnumType.STRING)
+    private OptionCode code;
 }

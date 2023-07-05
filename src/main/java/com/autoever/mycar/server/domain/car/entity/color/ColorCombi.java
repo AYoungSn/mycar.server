@@ -1,5 +1,8 @@
 package com.autoever.mycar.server.domain.car.entity.color;
 
+import com.autoever.mycar.server.domain.car.entity.code.ExteriorCode;
+import com.autoever.mycar.server.domain.car.entity.code.InteriorCode;
+import com.autoever.mycar.server.domain.car.entity.code.TrimCode;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -13,9 +16,9 @@ public class ColorCombi {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private Long trim_id;
+    private TrimCode trim_code;
     @NotNull
-    private Long exterior_id;
+    private ExteriorCode exterior_code;
     @NotNull
-    private Long interior_id;
+    private InteriorCode interior_code;
 }

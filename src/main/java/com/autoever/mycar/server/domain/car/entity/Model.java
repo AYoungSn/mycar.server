@@ -1,5 +1,6 @@
 package com.autoever.mycar.server.domain.car.entity;
 
+import com.autoever.mycar.server.domain.car.entity.code.TrimCode;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ public class Model {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private Long trim_id;
+    private TrimCode trim_code;
     @NotNull
     private BigDecimal price;
     @NotNull

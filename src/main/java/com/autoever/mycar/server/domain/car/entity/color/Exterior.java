@@ -21,7 +21,7 @@ public class Exterior {
     private String img_uri;
     @ColumnDefault("0")
     private BigDecimal price;
-    @Column(length = 5)
+    @Column(length = 5, unique = true)
     @Enumerated(EnumType.STRING)
     private ExteriorCode code;
 }

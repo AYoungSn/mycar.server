@@ -1,5 +1,6 @@
 package com.autoever.mycar.server.domain.car.entity.options;
 
+import com.autoever.mycar.server.domain.car.entity.code.OptionCode;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ public class DuplicateOption {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private Long option_id;
+    private OptionCode option_code;
     @NotNull
-    private Long duplicate_id;
+    private OptionCode duplicate_code;
 }
