@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CarRepository extends JpaRepository<Car, Long> {
-    @Query(value = "SELECT car.id carId, min(model.price) price, car.type carType, car.name carName " +
+    @Query(value = "SELECT car.id carId, min(model.price) price, car.type carType, car.name carName, car.code " +
             "FROM car, trim, model " +
             "WHERE car.id = trim.car_id and trim.id = model.trim_id " +
             "group by car.id", nativeQuery = true)

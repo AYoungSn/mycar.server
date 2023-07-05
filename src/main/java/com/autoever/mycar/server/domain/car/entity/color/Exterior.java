@@ -1,5 +1,6 @@
 package com.autoever.mycar.server.domain.car.entity.color;
 
+import com.autoever.mycar.server.domain.car.entity.code.ExteriorCode;
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -20,4 +21,7 @@ public class Exterior {
     private String img_uri;
     @ColumnDefault("0")
     private BigDecimal price;
+    @Column(length = 5)
+    @Enumerated(EnumType.STRING)
+    private ExteriorCode code;
 }

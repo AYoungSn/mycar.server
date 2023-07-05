@@ -1,5 +1,6 @@
 package com.autoever.mycar.server.domain.car.entity;
 
+import com.autoever.mycar.server.domain.car.entity.code.CarCode;
 import com.autoever.mycar.server.domain.car.entity.type.CarType;
 import lombok.Getter;
 
@@ -20,4 +21,8 @@ public class Car {
     @Enumerated(EnumType.STRING)
     @NotNull
     private CarType type;
+
+    @Column(length = 5, unique = true)
+    @Enumerated(EnumType.STRING)
+    private CarCode code;
 }

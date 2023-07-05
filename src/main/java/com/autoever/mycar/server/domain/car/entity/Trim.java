@@ -1,5 +1,6 @@
 package com.autoever.mycar.server.domain.car.entity;
 
+import com.autoever.mycar.server.domain.car.entity.code.TrimCode;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -17,4 +18,8 @@ public class Trim {
     @NotNull
     @Column(length = 20)
     private String name;
+
+    @Column(length = 5, unique = true)
+    @Enumerated(EnumType.STRING)
+    private TrimCode code;
 }
