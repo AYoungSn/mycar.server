@@ -423,6 +423,7 @@ insert into model_option(model_id, option_code) values(14, 'KNW');
 insert into model_option(model_id, option_code) values(15, 'BC1');
 insert into model_option(model_id, option_code) values(15, 'PSL');
 insert into model_option(model_id, option_code) values(15, 'PL4');
+insert into model_option(model_id, option_code) values(15, 'AVP');
 
 insert into model_option(model_id, option_code) values(15, 'LLP');
 insert into model_option(model_id, option_code) values(15, 'SST');
@@ -437,6 +438,7 @@ insert into model_option(model_id, option_code) values(15, 'NX2');
 insert into model_option(model_id, option_code) values(16, 'BC1');
 insert into model_option(model_id, option_code) values(16, 'PSL');
 insert into model_option(model_id, option_code) values(16, 'PL4');
+insert into model_option(model_id, option_code) values(16, 'AVP');
 
 insert into model_option(model_id, option_code) values(16, 'LLP');
 insert into model_option(model_id, option_code) values(16, 'SST');
@@ -451,6 +453,7 @@ insert into model_option(model_id, option_code) values(16, 'NX2');
 insert into model_option(model_id, option_code) values(17, 'BC1');
 insert into model_option(model_id, option_code) values(17, 'PSL');
 insert into model_option(model_id, option_code) values(17, 'PL3');
+insert into model_option(model_id, option_code) values(17, 'AVP');
 
 insert into model_option(model_id, option_code) values(17, 'LLP');
 insert into model_option(model_id, option_code) values(17, 'SST');
@@ -465,6 +468,7 @@ insert into model_option(model_id, option_code) values(17, 'NX2');
 insert into model_option(model_id, option_code) values(18, 'BC1');
 insert into model_option(model_id, option_code) values(18, 'PSL');
 insert into model_option(model_id, option_code) values(18, 'PL3');
+insert into model_option(model_id, option_code) values(18, 'AVP');
 
 insert into model_option(model_id, option_code) values(18, 'LLP');
 insert into model_option(model_id, option_code) values(18, 'SST');
@@ -476,14 +480,16 @@ insert into model_option(model_id, option_code) values(18, 'KNW');
 insert into model_option(model_id, option_code) values(18, 'NX1');
 insert into model_option(model_id, option_code) values(18, 'NX2');
 -- dependency_id 선택해야 option_id 선택 가능
-insert into dependency_option(option_code, dependency_code) values('IFN', 'CV1');
-insert into dependency_option(option_code, dependency_code) values('AST', 'AVP');
-insert into dependency_option(option_code, dependency_code) values('LLP', 'PLL');
-insert into dependency_option(option_code, dependency_code) values('LLP', 'PLI');
-insert into dependency_option(option_code, dependency_code) values('NX1', 'EXP');
-insert into dependency_option(option_code, dependency_code) values('NX2', 'EXP');
-insert into dependency_option(option_code, dependency_code) values('NX1', 'EX2');
-insert into dependency_option(option_code, dependency_code) values('NX2', 'EX2');
+insert into dependency_option(trim_code, option_code, dependency_code) values('ATS', 'IFN', 'CV1');
+insert into dependency_option(trim_code, option_code, dependency_code) values('TCI', 'AST', 'AVP');
+insert into dependency_option(trim_code, option_code, dependency_code) values('TCM', 'LLP', 'PLL');
+insert into dependency_option(trim_code, option_code, dependency_code) values('TCP','LLP', 'PLI');
+
+insert into dependency_option(trim_code, option_code, dependency_code) values('TCM', 'NX1', 'EXP');
+insert into dependency_option(trim_code, option_code, dependency_code) values('TCM', 'NX2', 'EXP');
+
+insert into dependency_option(trim_code, option_code, dependency_code) values('TCP', 'NX1', 'EX2');
+insert into dependency_option(trim_code, option_code, dependency_code) values('TCP', 'NX2', 'EX2');
 
 insert into del_option(option_code, del_code) values('AVP', 'NX1');
 insert into del_option(option_code, del_code) values('AVP', 'NX2');

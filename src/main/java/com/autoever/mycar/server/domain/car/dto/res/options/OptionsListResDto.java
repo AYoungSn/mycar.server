@@ -5,7 +5,9 @@ import com.autoever.mycar.server.domain.car.entity.type.OptionCategory;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class OptionsListResDto {
@@ -24,6 +26,27 @@ public class OptionsListResDto {
                 select.add(new OptionsResDto(options));
             } else if (options.getCategory().equals(OptionCategory.NPF)) {
                 npf.add(new OptionsResDto(options));
+            }
+        }
+    }
+
+    public void optionsChoiceCheck(List<Options> checks) {
+        for (Options options: checks) {
+            if (options.getCategory().equals(OptionCategory.HGA)) {
+                hga = hga.stream().peek(o -> {
+                    if (options.getCode().equals(o.getCode()))
+                        o.setChoiceYN(false);
+                }).collect(Collectors.toList());
+            } else if (options.getCategory().equals(OptionCategory.DETAIL)) {
+                select = select.stream().peek(o -> {
+                    if (options.getCode().equals(o.getCode()))
+                        o.setChoiceYN(false);
+                }).collect(Collectors.toList());
+            } else if (options.getCategory().equals(OptionCategory.NPF)) {
+                npf = npf.stream().peek(o -> {
+                    if (options.getCode().equals(o.getCode()))
+                        o.setChoiceYN(false);
+                }).collect(Collectors.toList());
             }
         }
     }

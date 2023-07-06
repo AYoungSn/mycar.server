@@ -55,4 +55,8 @@ public class ModelDetailResDto {
         }
         interior.sort((o1, o2) -> o1.getChoiceYN() ? 1: o1.getId().compareTo(o2.getId()));
     }
+
+    public void optionsChoiceCheck(List<Options> options) {
+        this.options.optionsChoiceCheck(options);
+    }
 }

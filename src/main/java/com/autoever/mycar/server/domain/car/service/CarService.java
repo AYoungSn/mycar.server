@@ -2,7 +2,8 @@ package com.autoever.mycar.server.domain.car.service;
 
 import com.autoever.mycar.server.domain.car.data.CarRepository;
 import com.autoever.mycar.server.domain.car.data.ModelRepository;
-import com.autoever.mycar.server.domain.car.data.OptionsRepository;
+import com.autoever.mycar.server.domain.car.data.options.DependencyOptionRepository;
+import com.autoever.mycar.server.domain.car.data.options.OptionsRepository;
 import com.autoever.mycar.server.domain.car.data.color.ExteriorRepository;
 import com.autoever.mycar.server.domain.car.data.color.InteriorRepository;
 import com.autoever.mycar.server.domain.car.dto.req.ModelFilterReqDto;
@@ -31,6 +32,7 @@ public class CarService {
     private final InteriorRepository interiorRepository;
     private final ExteriorRepository exteriorRepository;
     private final OptionsRepository optionsRepository;
+    private final DependencyOptionRepository dependencyOptionRepository;
     public List<CarResDto> getCarList() {
         return carRepository.findAllByCarInfo();
     }
@@ -60,6 +62,7 @@ public class CarService {
         List<InteriorDto> interiors = interiorRepository.findAllByCarCode(modelResDto.getCarCode().name());
         List<Options> options = optionsRepository.findAllByModelId(modelId);
         ModelDetailResDto result = new ModelDetailResDto(modelResDto, exteriors, interiors, options);
+        result.optionsChoiceCheck(optionsRepository.findAllDependencyOption(modelResDto.getTrimCode().name()));
         result.exteriorChoiceCheck(exteriorRepository.findAllByTrimCode(modelResDto.getTrimCode().name()));
         result.interiorChoiceCheck(interiorRepository.findAllByTrimCode(modelResDto.getTrimCode().name()));
         return result;
