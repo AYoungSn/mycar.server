@@ -17,4 +17,9 @@ public interface InteriorRepository extends JpaRepository<Interior, Long> {
             "from interior it, color_combi cc " +
             "where it.code = cc.interior_code and cc.trim_code=:trimCode", nativeQuery = true)
     List<InteriorDto> findAllByTrimCode(String trimCode);
+
+    @Query(value = "SELECT distinct it.img_uri imgUri, it.name name, it.id, it.code " +
+            "FROM interior it, color_combi cc " +
+            "WHERE cc.interior_code = it.code and cc.trim_code = :trimCode and cc.exterior_code=:exteriorCode", nativeQuery = true)
+    List<InteriorDto> findAllByExteriorCodeAndTrimCode(String exteriorCode, String trimCode);
 }

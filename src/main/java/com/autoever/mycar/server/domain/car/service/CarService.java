@@ -2,7 +2,6 @@ package com.autoever.mycar.server.domain.car.service;
 
 import com.autoever.mycar.server.domain.car.data.CarRepository;
 import com.autoever.mycar.server.domain.car.data.ModelRepository;
-import com.autoever.mycar.server.domain.car.data.options.DependencyOptionRepository;
 import com.autoever.mycar.server.domain.car.data.options.OptionsRepository;
 import com.autoever.mycar.server.domain.car.data.color.ExteriorRepository;
 import com.autoever.mycar.server.domain.car.data.color.InteriorRepository;
@@ -32,7 +31,6 @@ public class CarService {
     private final InteriorRepository interiorRepository;
     private final ExteriorRepository exteriorRepository;
     private final OptionsRepository optionsRepository;
-    private final DependencyOptionRepository dependencyOptionRepository;
     public List<CarResDto> getCarList() {
         return carRepository.findAllByCarInfo();
     }

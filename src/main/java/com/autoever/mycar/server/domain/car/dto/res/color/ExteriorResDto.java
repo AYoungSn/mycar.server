@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.car.dto.res.options;
+package com.autoever.mycar.server.domain.car.dto.res.color;
 
 import com.autoever.mycar.server.domain.car.dto.view.ExteriorDto;
 import com.autoever.mycar.server.domain.car.entity.code.ExteriorCode;

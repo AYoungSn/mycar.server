@@ -8,7 +8,4 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface DependencyOptionRepository extends JpaRepository<DependencyOption, Long> {
-//    @Query(value = "SELECT o1.* FROM options o1, dependency_option do " +
-//            "WHERE o1.code = do.option_code ", nativeQuery = true)
-//    List<Options> findAllDependencyOption();
 }

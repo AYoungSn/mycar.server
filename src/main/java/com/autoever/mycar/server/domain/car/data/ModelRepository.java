@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ModelRepository extends JpaRepository<Model, Long>{
-    @Query(value = "select distinct m.id modelId, t.name trimName, m.price, m.basic_info basicInfo " +
+    @Query(value = "select distinct m.id modelId, t.name trimName, m.price, m.basic_info basicInfo, t.code trimCode " +
             "from model m left outer join v_engines e " +
             "on m.id = e.model_id " +
             "left join v_gearbox g " +
@@ -21,7 +21,7 @@ public interface ModelRepository extends JpaRepository<Model, Long>{
             "join car c, trim t " +
             "where c.code = t.car_code and t.code = m.trim_code and c.code = :carCode and e.tool_id = :engineId", nativeQuery = true)
     List<TrimResDto> findAllByCarIdAndTooltipId(String carCode, Long engineId);
-    @Query(value = "select distinct m.id modelId, t.name trimName, m.price, m.basic_info basicInfo " +
+    @Query(value = "select distinct m.id modelId, t.name trimName, m.price, m.basic_info basicInfo, t.code trimCode " +
             "from model m left outer join v_engines e " +
                 "on m.id = e.model_id " +
                 "left join v_gearbox g " +

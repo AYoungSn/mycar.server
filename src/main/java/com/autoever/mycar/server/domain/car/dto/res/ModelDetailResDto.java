@@ -1,5 +1,7 @@
 package com.autoever.mycar.server.domain.car.dto.res;
 
+import com.autoever.mycar.server.domain.car.dto.res.color.ExteriorResDto;
+import com.autoever.mycar.server.domain.car.dto.res.color.InteriorResDto;
 import com.autoever.mycar.server.domain.car.dto.res.options.*;
 import com.autoever.mycar.server.domain.car.dto.view.ExteriorDto;
 import com.autoever.mycar.server.domain.car.dto.view.InteriorDto;
