@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.car.data.color;
+package com.autoever.mycar.server.domain.car.adapter.out.persistence.color;
 
 import com.autoever.mycar.server.domain.car.dto.view.ExteriorDto;
 import com.autoever.mycar.server.domain.car.dto.view.InteriorDto;

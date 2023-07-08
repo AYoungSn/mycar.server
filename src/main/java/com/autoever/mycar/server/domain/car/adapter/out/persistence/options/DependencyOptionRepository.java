@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.car.data.options;
+package com.autoever.mycar.server.domain.car.adapter.out.persistence.options;
 
 import com.autoever.mycar.server.domain.car.entity.Options;
 import com.autoever.mycar.server.domain.car.entity.options.DependencyOption;

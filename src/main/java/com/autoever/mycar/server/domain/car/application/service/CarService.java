@@ -1,10 +1,10 @@
-package com.autoever.mycar.server.domain.car.service;
+package com.autoever.mycar.server.domain.car.application.service;
 
-import com.autoever.mycar.server.domain.car.data.CarRepository;
-import com.autoever.mycar.server.domain.car.data.ModelRepository;
-import com.autoever.mycar.server.domain.car.data.options.OptionsRepository;
-import com.autoever.mycar.server.domain.car.data.color.ExteriorRepository;
-import com.autoever.mycar.server.domain.car.data.color.InteriorRepository;
+import com.autoever.mycar.server.domain.car.adapter.out.persistence.CarRepository;
+import com.autoever.mycar.server.domain.car.adapter.out.persistence.ModelRepository;
+import com.autoever.mycar.server.domain.car.adapter.out.persistence.options.OptionsRepository;
+import com.autoever.mycar.server.domain.car.adapter.out.persistence.color.ExteriorRepository;
+import com.autoever.mycar.server.domain.car.adapter.out.persistence.color.InteriorRepository;
 import com.autoever.mycar.server.domain.car.dto.req.ModelFilterReqDto;
 import com.autoever.mycar.server.domain.car.dto.res.ModelDetailResDto;
 import com.autoever.mycar.server.domain.car.dto.view.ModelResDto;
@@ -13,7 +13,7 @@ import com.autoever.mycar.server.domain.car.dto.view.ExteriorDto;
 import com.autoever.mycar.server.domain.car.dto.view.InteriorDto;
 import com.autoever.mycar.server.domain.car.exception.ModelNotFoundException;
 import com.autoever.mycar.server.domain.car.dto.view.CarResDto;
-import com.autoever.mycar.server.domain.car.data.ToolTipsRepository;
+import com.autoever.mycar.server.domain.car.adapter.out.persistence.ToolTipsRepository;
 import com.autoever.mycar.server.domain.car.dto.view.TrimResDto;
 import com.autoever.mycar.server.domain.car.entity.Options;
 import lombok.RequiredArgsConstructor;

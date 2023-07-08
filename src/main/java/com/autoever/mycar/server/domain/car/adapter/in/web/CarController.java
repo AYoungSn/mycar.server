@@ -1,10 +1,10 @@
-package com.autoever.mycar.server.domain.car.controller;
+package com.autoever.mycar.server.domain.car.adapter.in.web;
 
 import com.autoever.mycar.server.domain.car.dto.req.ModelFilterReqDto;
 import com.autoever.mycar.server.domain.car.dto.res.ModelDetailResDto;
 import com.autoever.mycar.server.domain.car.dto.res.ToolTipListDto;
 import com.autoever.mycar.server.domain.car.dto.res.TrimListResDto;
-import com.autoever.mycar.server.domain.car.service.CarService;
+import com.autoever.mycar.server.domain.car.application.service.CarService;
 import com.autoever.mycar.server.domain.car.dto.view.CarResDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

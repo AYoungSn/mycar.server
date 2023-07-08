@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.domain.car.data;
+package com.autoever.mycar.server.domain.car.adapter.out.persistence;
 
 import com.autoever.mycar.server.domain.car.entity.code.CarCode;
 import com.autoever.mycar.server.domain.car.entity.tooltips.ToolTips;

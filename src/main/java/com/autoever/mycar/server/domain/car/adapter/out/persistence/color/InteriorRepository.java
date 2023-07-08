@@ -1,6 +1,7 @@
-package com.autoever.mycar.server.domain.car.data.color;
+package com.autoever.mycar.server.domain.car.adapter.out.persistence.color;
 
 import com.autoever.mycar.server.domain.car.dto.view.InteriorDto;
+import com.autoever.mycar.server.domain.car.dto.view.OptionInteriorDto;
 import com.autoever.mycar.server.domain.car.entity.color.Interior;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,4 +23,8 @@ public interface InteriorRepository extends JpaRepository<Interior, Long> {
             "FROM interior it, color_combi cc " +
             "WHERE cc.interior_code = it.code and cc.trim_code = :trimCode and cc.exterior_code=:exteriorCode", nativeQuery = true)
     List<InteriorDto> findAllByExteriorCodeAndTrimCode(String exteriorCode, String trimCode);
+
+    @Query(value = "SELECT oi.option_code optionCode, oi.interior_code interiorCode FROM option_interior oi, interior i " +
+            "WHERE oi.option_code IN (:optionCode) AND oi.interior_code=i.code", nativeQuery = true)
+    List<OptionInteriorDto> findAllByOptionCode(List<String> optionCode);
 }
