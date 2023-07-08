@@ -28,6 +28,6 @@ public class ExteriorListResDto {
                 i++;
             }
         }
-        exterior.sort((o1, o2) -> o1.getChoiceYN() ? 1: o1.getId().compareTo(o2.getId()));
+        exterior.sort(Comparator.comparing(ExteriorResDto::getId));
     }
 }

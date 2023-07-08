@@ -36,8 +36,6 @@ public class ColorController {
      */
 //    @GetMapping("/color-change")
 //    public
-
-//    /cars/color/checked-options?interiorCode={code}&exteriorCode={code}&optionCodes={code}&modelId={model_id
     @GetMapping("/checked-options")
     public CheckedOptionResDto checkedOptions(@Valid CheckedOptionsReqDto reqDto) {
         return colorService.checkedOptionResDto(reqDto.getModelId(), reqDto.getInteriorCode(), reqDto.getOptionCodes());

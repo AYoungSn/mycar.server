@@ -29,6 +29,6 @@ public class InteriorListResDto {
                 i++;
             }
         }
-        interior.sort((o1, o2) -> o1.getChoiceYN() ? 1: o1.getId().compareTo(o2.getId()));
+        interior.sort(Comparator.comparing(InteriorResDto::getId));
     }
 }

@@ -40,7 +40,7 @@ public class ModelDetailResDto {
                 i++;
             }
         }
-        exterior.sort((o1, o2) -> o1.getChoiceYN() ? 1: o1.getId().compareTo(o2.getId()));
+        exterior.sort(Comparator.comparing(ExteriorResDto::getId));
     }
     public void interiorChoiceCheck(List<InteriorDto> enableInterior) {
         interior.sort(Comparator.comparing(InteriorResDto::getId));
@@ -55,7 +55,8 @@ public class ModelDetailResDto {
                 i++;
             }
         }
-        interior.sort((o1, o2) -> o1.getChoiceYN() ? 1: o1.getId().compareTo(o2.getId()));
+        interior.sort(Comparator.comparing(InteriorResDto::getId));
+//        interior.sort((o1, o2) -> o1.getChoiceYN() ? 1: o2.getId().compareTo(o1.getId()));
     }
 
     public void optionsChoiceCheck(List<Options> options) {
