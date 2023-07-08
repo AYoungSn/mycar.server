@@ -1,6 +1,7 @@
 package com.autoever.mycar.server.domain.car.adapter.out.persistence.options;
 
 import com.autoever.mycar.server.domain.car.entity.Options;
+import com.autoever.mycar.server.domain.car.entity.code.OptionCode;
 import com.autoever.mycar.server.domain.car.entity.color.Interior;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -21,7 +22,9 @@ public interface OptionsRepository extends JpaRepository<Options, Long> {
             "WHERE o.code = oi.option_code AND oi.interior_code=:interiorCode", nativeQuery = true)
     Optional<Options> findByInteriorCode(String interiorCode);
 
-    @Query(value = "SELECT o.* FROM option_interior oi, options o " +
-            "WHERE oi.option_code IN (:optionCode) AND oi.option_code=o.code", nativeQuery = true)
-    List<Options> findAllByOptionCode(List<String> optionCode);
+    @Query(value = "SELECT o.* FROM model_option mo, options o, model m " +
+            "WHERE mo.id=:modelId and mo.option_code IN (:optionCode) " +
+            "AND mo.model_id=m.id AND mo.option_code=o.code", nativeQuery = true)
+    List<Options> findAllByModelIdAndOptionCode(Long modelId, List<String> optionCode);
+    List<Options> findAllByCodeIn(List<String> optionCodes);
 }

@@ -1,12 +1,13 @@
 package com.autoever.mycar.server.domain.car.adapter.out.persistence;
 
-import com.autoever.mycar.server.domain.car.entity.code.CarCode;
+import com.autoever.mycar.server.domain.car.dto.view.tooltips.TooltipsIdDto;
 import com.autoever.mycar.server.domain.car.entity.tooltips.ToolTips;
-import com.autoever.mycar.server.domain.car.dto.view.ToolTipsInfo;
+import com.autoever.mycar.server.domain.car.dto.view.tooltips.ToolTipsInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ToolTipsRepository extends JpaRepository<ToolTips, Long> {
     @Query(value = "select distinct tool.id, tool.name, tool.type from model m " +
@@ -25,4 +26,15 @@ public interface ToolTipsRepository extends JpaRepository<ToolTips, Long> {
             "join car c, trim t " +
             "where c.code = t.car_code and t.code = m.trim_code and c.code = :carCode and e.tool_id = :enginesId", nativeQuery = true)
     List<ToolTipsInfo> findAllEnableToolTips(String carCode, Long enginesId);
+
+    @Query(value = "select g.tool_id gearboxId, e.tool_id engineId, d.tool_id drivingId " +
+            "from model m " +
+            "left join v_engines e " +
+            "on m.id = e.model_id " +
+            "left join v_gearbox g " +
+            "on m.id = g.model_id " +
+            "left join v_driving d " +
+            "on m.id=d.model_id " +
+            "where m.id=:modelId", nativeQuery = true)
+    Optional<TooltipsIdDto> findToolTipsByModelId(Long modelId);
 }

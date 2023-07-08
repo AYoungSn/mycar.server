@@ -22,9 +22,9 @@ public class ColorCombi {
     @NotNull
     @Column(length = 5)
     @Enumerated(EnumType.STRING)
-    private ExteriorCode exterior_code;
+    private ExteriorCode exteriorCode;
     @NotNull
     @Column(length = 5)
     @Enumerated(EnumType.STRING)
-    private InteriorCode interior_code;
+    private InteriorCode interiorCode;
 }
