@@ -4,6 +4,7 @@ import com.autoever.mycar.server.domain.car.entity.code.ExteriorCode;
 import com.autoever.mycar.server.domain.car.entity.code.InteriorCode;
 import com.autoever.mycar.server.domain.car.entity.code.TrimCode;
 import lombok.Getter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Entity
 @Table(name = "color_combi")
+@ToString
 public class ColorCombi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

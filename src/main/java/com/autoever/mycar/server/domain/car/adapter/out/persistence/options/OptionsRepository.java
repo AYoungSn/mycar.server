@@ -26,5 +26,5 @@ public interface OptionsRepository extends JpaRepository<Options, Long> {
             "WHERE mo.id=:modelId and mo.option_code IN (:optionCode) " +
             "AND mo.model_id=m.id AND mo.option_code=o.code", nativeQuery = true)
     List<Options> findAllByModelIdAndOptionCode(Long modelId, List<String> optionCode);
-    List<Options> findAllByCodeIn(List<String> optionCodes);
+    List<Options> findAllByCodeIn(List<OptionCode> optionCodes);
 }

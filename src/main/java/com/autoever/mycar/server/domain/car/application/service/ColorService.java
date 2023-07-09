@@ -21,7 +21,9 @@ import com.autoever.mycar.server.domain.car.entity.Model;
 import com.autoever.mycar.server.domain.car.entity.Options;
 import com.autoever.mycar.server.domain.car.entity.code.*;
 import com.autoever.mycar.server.domain.car.entity.color.ColorCombi;
+import com.autoever.mycar.server.domain.car.entity.color.Exterior;
 import com.autoever.mycar.server.domain.car.entity.color.Interior;
+import com.autoever.mycar.server.domain.car.exception.ExteriorNotFoundException;
 import com.autoever.mycar.server.domain.car.exception.InteriorNotFoundException;
 import com.autoever.mycar.server.domain.car.exception.ModelNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -89,14 +91,20 @@ public class ColorService {
     public ChangeTrimResDto changeExteriorColor(ColorChangeReqDto reqDto) {
         // 변경하려는 exterior 가 현재 트림에서 선택 가능한 옵션인지
         List<ColorCombi> combis = colorCombiRepository.findAllByExteriorCodeAndModelId(reqDto.getExteriorCode().name(), reqDto.getModelId());
+        // y -> 내장 색 변경 요청
         if (!combis.isEmpty()) {
             return new ChangeTrimResDto(true, null);
         } else {
-            // y -> 내장 색 변경 요청
+
             // n -> 트림 변경 요청
             // exterior 조합 조회
+            Exterior exterior = exteriorRepository.findByCode(reqDto.getExteriorCode())
+                    .orElseThrow(ExteriorNotFoundException::new);
+            ChangeTrimInfoDto changeTrimInfoDto = getExteriorChangeTrimInfoDto(reqDto, exterior);
+            List<Options> delOptions = getDelOptions(reqDto, changeTrimInfoDto);
+            List<Options> addOptions = new ArrayList<>();
+            return new ChangeTrimResDto(addOptions, delOptions, changeTrimInfoDto);
         }
-        return new ChangeTrimResDto(false, null);
     }
 
     // 선택한 색상조합이 트림 변경을 해야하는지 조회
@@ -109,7 +117,7 @@ public class ColorService {
         } else {
             // n -> 트림 변경 요청
             Interior interior = interiorRepository.findByCode(reqDto.getInteriorCode()).orElseThrow(InteriorNotFoundException::new);
-            ChangeTrimInfoDto changeTrimInfoDto = getChangeTrimInfoDto(reqDto, interior);
+            ChangeTrimInfoDto changeTrimInfoDto = getInteriorChangeTrimInfoDto(reqDto, interior);
             // options
             List<Options> delOptions = getDelOptions(reqDto, changeTrimInfoDto);
             // 모델 변경 후에도 선택 가능한 옵션 조회
@@ -124,23 +132,42 @@ public class ColorService {
     private List<Options> getDelOptions(ColorChangeReqDto reqDto, ChangeTrimInfoDto changeTrimInfoDto) {
         List<OptionCode> delOptionCodes = reqDto.getOptionCodes();
         delOptionCodes.removeAll(optionsRepository.findAllByModelIdAndOptionCode(changeTrimInfoDto.getChangeModelId(), reqDto.getOptionCodes().stream().map(Enum::name).collect(Collectors.toList())));
-        return optionsRepository.findAllByCodeIn(delOptionCodes.stream().map(Enum::name).collect(Collectors.toList()));
+        return optionsRepository.findAllByCodeIn(delOptionCodes);
     }
 
-    private ChangeTrimInfoDto getChangeTrimInfoDto(ColorChangeReqDto reqDto, Interior interior) {
+    private ChangeTrimInfoDto getExteriorChangeTrimInfoDto(ColorChangeReqDto reqDto, Exterior exterior) {
         ModelResDto beforeModel = modelRepository.findByModelId(reqDto.getModelId()).orElseThrow(ModelNotFoundException::new);
-        return new ChangeTrimInfoDto(beforeModel, findChangeModel(reqDto.getModelId(), reqDto.getExteriorCode(), reqDto.getInteriorCode()), interior);
+        return new ChangeTrimInfoDto(beforeModel, findExteriorChangeModel(reqDto.getModelId(), reqDto.getExteriorCode()), exterior);
     }
-    private TrimResDto findChangeModel(Long modelId, ExteriorCode exteriorCode, InteriorCode interiorCode) {
+
+    private ChangeTrimInfoDto getInteriorChangeTrimInfoDto(ColorChangeReqDto reqDto, Interior interior) {
+        ModelResDto beforeModel = modelRepository.findByModelId(reqDto.getModelId()).orElseThrow(ModelNotFoundException::new);
+        return new ChangeTrimInfoDto(beforeModel, findInteriorChangeModel(reqDto.getModelId(), reqDto.getInteriorCode()), interior);
+    }
+    private TrimResDto findExteriorChangeModel(Long modelId, ExteriorCode exteriorCode) {
         // 변경하려는 외장, 내장 색 조합에서 가능한 trim 조회
-        List<ColorCombi> colorCombis = colorCombiRepository.findAllByExteriorCodeAndInteriorCode(exteriorCode, interiorCode);
-        // 현재 모델의 tooltip 조회
-        TooltipsIdDto tooltipsId = toolTipsRepository.findToolTipsByModelId(modelId).orElseThrow();
-        // 변경할 모델 조회
-        if (tooltipsId.getGearboxId() == null || tooltipsId.getDrivingId() == null) {
-            return modelRepository.findByTrimCodeAndTooltipId(colorCombis.get(0).getTrim_code().name(), tooltipsId.getEngineId()).orElseThrow();
-        } else {
-            return modelRepository.findByTrimCodeAndTooltipId(colorCombis.get(0).getTrim_code().name(), tooltipsId.getEngineId(), tooltipsId.getGearboxId(), tooltipsId.getDrivingId()).orElseThrow();
+        List<ColorCombi> colorCombis = colorCombiRepository.findAllByExteriorCode(exteriorCode);
+        return getTrimResDto(modelId, colorCombis);
+    }
+
+    private TrimResDto findInteriorChangeModel(Long modelId, InteriorCode interiorCode) {
+        // 변경하려는 외장, 내장 색 조합에서 가능한 trim 조회
+        List<ColorCombi> colorCombis = colorCombiRepository.findAllByInteriorCode(interiorCode);
+        System.out.println(colorCombis);
+        return getTrimResDto(modelId, colorCombis);
+    }
+
+    private TrimResDto getTrimResDto(Long modelId, List<ColorCombi> colorCombis) {
+        if (!colorCombis.isEmpty()) {
+            // 현재 모델의 tooltip 조회
+            TooltipsIdDto tooltipsId = toolTipsRepository.findToolTipsByModelId(modelId).orElseThrow();
+            // 변경할 모델 조회
+            if (tooltipsId.getGearboxId() == null || tooltipsId.getDrivingId() == null) {
+                return modelRepository.findByTrimCodeAndTooltipId(colorCombis.get(0).getTrim_code().name(), tooltipsId.getEngineId()).orElseThrow(ModelNotFoundException::new);
+            } else {
+                return modelRepository.findByTrimCodeAndTooltipId(colorCombis.get(0).getTrim_code().name(), tooltipsId.getEngineId(), tooltipsId.getGearboxId(), tooltipsId.getDrivingId()).orElseThrow(ModelNotFoundException::new);
+            }
         }
+        return null;
     }
 }
