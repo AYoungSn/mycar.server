@@ -1,6 +1,8 @@
 package com.autoever.mycar.server.car.adapter.adapter.in.web;
 
+import com.autoever.mycar.server.car.domain.code.CarCode;
 import com.autoever.mycar.server.car.dto.req.ModelFilterReqDto;
+import com.autoever.mycar.server.car.dto.res.ModelBasicInfoListDto;
 import com.autoever.mycar.server.car.dto.res.ModelDetailResDto;
 import com.autoever.mycar.server.car.dto.res.ToolTipListDto;
 import com.autoever.mycar.server.car.dto.res.TrimListResDto;
@@ -39,5 +41,15 @@ public class CarController {
     @GetMapping("/models/{modelId}/details")
     public ModelDetailResDto getModelDetails(@PathVariable Long modelId) {
         return carService.myCarInit(modelId);
+    }
+
+    @GetMapping("/{carCode}/models")
+    public ModelBasicInfoListDto getModelList(@PathVariable CarCode carCode) {
+        return carService.findModelBasicInfo(carCode);
+    }
+
+    @GetMapping("/{carCode}/trims")
+    public TrimListResDto getTrimListByModelName(@PathVariable CarCode carCode, String modelBasicName) {
+        return carService.findTrimListAndModelName(carCode, modelBasicName);
     }
 }

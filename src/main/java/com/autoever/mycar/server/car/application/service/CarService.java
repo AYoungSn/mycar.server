@@ -4,9 +4,12 @@ import com.autoever.mycar.server.car.adapter.adapter.out.persistence.ModelReposi
 import com.autoever.mycar.server.car.adapter.adapter.out.persistence.ToolTipsRepository;
 import com.autoever.mycar.server.car.adapter.adapter.out.persistence.color.ExteriorRepository;
 import com.autoever.mycar.server.car.adapter.adapter.out.persistence.color.InteriorRepository;
+import com.autoever.mycar.server.car.domain.code.CarCode;
 import com.autoever.mycar.server.car.dto.req.ModelFilterReqDto;
+import com.autoever.mycar.server.car.dto.res.ModelBasicInfoListDto;
 import com.autoever.mycar.server.car.dto.res.ModelDetailResDto;
 import com.autoever.mycar.server.car.dto.res.ToolTipListDto;
+import com.autoever.mycar.server.car.dto.res.TrimListResDto;
 import com.autoever.mycar.server.car.dto.view.ExteriorDto;
 import com.autoever.mycar.server.car.dto.view.InteriorDto;
 import com.autoever.mycar.server.car.dto.view.ModelResDto;
@@ -64,5 +67,12 @@ public class CarService {
         result.exteriorChoiceCheck(exteriorRepository.findAllByTrimCode(modelResDto.getTrimCode().name()));
         result.interiorChoiceCheck(interiorRepository.findAllByTrimCode(modelResDto.getTrimCode().name()));
         return result;
+    }
+
+    public ModelBasicInfoListDto findModelBasicInfo(CarCode carCode) {
+        return new ModelBasicInfoListDto(modelRepository.findDistinctModelNameByCarCode(carCode.name()));
+    }
+    public TrimListResDto findTrimListAndModelName(CarCode carCode, String modelBasicName) {
+        return new TrimListResDto(modelRepository.findAllByCarCodeAndModelBasicInfo(carCode.name(), modelBasicName));
     }
 }

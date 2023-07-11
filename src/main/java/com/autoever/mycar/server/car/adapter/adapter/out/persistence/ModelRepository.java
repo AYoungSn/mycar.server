@@ -44,6 +44,12 @@ public interface ModelRepository extends JpaRepository<Model, Long>{
             nativeQuery = true)
     List<TrimResDto> findAllByCarIdAndTooltipId(String carCode, Long engineId, Long gearboxId, Long drivingId);
     @Query(value = "select distinct m.id modelId, t.name trimName, m.price, m.basic_info basicInfo, t.code trimCode, c.code carCode " +
+            "from model m, car c, trim t " +
+            "where c.code = t.car_code and t.code = m.trim_code " +
+            "and c.code = :carCode and m.basic_info = :basicInfo",
+            nativeQuery = true)
+    List<TrimResDto> findAllByCarCodeAndModelBasicInfo(String carCode, String basicInfo);
+    @Query(value = "select distinct m.id modelId, t.name trimName, m.price, m.basic_info basicInfo, t.code trimCode, c.code carCode " +
             "from model m left outer join v_engines e " +
             "on m.id = e.model_id " +
             "left join v_gearbox g " +
@@ -60,4 +66,8 @@ public interface ModelRepository extends JpaRepository<Model, Long>{
             "from car c, trim t, model m " +
             "where c.code = t.car_code and t.code = m.trim_code and m.id = :modelId", nativeQuery = true)
     Optional<ModelResDto> findByModelId(Long modelId);
+
+    @Query(value = "SELECT distinct m.basic_info FROM model m, trim t " +
+            "WHERE m.trim_code=t.code AND t.car_code=:carCode", nativeQuery = true)
+    List<String> findDistinctModelNameByCarCode(String carCode);
 }

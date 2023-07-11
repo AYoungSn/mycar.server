@@ -4,7 +4,7 @@ import com.autoever.mycar.server.car.dto.req.CheckedOptionsInteriorReqDto;
 import com.autoever.mycar.server.car.dto.req.ColorChangeReqDto;
 import com.autoever.mycar.server.car.dto.req.SelectedExteriorReqDto;
 import com.autoever.mycar.server.car.dto.req.SelectedInteriorReqDto;
-import com.autoever.mycar.server.car.dto.res.ChangeTrimResDto;
+import com.autoever.mycar.server.car.dto.res.trim.ChangeTrimResDto;
 import com.autoever.mycar.server.car.dto.res.CheckedOptionResDto;
 import com.autoever.mycar.server.car.dto.res.color.ExteriorListResDto;
 import com.autoever.mycar.server.car.dto.res.color.InteriorListResDto;

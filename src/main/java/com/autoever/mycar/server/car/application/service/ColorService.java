@@ -6,7 +6,7 @@ import com.autoever.mycar.server.car.adapter.adapter.out.persistence.ToolTipsRep
 import com.autoever.mycar.server.car.adapter.adapter.out.persistence.color.ExteriorRepository;
 import com.autoever.mycar.server.car.adapter.adapter.out.persistence.color.InteriorRepository;
 import com.autoever.mycar.server.car.dto.req.ColorChangeReqDto;
-import com.autoever.mycar.server.car.dto.res.ChangeTrimResDto;
+import com.autoever.mycar.server.car.dto.res.trim.ChangeTrimResDto;
 import com.autoever.mycar.server.car.dto.res.CheckedOptionResDto;
 import com.autoever.mycar.server.car.dto.res.color.ExteriorListResDto;
 import com.autoever.mycar.server.car.dto.res.color.InteriorListResDto;

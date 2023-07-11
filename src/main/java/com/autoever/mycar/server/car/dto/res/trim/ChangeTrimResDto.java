@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.car.dto.res;
+package com.autoever.mycar.server.car.dto.res.trim;
 
 import com.autoever.mycar.server.car.dto.res.options.ChangeOptionInfoDto;
 import com.autoever.mycar.server.car.dto.res.trim.ChangeTrimInfoDto;
