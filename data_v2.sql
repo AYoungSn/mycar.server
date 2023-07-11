@@ -249,8 +249,8 @@ insert into options(id, code, category, name, price) values(37, 'PTM', 'HGA', '�
 insert into options(id, code, category, name, price) values(38, 'BAC', 'HGA', '빌트인 공기청정기', 400000);
 insert into options(id, code, category, name, price) values(39, 'KNW', 'HGA', '적외선 무릎 워머', 300000);
 
-insert into options(id, code, category, name, price) values(40, 'NX1', 'NPF', '19인치 매트 블랙 경량휠', 1150000);
-insert into options(id, code, category, name, price) values(41, 'NX2', 'NPF', '모노블록 브레이크+19인치 매트 블랙 경량휠 패키지', 2250000);
+insert into options(id, code, category, name, price) values(40, 'NX1', 'NPF', '19인치 매트 블랙 경량휠', 1140000);
+insert into options(id, code, category, name, price) values(41, 'NX2', 'NPF', '모노블록 브레이크+19인치 매트 블랙 경량휠 패키지', 2230000);
 
 -- insert into options(id, category, name, price) values(42, 'DETAIL', '어드벤처패키지', 790000);
 

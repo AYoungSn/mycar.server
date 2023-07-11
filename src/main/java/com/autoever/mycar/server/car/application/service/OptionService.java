@@ -65,6 +65,6 @@ public class OptionService {
     }
 
     public DisableOptionResDto tuixDisableOption(Long modelId, List<OptionCode> optionCodes) {
-        return new DisableOptionResDto(optionsRepository.findDuplicateAllByOptionCodeIn(modelId, optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
+        return new DisableOptionResDto(optionsRepository.findDuplicateAllByOptionCodeNotIn(optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
     }
 }
