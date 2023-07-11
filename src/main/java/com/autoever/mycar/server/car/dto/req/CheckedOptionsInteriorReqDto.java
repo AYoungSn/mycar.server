@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-public class CheckedOptionsReqDto {
+public class CheckedOptionsInteriorReqDto {
     @NotNull(message = "interiorCode 가 null 입니다.")
     private InteriorCode interiorCode;
     private String optionCode;

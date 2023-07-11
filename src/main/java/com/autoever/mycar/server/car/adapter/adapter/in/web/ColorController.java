@@ -1,6 +1,6 @@
 package com.autoever.mycar.server.car.adapter.adapter.in.web;
 
-import com.autoever.mycar.server.car.dto.req.CheckedOptionsReqDto;
+import com.autoever.mycar.server.car.dto.req.CheckedOptionsInteriorReqDto;
 import com.autoever.mycar.server.car.dto.req.ColorChangeReqDto;
 import com.autoever.mycar.server.car.dto.req.SelectedExteriorReqDto;
 import com.autoever.mycar.server.car.dto.req.SelectedInteriorReqDto;
@@ -38,7 +38,7 @@ public class ColorController {
         return colorService.changeInteriorColor(reqDto);
     }
     @GetMapping("/checked-options")
-    public CheckedOptionResDto checkedOptions(@Valid CheckedOptionsReqDto reqDto) {
+    public CheckedOptionResDto checkedOptions(@Valid CheckedOptionsInteriorReqDto reqDto) {
         return colorService.checkedOptionResDto(reqDto.getModelId(), reqDto.getInteriorCode(), reqDto.getOptionCodes());
     }
 

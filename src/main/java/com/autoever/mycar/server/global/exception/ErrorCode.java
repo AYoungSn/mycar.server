@@ -17,6 +17,7 @@ public enum ErrorCode {
     MODEL_NOT_FOUND(404, "MO001", "존재하지 않는 모델입니다."),
     INTERIOR_NOT_FOUND(404, "I001", "존재하지 않는 interior 입니다."),
     EXTERIOR_NOT_FOUND(404, "E001", "존재하지 않는 exterior 입니다."),
+    OPTION_NOT_FOUND(404, "O001", "존재하지 않는 option 입니다."),
     ;
     private int status;
     private String errCode;
