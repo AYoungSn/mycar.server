@@ -47,9 +47,10 @@ public interface OptionsRepository extends JpaRepository<Options, Long> {
     List<Options> findAllByModelIdAndOptionCode(Long modelId, List<String> optionCode);
     List<Options> findAllByCodeIn(List<OptionCode> optionCodes);
 
-    @Query(value = "SELECT o.* FROM options o, duplicate_option dup " +
-            "WHERE o.code=dup.option_code and dup.duplicate_code in (:dupOptions)", nativeQuery = true)
-    List<Options> findDuplicateAllByOptionCodeIn(List<String> dupOptions);
+    @Query(value = "SELECT o.* FROM options o, duplicate_option dup, model_option mo " +
+            "WHERE o.code=dup.option_code and mo.option_code=o.code " +
+            "and dup.duplicate_code in (:dupOptions) and mo.model_id = :modelId", nativeQuery = true)
+    List<Options> findDuplicateAllByOptionCodeIn(Long modelId, List<String> dupOptions);
     @Query(value = "SELECT o.* FROM options o, duplicate_option dup " +
             "WHERE o.code=dup.option_code and dup.duplicate_code = :dupOptions", nativeQuery = true)
     List<Options> findDuplicateAllByOptionCode(String dupOptions);

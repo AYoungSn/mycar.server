@@ -26,7 +26,7 @@ public class OptionService {
     public DisableOptionResDto disableOption(Long modelId, List<OptionCode> optionCodes) {
         // del: 선택된 option_code 와 중복으로 선택이 불가능한 옵션 조회 duplicate_option
         // 현재 선택된 옵션 바탕으로 보여지는 옵션 목록 조회
-        List<Options> options = optionsRepository.findDuplicateAllByOptionCodeIn(optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
+        List<Options> options = optionsRepository.findDuplicateAllByOptionCodeIn(modelId, optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
         return new DisableOptionResDto(options);
     }
     public EnableOptionListResDto enableOption(Long modelId, List<OptionCode> optionCodes) {
@@ -62,5 +62,9 @@ public class OptionService {
         options.addAll(optionsRepository.findAllDependencyOptionByOptionCodeNotIn(trimCode.name(), optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
         options.removeAll(optionsRepository.findDelOptions(optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
         return new TuixOptionListResDto(options);
+    }
+
+    public DisableOptionResDto tuixDisableOption(Long modelId, List<OptionCode> optionCodes) {
+        return new DisableOptionResDto(optionsRepository.findDuplicateAllByOptionCodeIn(modelId, optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
     }
 }

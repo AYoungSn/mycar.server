@@ -39,4 +39,9 @@ public class OptionController {
     public TuixOptionListResDto getTuixList(@Valid SelectedOptionsInfoReqDto reqDto) {
         return optionService.findTuixOptionList(reqDto.getModelId(), reqDto.getOptionCodes());
     }
+
+    @GetMapping("/tuix/disable")
+    public DisableOptionResDto tuixDisableOptionList(@Valid SelectedOptionsInfoReqDto reqDto) {
+        return optionService.tuixDisableOption(reqDto.getModelId(), reqDto.getOptionCodes());
+    }
 }
