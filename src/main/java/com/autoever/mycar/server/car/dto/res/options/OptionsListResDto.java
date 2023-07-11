@@ -11,18 +11,18 @@ import java.util.stream.Collectors;
 @Getter
 public class OptionsListResDto {
     private List<OptionsResDto> hga;
-    private List<OptionsResDto> select;
+    private List<OptionsResDto> detail;
     private List<OptionsResDto> npf;
 
     public OptionsListResDto(List<Options> optionsResDtoList) {
         hga = new ArrayList<>();
-        select = new ArrayList<>();
+        detail = new ArrayList<>();
         npf = new ArrayList<>();
         for (Options options: optionsResDtoList) {
             if (options.getCategory().equals(OptionCategory.HGA)) {
                 hga.add(new OptionsResDto(options));
             } else if (options.getCategory().equals(OptionCategory.DETAIL)) {
-                select.add(new OptionsResDto(options));
+                detail.add(new OptionsResDto(options));
             } else if (options.getCategory().equals(OptionCategory.NPF)) {
                 npf.add(new OptionsResDto(options));
             }
@@ -37,7 +37,7 @@ public class OptionsListResDto {
                         o.setChoiceYN(false);
                 }).collect(Collectors.toList());
             } else if (options.getCategory().equals(OptionCategory.DETAIL)) {
-                select = select.stream().peek(o -> {
+                detail = detail.stream().peek(o -> {
                     if (options.getCode().equals(o.getCode()))
                         o.setChoiceYN(false);
                 }).collect(Collectors.toList());
