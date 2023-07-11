@@ -8,6 +8,7 @@ import com.autoever.mycar.server.car.domain.code.TrimCode;
 import com.autoever.mycar.server.car.dto.res.options.ChangeOptionInfoDto;
 import com.autoever.mycar.server.car.dto.res.options.DisableOptionResDto;
 import com.autoever.mycar.server.car.dto.res.options.EnableOptionListResDto;
+import com.autoever.mycar.server.car.dto.res.options.TuixOptionListResDto;
 import com.autoever.mycar.server.car.exception.ModelNotFoundException;
 import com.autoever.mycar.server.car.exception.OptionCodeNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,6 @@ public class OptionService {
     public DisableOptionResDto disableOption(Long modelId, List<OptionCode> optionCodes) {
         // del: 선택된 option_code 와 중복으로 선택이 불가능한 옵션 조회 duplicate_option
         // 현재 선택된 옵션 바탕으로 보여지는 옵션 목록 조회
-        List<Options> showOptions = optionsRepository.findDetailOptionsAllByModelId(modelId);
         List<Options> options = optionsRepository.findDuplicateAllByOptionCodeIn(optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
         return new DisableOptionResDto(options);
     }
@@ -33,8 +33,7 @@ public class OptionService {
         // trim_code를 기준으로,
         // add: 선택된 option_code가 dependency_option.option_code 에 포함되는 것
         TrimCode trimCode = modelRepository.findByModelId(modelId).orElseThrow(ModelNotFoundException::new).getTrimCode();
-//        List<Options> showOptions = optionsRepository.findDetailOptionsAllByModelId(modelId);
-        List<Options> dependencyOptions = optionsRepository.findAllDependencyDetailOptionByOptionCodeIn(trimCode.name(), optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
+        List<Options> dependencyOptions = optionsRepository.findAllDetailDependencyOptionByOptionCodeIn(trimCode.name(), optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
         return new EnableOptionListResDto(dependencyOptions);
     }
     public ChangeOptionInfoDto changeCheckOption(Long modelId, List<OptionCode> optionCodes, OptionCode addOption) {
@@ -53,5 +52,15 @@ public class OptionService {
             }
         }
         return new ChangeOptionInfoDto(del, add);
+    }
+
+    public TuixOptionListResDto findTuixOptionList(Long modelId, List<OptionCode> optionCodes) {
+        TrimCode trimCode = modelRepository.findByModelId(modelId).orElseThrow(ModelNotFoundException::new).getTrimCode();
+        // default 목록 조회
+        List<Options> options = optionsRepository.findTuixOptionsAllByModelId(modelId);
+        // dependency 로 추가될 목록 조회
+        options.addAll(optionsRepository.findAllDependencyOptionByOptionCodeNotIn(trimCode.name(), optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
+        options.removeAll(optionsRepository.findDelOptions(optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
+        return new TuixOptionListResDto(options);
     }
 }

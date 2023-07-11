@@ -6,6 +6,7 @@ import com.autoever.mycar.server.car.dto.req.SelectedOptionsInfoReqDto;
 import com.autoever.mycar.server.car.dto.res.options.ChangeOptionInfoDto;
 import com.autoever.mycar.server.car.dto.res.options.DisableOptionResDto;
 import com.autoever.mycar.server.car.dto.res.options.EnableOptionListResDto;
+import com.autoever.mycar.server.car.dto.res.options.TuixOptionListResDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,7 +31,12 @@ public class OptionController {
 
     // 옵션 선택시 삭제되거나 같이 선택되어야 하는 옵션 조회
     @GetMapping("/change")
-    public ChangeOptionInfoDto checkChangeOption(@ModelAttribute @Valid ChangeOptionReqDto reqDto) {
+    public ChangeOptionInfoDto checkChangeOption(@Valid ChangeOptionReqDto reqDto) {
         return optionService.changeCheckOption(reqDto.getModelId(), reqDto.getOptionCodes(), reqDto.getAddOption());
+    }
+
+    @GetMapping("/tuix")
+    public TuixOptionListResDto getTuixList(@Valid SelectedOptionsInfoReqDto reqDto) {
+        return optionService.findTuixOptionList(reqDto.getModelId(), reqDto.getOptionCodes());
     }
 }
