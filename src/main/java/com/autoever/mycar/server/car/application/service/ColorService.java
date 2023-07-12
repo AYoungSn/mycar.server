@@ -94,7 +94,6 @@ public class ColorService {
         if (!combis.isEmpty()) {
             return new ChangeTrimResDto(true, null);
         } else {
-
             // n -> 트림 변경 요청
             // exterior 조합 조회
             Exterior exterior = exteriorRepository.findByCode(reqDto.getExteriorCode())
@@ -130,7 +129,10 @@ public class ColorService {
     // 모델 변경 후 제거되어야 하는 목록 조회
     private List<Options> getDelOptions(ColorChangeReqDto reqDto, ChangeTrimInfoDto changeTrimInfoDto) {
         List<OptionCode> delOptionCodes = reqDto.getOptionCodes();
-        delOptionCodes.removeAll(optionsRepository.findAllByModelIdAndOptionCode(changeTrimInfoDto.getChangeModelId(), reqDto.getOptionCodes().stream().map(Enum::name).collect(Collectors.toList())));
+        System.out.println(optionsRepository.findAllByModelIdAndOptionCode(changeTrimInfoDto.getChangeModelId(), reqDto.getOptionCodes().stream().map(Enum::name).collect(Collectors.toList()))
+                .stream().map(Options::getName).collect(Collectors.toList()));
+        delOptionCodes.removeAll(optionsRepository.findAllByModelIdAndOptionCode(changeTrimInfoDto.getChangeModelId(), reqDto.getOptionCodes().stream().map(Enum::name).collect(Collectors.toList()))
+                .stream().map(Options::getCode).collect(Collectors.toList()));
         return optionsRepository.findAllByCodeIn(delOptionCodes);
     }
 
