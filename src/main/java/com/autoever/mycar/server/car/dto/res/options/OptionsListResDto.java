@@ -18,7 +18,7 @@ public class OptionsListResDto {
         hga = new ArrayList<>();
         detail = new ArrayList<>();
         npf = new ArrayList<>();
-        for (Options options: optionsResDtoList) {
+        for (Options options : optionsResDtoList) {
             if (options.getCategory().equals(OptionCategory.HGA)) {
                 hga.add(new OptionsResDto(options));
             } else if (options.getCategory().equals(OptionCategory.DETAIL)) {
@@ -32,21 +32,20 @@ public class OptionsListResDto {
     public void optionsChoiceCheck(List<Options> checks) {
         for (Options options: checks) {
             if (options.getCategory().equals(OptionCategory.HGA)) {
-                hga = hga.stream().peek(o -> {
-                    if (options.getCode().equals(o.getCode()))
-                        o.setChoiceYN(false);
-                }).collect(Collectors.toList());
+                hga = optionUpdate(hga, options);
             } else if (options.getCategory().equals(OptionCategory.DETAIL)) {
-                detail = detail.stream().peek(o -> {
-                    if (options.getCode().equals(o.getCode()))
-                        o.setChoiceYN(false);
-                }).collect(Collectors.toList());
+                detail = optionUpdate(detail, options);
             } else if (options.getCategory().equals(OptionCategory.NPF)) {
-                npf = npf.stream().peek(o -> {
-                    if (options.getCode().equals(o.getCode()))
-                        o.setChoiceYN(false);
-                }).collect(Collectors.toList());
+                npf = optionUpdate(npf, options);
             }
         }
+    }
+
+    private List<OptionsResDto> optionUpdate(List<OptionsResDto> options, Options check) {
+        return options.stream().map(o -> {
+            if (check.getCode().equals(o.getCode()))
+                o.setChoiceYN(false);
+            return o;
+        }).collect(Collectors.toList());
     }
 }
