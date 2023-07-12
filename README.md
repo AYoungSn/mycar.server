@@ -1,5 +1,5 @@
 ## 현대오토에버 채용연계형 과제 - BE
-### 사용된 기술 스택
+### 🛠️ 사용된 기술 스택
 
 <img src="https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=java&logoColor=white"></a>
 <img src="https://img.shields.io/badge/spring_boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
@@ -11,10 +11,10 @@
 
 [//]: # (<img src="https://img.shields.io/badge/DOCKER-007396?style=for-the-badge&logo=DOCKER&logoColor=white">)
 
-## 스웨거 주소
+### 📃 스웨거 주소
 http://localhost:8080/api-docs
 
-## 실행 방법
+### 🔑 실행 방법
 1. git clone
 2. mysql 접속
    1. create database MYCAR;
