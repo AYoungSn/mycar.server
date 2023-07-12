@@ -1,8 +1,8 @@
 package com.autoever.mycar.server.car.adapter.adapter.out.persistence;
 
 import com.autoever.mycar.server.car.domain.tooltips.ToolTips;
-import com.autoever.mycar.server.car.dto.view.tooltips.TooltipsIdDto;
-import com.autoever.mycar.server.car.dto.view.tooltips.ToolTipsInfo;
+import com.autoever.mycar.server.car.adapter.adapter.out.view.tooltips.TooltipsIdDto;
+import com.autoever.mycar.server.car.adapter.adapter.out.view.tooltips.ToolTipsInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

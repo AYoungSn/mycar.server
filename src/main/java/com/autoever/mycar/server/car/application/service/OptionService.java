@@ -5,10 +5,10 @@ import com.autoever.mycar.server.car.adapter.adapter.out.persistence.options.Opt
 import com.autoever.mycar.server.car.domain.Options;
 import com.autoever.mycar.server.car.domain.code.OptionCode;
 import com.autoever.mycar.server.car.domain.code.TrimCode;
-import com.autoever.mycar.server.car.dto.res.options.ChangeOptionInfoDto;
-import com.autoever.mycar.server.car.dto.res.options.DisableOptionResDto;
-import com.autoever.mycar.server.car.dto.res.options.EnableOptionListResDto;
-import com.autoever.mycar.server.car.dto.res.options.TuixOptionListResDto;
+import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.ChangeOptionInfoDto;
+import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.DisableOptionResDto;
+import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.EnableOptionListResDto;
+import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.TuixOptionListResDto;
 import com.autoever.mycar.server.car.exception.ModelNotFoundException;
 import com.autoever.mycar.server.car.exception.OptionCodeNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,9 @@ public class OptionService {
     public DisableOptionResDto disableOption(Long modelId, List<OptionCode> optionCodes) {
         // del: 선택된 option_code 와 중복으로 선택이 불가능한 옵션 조회 duplicate_option
         // 현재 선택된 옵션 바탕으로 보여지는 옵션 목록 조회
+        TrimCode trimCode = modelRepository.findByModelId(modelId).orElseThrow(ModelNotFoundException::new).getTrimCode();
         List<Options> options = optionsRepository.findDuplicateAllByOptionCodeIn(modelId, optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
+        options.addAll(optionsRepository.findAllDependencyOptionByDependencyCodeNotIn(trimCode.name(), optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
         return new DisableOptionResDto(options);
     }
     public EnableOptionListResDto enableOption(Long modelId, List<OptionCode> optionCodes) {
@@ -59,7 +61,7 @@ public class OptionService {
         // default 목록 조회
         List<Options> options = optionsRepository.findTuixOptionsAllByModelId(modelId);
         // dependency 로 추가될 목록 조회
-        options.addAll(optionsRepository.findAllDependencyOptionByOptionCodeNotIn(trimCode.name(), optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
+        options.addAll(optionsRepository.findAllDependencyOptionByOptionCodeAndCategoryDetailNotIn(trimCode.name(), optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
         options.removeAll(optionsRepository.findDelOptions(optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
         return new TuixOptionListResDto(options);
     }

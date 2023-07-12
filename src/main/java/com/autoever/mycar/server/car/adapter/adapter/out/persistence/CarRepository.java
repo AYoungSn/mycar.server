@@ -1,6 +1,6 @@
 package com.autoever.mycar.server.car.adapter.adapter.out.persistence;
 
-import com.autoever.mycar.server.car.dto.view.CarResDto;
+import com.autoever.mycar.server.car.adapter.adapter.out.view.CarResDto;
 import com.autoever.mycar.server.car.domain.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

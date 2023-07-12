@@ -1,6 +1,6 @@
 package com.autoever.mycar.server.car.adapter.adapter.out.persistence.color;
 
-import com.autoever.mycar.server.car.dto.view.ExteriorDto;
+import com.autoever.mycar.server.car.adapter.adapter.out.view.ExteriorDto;
 import com.autoever.mycar.server.car.domain.code.ExteriorCode;
 import com.autoever.mycar.server.car.domain.color.Exterior;
 import org.springframework.data.jpa.repository.JpaRepository;

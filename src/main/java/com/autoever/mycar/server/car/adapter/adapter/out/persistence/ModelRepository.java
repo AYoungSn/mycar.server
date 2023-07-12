@@ -1,7 +1,7 @@
 package com.autoever.mycar.server.car.adapter.adapter.out.persistence;
 
-import com.autoever.mycar.server.car.dto.view.ModelResDto;
-import com.autoever.mycar.server.car.dto.view.TrimResDto;
+import com.autoever.mycar.server.car.adapter.adapter.out.view.ModelResDto;
+import com.autoever.mycar.server.car.adapter.adapter.out.view.TrimResDto;
 import com.autoever.mycar.server.car.domain.Model;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -29,7 +29,11 @@ public interface OptionsRepository extends JpaRepository<Options, Long> {
     @Query(value = "SELECT o1.* FROM options o1, dependency_option do " +
             "WHERE o1.code = do.option_code and do.trim_code=:trimCode and o1.category not in ('DETAIL') " +
             "and do.dependency_code in (:optionCodes) order by o1.code", nativeQuery = true)
-    List<Options> findAllDependencyOptionByOptionCodeNotIn(String trimCode, List<String> optionCodes);
+    List<Options> findAllDependencyOptionByOptionCodeAndCategoryDetailNotIn(String trimCode, List<String> optionCodes);
+    @Query(value = "SELECT o1.* FROM options o1, dependency_option do " +
+            "WHERE o1.code = do.option_code and do.trim_code=:trimCode and o1.category in ('DETAIL') " +
+            "and do.dependency_code not in (:optionCodes) order by o1.code", nativeQuery = true)
+    List<Options> findAllDependencyOptionByDependencyCodeNotIn(String trimCode, List<String> optionCodes);
     @Query(value = "SELECT o.* FROM options o, duplicate_option dup " +
             "WHERE o.code=dup.option_code and o.category not in ('DETAIL') " +
             "and dup.duplicate_code in (:dupOptions) ", nativeQuery = true)
