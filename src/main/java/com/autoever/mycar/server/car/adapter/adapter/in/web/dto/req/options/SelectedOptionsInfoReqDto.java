@@ -1,4 +1,4 @@
-package com.autoever.mycar.server.car.adapter.adapter.in.web.dto.req;
+package com.autoever.mycar.server.car.adapter.adapter.in.web.dto.req.options;
 
 import com.autoever.mycar.server.car.domain.code.OptionCode;
 import com.fasterxml.jackson.annotation.JsonIgnore;

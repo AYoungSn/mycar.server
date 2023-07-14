@@ -61,7 +61,7 @@ public class ColorService {
         return result;
     }
 
-    public CheckedOptionResDto checkedOptionResDto(Long modelId, InteriorCode interiorCode, List<OptionCode> optionCodes) {
+    public CheckedOptionResDto checkedOption(Long modelId, InteriorCode interiorCode, List<OptionCode> optionCodes) {
         Set<OptionCode> optionsSet = new HashSet<>(optionCodes);
         // 선택한 인테리어 색상 -> 옵션 추가, 삭제
         Optional<Options> options = optionsRepository.findByInteriorCode(interiorCode.name());

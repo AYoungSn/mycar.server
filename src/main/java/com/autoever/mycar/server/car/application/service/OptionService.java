@@ -1,14 +1,13 @@
 package com.autoever.mycar.server.car.application.service;
 
+import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.*;
 import com.autoever.mycar.server.car.adapter.adapter.out.persistence.ModelRepository;
+import com.autoever.mycar.server.car.adapter.adapter.out.persistence.color.InteriorRepository;
 import com.autoever.mycar.server.car.adapter.adapter.out.persistence.options.OptionsRepository;
+import com.autoever.mycar.server.car.adapter.adapter.out.view.OptionInteriorDto;
 import com.autoever.mycar.server.car.domain.Options;
 import com.autoever.mycar.server.car.domain.code.OptionCode;
 import com.autoever.mycar.server.car.domain.code.TrimCode;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.ChangeOptionInfoDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.DisableOptionResDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.EnableOptionListResDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.TuixOptionListResDto;
 import com.autoever.mycar.server.car.exception.ModelNotFoundException;
 import com.autoever.mycar.server.car.exception.OptionCodeNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +22,7 @@ import java.util.stream.Collectors;
 public class OptionService {
     private final OptionsRepository optionsRepository;
     private final ModelRepository modelRepository;
+    private final InteriorRepository interiorRepository;
     public DisableOptionResDto disableOption(Long modelId, List<OptionCode> optionCodes) {
         // del: 선택된 option_code 와 중복으로 선택이 불가능한 옵션 조회 duplicate_option
         // 현재 선택된 옵션 바탕으로 보여지는 옵션 목록 조회
@@ -68,5 +68,10 @@ public class OptionService {
 
     public DisableOptionResDto tuixDisableOption(Long modelId, List<OptionCode> optionCodes) {
         return new DisableOptionResDto(optionsRepository.findDuplicateAllByOptionCodeNotIn(optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
+    }
+
+    public CheckedInteriorResDto checkedInterior(List<OptionCode> optionCodes) {
+        List<OptionInteriorDto> interiors = interiorRepository.findAllByOptionCode(optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
+        return new CheckedInteriorResDto(interiors.size() > 0, interiors.stream().map((OptionInteriorDto::getInteriorCode)).collect(Collectors.toList()));
     }
 }

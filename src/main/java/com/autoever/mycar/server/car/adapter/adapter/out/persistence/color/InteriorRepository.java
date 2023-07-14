@@ -26,8 +26,8 @@ public interface InteriorRepository extends JpaRepository<Interior, Long> {
             "WHERE cc.interior_code = it.code and cc.trim_code = :trimCode and cc.exterior_code=:exteriorCode", nativeQuery = true)
     List<InteriorDto> findAllByExteriorCodeAndTrimCode(String exteriorCode, String trimCode);
 
-    @Query(value = "SELECT oi.option_code optionCode, oi.interior_code interiorCode FROM option_interior oi, interior i " +
-            "WHERE oi.option_code IN (:optionCode) AND oi.interior_code=i.code", nativeQuery = true)
+    @Query(value = "SELECT oi.option_code optionCode, oi.interior_code interiorCode FROM option_interior oi " +
+            "WHERE oi.option_code IN (:optionCode)", nativeQuery = true)
     List<OptionInteriorDto> findAllByOptionCode(List<String> optionCode);
     Optional<Interior> findByCode(InteriorCode code);
 }
