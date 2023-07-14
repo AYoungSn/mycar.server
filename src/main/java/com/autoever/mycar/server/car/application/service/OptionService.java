@@ -74,4 +74,12 @@ public class OptionService {
         List<OptionInteriorDto> interiors = interiorRepository.findAllByOptionCode(optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
         return new CheckedInteriorResDto(interiors.size() > 0, interiors.stream().map((OptionInteriorDto::getInteriorCode)).collect(Collectors.toList()));
     }
+
+    public DisableOptionResDto changeTrim(Long afterModelId, List<OptionCode> optionCodes) {
+        // 변경하려는 모델에서 선택할수 없는 옵션 목록 제거
+        List<Options> curOptions = optionsRepository.findAllByCodeIn(optionCodes);
+        List<Options> afterModelOptions = optionsRepository.findAllByModelId(afterModelId);
+        curOptions.removeAll(afterModelOptions);
+        return new DisableOptionResDto(curOptions);
+    }
 }
