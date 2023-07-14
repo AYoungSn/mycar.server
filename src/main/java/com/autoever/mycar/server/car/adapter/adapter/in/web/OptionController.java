@@ -55,6 +55,7 @@ public class OptionController {
         return optionService.checkedInterior(reqDto.getOptionCodes());
     }
     @GetMapping("/trim-change")
+    @Operation(summary = "현재 선택된 옵션이 모델을 변경했을 때 선택 해제되는 옵션 목록 조회")
     public DisableOptionResDto trimChange(@Valid TrimChangeReqDto reqDto) {
         if (reqDto.getBeforeModelId().equals(reqDto.getAfterModelId())) {
             return new DisableOptionResDto(new ArrayList<>());
