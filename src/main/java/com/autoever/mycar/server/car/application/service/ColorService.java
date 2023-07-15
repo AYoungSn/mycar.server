@@ -8,13 +8,13 @@ import com.autoever.mycar.server.car.adapter.in.web.dto.res.color.InteriorListRe
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.trim.ChangeTrimInfoDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.trim.ChangeTrimResDto;
 import com.autoever.mycar.server.car.adapter.out.persistence.ModelRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.OptionInteriorRepository;
 import com.autoever.mycar.server.car.adapter.out.persistence.ToolTipsRepository;
 import com.autoever.mycar.server.car.adapter.out.persistence.color.ColorCombiRepository;
 import com.autoever.mycar.server.car.adapter.out.persistence.color.ExteriorRepository;
 import com.autoever.mycar.server.car.adapter.out.persistence.color.InteriorRepository;
 import com.autoever.mycar.server.car.adapter.out.persistence.options.OptionsRepository;
 import com.autoever.mycar.server.car.adapter.out.view.ModelResDto;
-import com.autoever.mycar.server.car.adapter.out.view.OptionInteriorDto;
 import com.autoever.mycar.server.car.adapter.out.view.TrimResDto;
 import com.autoever.mycar.server.car.adapter.out.view.tooltips.TooltipsIdDto;
 import com.autoever.mycar.server.car.domain.Options;
@@ -26,6 +26,7 @@ import com.autoever.mycar.server.car.domain.code.TrimCode;
 import com.autoever.mycar.server.car.domain.color.ColorCombi;
 import com.autoever.mycar.server.car.domain.color.Exterior;
 import com.autoever.mycar.server.car.domain.color.Interior;
+import com.autoever.mycar.server.car.domain.options.OptionInterior;
 import com.autoever.mycar.server.car.exception.ExteriorNotFoundException;
 import com.autoever.mycar.server.car.exception.InteriorNotFoundException;
 import com.autoever.mycar.server.car.exception.ModelNotFoundException;
@@ -43,6 +44,7 @@ import org.springframework.stereotype.Service;
 public class ColorService {
 
     private final InteriorRepository interiorRepository;
+    private final OptionInteriorRepository optionInteriorRepository;
     private final ExteriorRepository exteriorRepository;
     private final ColorCombiRepository colorCombiRepository;
     private final ModelRepository modelRepository;
@@ -52,13 +54,12 @@ public class ColorService {
     public InteriorListResDto availableInteriorList(ExteriorCode exteriorCode, TrimCode trimCode,
             CarCode carCode) {
         InteriorListResDto result = new InteriorListResDto(
-                interiorRepository.findAllByCarCode(carCode.name()));
+                interiorRepository.findAllByCarCode(carCode));
         if (exteriorCode == null) {
-            result.choiceCheck(interiorRepository.findAllByTrimCode(trimCode.name()));
+            result.choiceCheck(interiorRepository.findAllByTrimCode(trimCode));
         } else {
             result.choiceCheck(
-                    interiorRepository.findAllByExteriorCodeAndTrimCode(exteriorCode.name(),
-                            trimCode.name()));
+                    interiorRepository.findAllByExteriorCodeAndTrimCode(exteriorCode, trimCode));
         }
         return result;
     }
@@ -68,11 +69,10 @@ public class ColorService {
         ExteriorListResDto result = new ExteriorListResDto(
                 exteriorRepository.findAllByCarCode(carCode));
         if (interiorCode == null) {
-            result.choiceCheck(exteriorRepository.findAllByTrimCode(trimCode.name()));
+            result.choiceCheck(exteriorRepository.findAllByTrimCode(trimCode));
         } else {
             result.choiceCheck(
-                    exteriorRepository.findAllByInteriorCodeAndTrimCode(interiorCode.name(),
-                            trimCode.name()));
+                    exteriorRepository.findAllByInteriorCodeAndTrimCode(interiorCode, trimCode));
         }
         return result;
     }
@@ -81,14 +81,14 @@ public class ColorService {
             List<OptionCode> optionCodes) {
         Set<OptionCode> optionsSet = new HashSet<>(optionCodes);
         // 선택한 인테리어 색상 -> 옵션 추가, 삭제
-        Optional<Options> options = optionsRepository.findByInteriorCode(interiorCode.name());
+        Optional<Options> options = optionsRepository.findByInteriorCode(interiorCode);
         options.ifPresent(value -> optionsSet.add(value.getCode()));
         if (optionsSet.size() > optionCodes.size()) {
             return new CheckedOptionResDto(false, new ArrayList<>(optionsSet));
         }
         // 색상 변경으로 옵션 선택 해제해야하는 경우
-        List<OptionInteriorDto> optionInteriors = interiorRepository.findAllByOptionCode(
-                optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
+        List<OptionInterior> optionInteriors = optionInteriorRepository
+                .findAllByOptionCodeIn(optionCodes);
         if (!optionInteriors.isEmpty()) {
             boolean check = false;
             for (int i = 0; i < optionInteriors.size(); i++) {
@@ -98,7 +98,7 @@ public class ColorService {
                 }
             }
             if (!check) {
-                optionCodes.removeAll(optionInteriors.stream().map(OptionInteriorDto::getOptionCode)
+                optionCodes.removeAll(optionInteriors.stream().map(OptionInterior::getOptionCode)
                         .collect(Collectors.toList()));
                 return new CheckedOptionResDto(false, optionCodes);
             }
@@ -142,7 +142,7 @@ public class ColorService {
             List<Options> delOptions = getDelOptions(reqDto, changeTrimInfoDto);
             // 모델 변경 후에도 선택 가능한 옵션 조회
             List<Options> addOptions = new ArrayList<>();
-            Optional<Options> op = optionsRepository.findByInteriorCode(interior.getCode().name());
+            Optional<Options> op = optionsRepository.findByInteriorCode(interior.getCode());
             op.ifPresent(addOptions::add);
             return new ChangeTrimResDto(addOptions, delOptions, changeTrimInfoDto);
         }
@@ -154,9 +154,7 @@ public class ColorService {
             ChangeTrimInfoDto changeTrimInfoDto) {
         List<OptionCode> delOptionCodes = reqDto.getOptionCodes();
         delOptionCodes.removeAll(optionsRepository.findAllByModelIdAndOptionCode(
-                        changeTrimInfoDto.getChangeModelId(),
-                        reqDto.getOptionCodes().stream().map(Enum::name)
-                                .collect(Collectors.toList()))
+                        changeTrimInfoDto.getChangeModelId(), reqDto.getOptionCodes())
                 .stream().map(Options::getCode).collect(Collectors.toList()));
         return optionsRepository.findAllByCodeIn(delOptionCodes);
     }

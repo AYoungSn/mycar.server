@@ -1,8 +1,9 @@
 package com.autoever.mycar.server.car.adapter.out.persistence.color;
 
-import com.autoever.mycar.server.car.adapter.out.view.InteriorDto;
-import com.autoever.mycar.server.car.adapter.out.view.OptionInteriorDto;
+import com.autoever.mycar.server.car.domain.code.CarCode;
+import com.autoever.mycar.server.car.domain.code.ExteriorCode;
 import com.autoever.mycar.server.car.domain.code.InteriorCode;
+import com.autoever.mycar.server.car.domain.code.TrimCode;
 import com.autoever.mycar.server.car.domain.color.Interior;
 import java.util.List;
 import java.util.Optional;
@@ -11,27 +12,27 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface InteriorRepository extends JpaRepository<Interior, Long> {
 
-    @Query(value = "select distinct it.img_uri imgUri, it.name name, it.id, it.code "
-            + "from color_combi cc, trim t, car c, interior it "
-            + "where cc.trim_code = t.code and c.code=t.car_code and cc.interior_code = it.code "
-            + "and c.code = :carCode", nativeQuery = true)
-    List<InteriorDto> findAllByCarCode(String carCode);
+    @Query(value = "select distinct it "
+            + "from ColorCombi cc inner join Trim t "
+            + "on cc.trimCode = t.code "
+            + "inner join Car c "
+            + "on c.code=t.carCode "
+            + "inner join Interior it "
+            + "on cc.interiorCode = it.code "
+            + "where c.code = :carCode")
+    List<Interior> findAllByCarCode(CarCode carCode);
 
-    @Query(value = "select distinct it.img_uri imgUri, it.name name, it.id, it.code "
-            + "from interior it, color_combi cc "
-            + "where it.code = cc.interior_code and cc.trim_code=:trimCode", nativeQuery = true)
-    List<InteriorDto> findAllByTrimCode(String trimCode);
+    @Query(value = "select distinct it "
+            + "from Interior it inner join ColorCombi cc "
+            + "on it.code = cc.interiorCode "
+            + "where cc.trimCode=:trimCode order by it.id asc")
+    List<Interior> findAllByTrimCode(TrimCode trimCode);
 
-    @Query(value = "SELECT distinct it.img_uri imgUri, it.name name, it.id, it.code "
-            + "FROM interior it, color_combi cc "
-            + "WHERE cc.interior_code = it.code and cc.trim_code = :trimCode "
-            + "and cc.exterior_code=:exteriorCode", nativeQuery = true)
-    List<InteriorDto> findAllByExteriorCodeAndTrimCode(String exteriorCode, String trimCode);
-
-    @Query(value = "SELECT oi.option_code optionCode, oi.interior_code interiorCode "
-            + "FROM option_interior oi "
-            + "WHERE oi.option_code IN (:optionCode)", nativeQuery = true)
-    List<OptionInteriorDto> findAllByOptionCode(List<String> optionCode);
+    @Query(value = "SELECT distinct it "
+            + "FROM Interior it inner join ColorCombi cc "
+            + "on cc.interiorCode = it.code "
+            + "WHERE cc.trimCode = :trimCode and cc.exteriorCode=:exteriorCode order by it.id asc")
+    List<Interior> findAllByExteriorCodeAndTrimCode(ExteriorCode exteriorCode, TrimCode trimCode);
 
     Optional<Interior> findByCode(InteriorCode code);
 }

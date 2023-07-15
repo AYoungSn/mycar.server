@@ -12,12 +12,12 @@ import com.autoever.mycar.server.car.adapter.out.persistence.color.ExteriorRepos
 import com.autoever.mycar.server.car.adapter.out.persistence.color.InteriorRepository;
 import com.autoever.mycar.server.car.adapter.out.persistence.options.OptionsRepository;
 import com.autoever.mycar.server.car.adapter.out.view.CarResDto;
-import com.autoever.mycar.server.car.adapter.out.view.InteriorDto;
 import com.autoever.mycar.server.car.adapter.out.view.ModelResDto;
 import com.autoever.mycar.server.car.adapter.out.view.TrimResDto;
 import com.autoever.mycar.server.car.domain.Options;
 import com.autoever.mycar.server.car.domain.code.CarCode;
 import com.autoever.mycar.server.car.domain.color.Exterior;
+import com.autoever.mycar.server.car.domain.color.Interior;
 import com.autoever.mycar.server.car.exception.ModelNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -65,19 +65,17 @@ public class CarService {
         ModelResDto modelResDto = modelRepository.findByModelId(modelId)
                 .orElseThrow(ModelNotFoundException::new);
         // car 종류별로 선택 가능한 외장, 내장 색상 가져오기
-        List<Exterior> exteriors = exteriorRepository.findAllByCarCode(
-                modelResDto.getCarCode());
-        List<InteriorDto> interiors = interiorRepository.findAllByCarCode(
-                modelResDto.getCarCode().name());
+        List<Exterior> exteriors = exteriorRepository.findAllByCarCode(modelResDto.getCarCode());
+        List<Interior> interiors = interiorRepository.findAllByCarCode(modelResDto.getCarCode());
         List<Options> options = optionsRepository.findAllByModelId(modelId);
-        ModelDetailResDto result = new ModelDetailResDto(modelResDto, exteriors, interiors,
-                options);
+        ModelDetailResDto result = new ModelDetailResDto(
+                modelResDto, exteriors, interiors, options);
         result.optionsChoiceCheck(
-                optionsRepository.findAllDependencyOption(modelResDto.getTrimCode().name()));
+                optionsRepository.findAllDependencyOption(modelResDto.getTrimCode()));
         result.exteriorChoiceCheck(
-                exteriorRepository.findAllByTrimCode(modelResDto.getTrimCode().name()));
+                exteriorRepository.findAllByTrimCode(modelResDto.getTrimCode()));
         result.interiorChoiceCheck(
-                interiorRepository.findAllByTrimCode(modelResDto.getTrimCode().name()));
+                interiorRepository.findAllByTrimCode(modelResDto.getTrimCode()));
         return result;
     }
 

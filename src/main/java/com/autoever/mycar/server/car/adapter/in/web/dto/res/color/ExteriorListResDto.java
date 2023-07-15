@@ -1,6 +1,5 @@
 package com.autoever.mycar.server.car.adapter.in.web.dto.res.color;
 
-import com.autoever.mycar.server.car.adapter.out.view.ExteriorDto;
 import com.autoever.mycar.server.car.domain.color.Exterior;
 import java.util.Comparator;
 import java.util.List;
@@ -16,9 +15,9 @@ public class ExteriorListResDto {
         this.exterior = exterior.stream().map(ExteriorResDto::new).collect(Collectors.toList());
     }
 
-    public void choiceCheck(List<ExteriorDto> enableExterior) {
+    public void choiceCheck(List<Exterior> enableExterior) {
         exterior.sort(Comparator.comparing(ExteriorResDto::getId));
-        enableExterior.sort(Comparator.comparing(ExteriorDto::getId));
+        enableExterior.sort(Comparator.comparing(Exterior::getId));
         int i = 0;
         int j = 0;
         while (i < this.exterior.size() && j < enableExterior.size()) {

@@ -1,7 +1,9 @@
 package com.autoever.mycar.server.car.adapter.out.persistence.options;
 
 import com.autoever.mycar.server.car.domain.Options;
+import com.autoever.mycar.server.car.domain.code.InteriorCode;
 import com.autoever.mycar.server.car.domain.code.OptionCode;
+import com.autoever.mycar.server.car.domain.code.TrimCode;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,80 +11,94 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface OptionsRepository extends JpaRepository<Options, Long> {
 
-    @Query(value = "select opt.* from model_option mo, model m, options opt "
-            + "where mo.model_id = m.id and mo.option_code=opt.code and m.id = :modelId "
-            + "order by opt.code", nativeQuery = true)
+    @Query(value = "select opt from ModelOption mo inner join Options opt "
+            + "on opt.code = mo.optionCode "
+            + "where mo.modelId = :modelId order by opt.code")
     List<Options> findAllByModelId(Long modelId);
 
-    @Query(value = "select opt.* from model_option mo, model m, options opt "
-            + "where mo.model_id = m.id and mo.option_code=opt.code "
-            + "and opt.category in ('HGA', 'NPF') "
-            + "and m.id = :modelId order by opt.code", nativeQuery = true)
+    @Query(value = "select opt from ModelOption mo inner join Options opt "
+            + "on mo.optionCode=opt.code "
+            + "where opt.category in "
+            + "(com.autoever.mycar.server.car.domain.type.OptionCategory.HGA, "
+            + "com.autoever.mycar.server.car.domain.type.OptionCategory.NPF) "
+            + "and mo.modelId = :modelId order by opt.code")
     List<Options> findTuixOptionsAllByModelId(Long modelId);
 
-    @Query(value = "SELECT o1.* FROM options o1, dependency_option do "
-            + "WHERE o1.code = do.option_code and do.trim_code=:trimCode "
-            + "order by o1.code", nativeQuery = true)
-    List<Options> findAllDependencyOption(String trimCode);
+    @Query(value = "SELECT o1 FROM Options o1 inner join DependencyOption do "
+            + "on o1.code = do.optionCode "
+            + "WHERE do.trimCode=:trimCode "
+            + "order by o1.code")
+    List<Options> findAllDependencyOption(TrimCode trimCode);
 
-    @Query(value = "SELECT o1.* FROM options o1, dependency_option do "
-            + "WHERE o1.code = do.option_code and do.trim_code=:trimCode and o1.category='DETAIL' "
-            + "and do.dependency_code in (:optionCodes) order by o1.code", nativeQuery = true)
+    @Query(value = "SELECT o1 FROM Options o1 inner join DependencyOption do "
+            + "ON o1.code = do.optionCode "
+            + "WHERE do.trimCode=:trimCode "
+            + "and o1.category=com.autoever.mycar.server.car.domain.type.OptionCategory.DETAIL "
+            + "and do.dependencyCode in (:optionCodes) order by o1.code")
     List<Options> findAllDetailDependencyOptionByOptionCodeIn(
-            String trimCode, List<String> optionCodes);
+            TrimCode trimCode, List<OptionCode> optionCodes);
 
-    @Query(value = "SELECT o1.* FROM options o1, dependency_option do "
-            + "WHERE o1.code = do.option_code and do.trim_code=:trimCode "
-            + "and o1.category not in ('DETAIL') "
-            + "and do.dependency_code in (:optionCodes) order by o1.code", nativeQuery = true)
+    @Query(value = "SELECT o1 FROM Options o1 inner join DependencyOption do "
+            + "ON o1.code = do.optionCode "
+            + "WHERE do.trimCode=:trimCode and o1.category not in "
+            + "(com.autoever.mycar.server.car.domain.type.OptionCategory.DETAIL) "
+            + "and do.dependencyCode in (:optionCodes) order by o1.code")
     List<Options> findAllDependencyOptionByOptionCodeAndCategoryDetailNotIn(
-            String trimCode, List<String> optionCodes);
+            TrimCode trimCode, List<OptionCode> optionCodes);
 
-    @Query(value = "SELECT o1.* FROM options o1, dependency_option do "
-            + "WHERE o1.code = do.option_code and do.trim_code=:trimCode "
-            + "and o1.category in ('DETAIL') and do.dependency_code not in (:optionCodes) "
-            + "order by o1.code", nativeQuery = true)
+    @Query(value = "SELECT o1 FROM Options o1 inner join DependencyOption do "
+            + "on o1.code = do.optionCode "
+            + "WHERE do.trimCode=:trimCode "
+            + "and o1.category in "
+            + "(com.autoever.mycar.server.car.domain.type.OptionCategory.DETAIL) "
+            + "and do.dependencyCode not in (:optionCodes) "
+            + "order by o1.code")
     List<Options> findAllDependencyOptionByDependencyCodeNotIn(
-            String trimCode, List<String> optionCodes);
+            TrimCode trimCode, List<OptionCode> optionCodes);
 
-    @Query(value = "SELECT o.* FROM options o, duplicate_option dup "
-            + "WHERE o.code=dup.option_code and o.category not in ('DETAIL') "
-            + "and dup.duplicate_code in (:dupOptions) ", nativeQuery = true)
-    List<Options> findDuplicateAllByOptionCodeNotIn(List<String> dupOptions);
+    @Query(value = "SELECT o FROM Options o inner join DuplicateOption dup "
+            + "on o.code=dup.optionCode "
+            + "WHERE o.category not in "
+            + "(com.autoever.mycar.server.car.domain.type.OptionCategory.DETAIL) "
+            + "and dup.duplicateCode in (:dupOptions)")
+    List<Options> findDuplicateAllByOptionCodeNotIn(List<OptionCode> dupOptions);
 
-    @Query(value = "SELECT o1.* FROM options o1, dependency_option do "
-            + "WHERE o1.code = do.dependency_code and do.trim_code=:trimCode "
-            + "and o1.category='DETAIL' and do.option_code = (:optionCode) "
-            + "order by o1.code", nativeQuery = true)
-    List<Options> findAllDependencyDetailOptionByOptionCode(String trimCode, String optionCode);
+    @Query(value = "SELECT o1 FROM Options o1 inner join DependencyOption do "
+            + "on o1.code = do.dependencyCode "
+            + "WHERE do.trimCode=:trimCode "
+            + "and o1.category='DETAIL' and do.optionCode = (:optionCode) "
+            + "order by o1.code")
+    List<Options> findAllDependencyDetailOptionByOptionCode(
+            TrimCode trimCode, OptionCode optionCode);
 
     Optional<Options> findByCode(OptionCode optionCode);
 
-    @Query(value = "SELECT o.* FROM options o, option_interior oi "
-            + "WHERE o.code = oi.option_code AND oi.interior_code=:interiorCode",
-            nativeQuery = true)
-    Optional<Options> findByInteriorCode(String interiorCode);
+    @Query(value = "SELECT o FROM Options o inner join OptionInterior oi "
+            + "on o.code = oi.optionCode "
+            + "WHERE oi.interiorCode=:interiorCode")
+    Optional<Options> findByInteriorCode(InteriorCode interiorCode);
 
-    @Query(value = "SELECT o.* FROM model_option mo, options o "
-            + "WHERE mo.model_id=:modelId and mo.option_code IN (:optionCode) "
-            + "AND mo.option_code=o.code", nativeQuery = true)
-    List<Options> findAllByModelIdAndOptionCode(Long modelId, List<String> optionCode);
+    @Query(value = "SELECT o FROM ModelOption mo inner join Options o "
+            + "on mo.optionCode=o.code "
+            + "WHERE mo.modelId=:modelId and mo.optionCode IN (:optionCode) ")
+    List<Options> findAllByModelIdAndOptionCode(Long modelId, List<OptionCode> optionCode);
 
     List<Options> findAllByCodeIn(List<OptionCode> optionCodes);
 
-    @Query(value = "SELECT o.* FROM options o, duplicate_option dup, model_option mo "
-            + "WHERE o.code=dup.option_code and mo.option_code=o.code "
-            + "and dup.duplicate_code in (:dupOptions) and mo.model_id = :modelId",
-            nativeQuery = true)
-    List<Options> findDuplicateAllByOptionCodeIn(Long modelId, List<String> dupOptions);
+    @Query(value = "SELECT o FROM Options o inner join DuplicateOption dup "
+            + "on o.code=dup.optionCode "
+            + "inner join ModelOption mo "
+            + "on mo.optionCode=o.code "
+            + "WHERE dup.duplicateCode in (:dupOptions) and mo.modelId = :modelId")
+    List<Options> findDuplicateAllByOptionCodeIn(Long modelId, List<OptionCode> dupOptions);
 
-    @Query(value = "SELECT o.* FROM options o, duplicate_option dup "
-            + "WHERE o.code=dup.option_code and dup.duplicate_code = :dupOptions",
-            nativeQuery = true)
-    List<Options> findDuplicateAllByOptionCode(String dupOptions);
+    @Query(value = "SELECT o FROM Options o inner join DuplicateOption dup "
+            + "ON o.code=dup.optionCode "
+            + "WHERE dup.duplicateCode = :dupOptions")
+    List<Options> findDuplicateAllByOptionCode(OptionCode dupOptions);
 
-    @Query(value = "SELECT o.* FROM del_option del, options o "
-            + "WHERE del.del_code = o.code AND del.option_code in (:optionCodes)",
-            nativeQuery = true)
-    List<Options> findDelOptions(List<String> optionCodes);
+    @Query(value = "SELECT o FROM DelOption del inner join Options o "
+            + "ON del.delCode = o.code "
+            + "WHERE del.optionCode in (:optionCodes)")
+    List<Options> findDelOptions(List<OptionCode> optionCodes);
 }

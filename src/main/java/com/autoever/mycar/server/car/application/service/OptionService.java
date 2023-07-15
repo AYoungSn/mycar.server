@@ -6,12 +6,12 @@ import com.autoever.mycar.server.car.adapter.in.web.dto.res.options.DisableOptio
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.options.EnableOptionListResDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.options.TuixOptionListResDto;
 import com.autoever.mycar.server.car.adapter.out.persistence.ModelRepository;
-import com.autoever.mycar.server.car.adapter.out.persistence.color.InteriorRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.OptionInteriorRepository;
 import com.autoever.mycar.server.car.adapter.out.persistence.options.OptionsRepository;
-import com.autoever.mycar.server.car.adapter.out.view.OptionInteriorDto;
 import com.autoever.mycar.server.car.domain.Options;
 import com.autoever.mycar.server.car.domain.code.OptionCode;
 import com.autoever.mycar.server.car.domain.code.TrimCode;
+import com.autoever.mycar.server.car.domain.options.OptionInterior;
 import com.autoever.mycar.server.car.exception.ModelNotFoundException;
 import com.autoever.mycar.server.car.exception.OptionCodeNotFoundException;
 import java.util.ArrayList;
@@ -26,18 +26,18 @@ public class OptionService {
 
     private final OptionsRepository optionsRepository;
     private final ModelRepository modelRepository;
-    private final InteriorRepository interiorRepository;
+    private final OptionInteriorRepository optionInteriorRepository;
 
     public DisableOptionResDto disableOption(Long modelId, List<OptionCode> optionCodes) {
         // del: 선택된 option_code 와 중복으로 선택이 불가능한 옵션 조회 duplicate_option
         // 현재 선택된 옵션 바탕으로 보여지는 옵션 목록 조회
         TrimCode trimCode = modelRepository.findByModelId(modelId)
                 .orElseThrow(ModelNotFoundException::new).getTrimCode();
-        List<Options> options = optionsRepository.findDuplicateAllByOptionCodeIn(modelId,
-                optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
+        List<Options> options = optionsRepository
+                .findDuplicateAllByOptionCodeIn(modelId, optionCodes);
         options.addAll(
-                optionsRepository.findAllDependencyOptionByDependencyCodeNotIn(trimCode.name(),
-                        optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
+                optionsRepository
+                        .findAllDependencyOptionByDependencyCodeNotIn(trimCode, optionCodes));
         return new DisableOptionResDto(options);
     }
 
@@ -47,9 +47,7 @@ public class OptionService {
         TrimCode trimCode = modelRepository.findByModelId(modelId)
                 .orElseThrow(ModelNotFoundException::new).getTrimCode();
         List<Options> dependencyOptions = optionsRepository
-                .findAllDetailDependencyOptionByOptionCodeIn(
-                        trimCode.name(),
-                        optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
+                .findAllDetailDependencyOptionByOptionCodeIn(trimCode, optionCodes);
         return new EnableOptionListResDto(dependencyOptions);
     }
 
@@ -60,14 +58,13 @@ public class OptionService {
         // dependency_option -> add option
         List<Options> add;
         List<Options> del = new ArrayList<>();
-        add = optionsRepository.findAllDependencyDetailOptionByOptionCode(trimCode.name(),
-                addOption.name());
+        add = optionsRepository.findAllDependencyDetailOptionByOptionCode(trimCode, addOption);
         if (!add.isEmpty()) {
             add.add(optionsRepository.findByCode(addOption)
                     .orElseThrow(OptionCodeNotFoundException::new));
         } else {
             // duplicate_option -> del option
-            del = optionsRepository.findDuplicateAllByOptionCode(addOption.name());
+            del = optionsRepository.findDuplicateAllByOptionCode(addOption);
             if (!del.isEmpty()) {
                 add = new ArrayList<>();
                 add.add(optionsRepository.findByCode(addOption)
@@ -84,23 +81,21 @@ public class OptionService {
         List<Options> options = optionsRepository.findTuixOptionsAllByModelId(modelId);
         // dependency 로 추가될 목록 조회
         options.addAll(optionsRepository.findAllDependencyOptionByOptionCodeAndCategoryDetailNotIn(
-                trimCode.name(),
-                optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
-        options.removeAll(optionsRepository.findDelOptions(
-                optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
+                trimCode, optionCodes));
+        options.removeAll(optionsRepository.findDelOptions(optionCodes));
         return new TuixOptionListResDto(options);
     }
 
     public DisableOptionResDto tuixDisableOption(Long modelId, List<OptionCode> optionCodes) {
-        return new DisableOptionResDto(optionsRepository.findDuplicateAllByOptionCodeNotIn(
-                optionCodes.stream().map(Enum::name).collect(Collectors.toList())));
+        return new DisableOptionResDto(
+                optionsRepository.findDuplicateAllByOptionCodeNotIn(optionCodes));
     }
 
     public CheckedInteriorResDto checkedInterior(List<OptionCode> optionCodes) {
-        List<OptionInteriorDto> interiors = interiorRepository.findAllByOptionCode(
-                optionCodes.stream().map(Enum::name).collect(Collectors.toList()));
+        List<OptionInterior> interiors = optionInteriorRepository
+                .findAllByOptionCodeIn(optionCodes);
         return new CheckedInteriorResDto(interiors.size() > 0,
-                interiors.stream().map((OptionInteriorDto::getInteriorCode))
+                interiors.stream().map((OptionInterior::getInteriorCode))
                         .collect(Collectors.toList()));
     }
 

@@ -3,11 +3,10 @@ package com.autoever.mycar.server.car.adapter.in.web.dto.res;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.color.ExteriorResDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.color.InteriorResDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.options.OptionsListResDto;
-import com.autoever.mycar.server.car.adapter.out.view.ExteriorDto;
-import com.autoever.mycar.server.car.adapter.out.view.InteriorDto;
 import com.autoever.mycar.server.car.adapter.out.view.ModelResDto;
 import com.autoever.mycar.server.car.domain.Options;
 import com.autoever.mycar.server.car.domain.color.Exterior;
+import com.autoever.mycar.server.car.domain.color.Interior;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,23 +21,16 @@ public class ModelDetailResDto {
     private OptionsListResDto options;
 
     public ModelDetailResDto(ModelResDto model, List<Exterior> exterior,
-            List<InteriorDto> interior, List<Options> optionsList) {
+            List<Interior> interior, List<Options> optionsList) {
         this.model = model;
         this.exterior = exterior.stream().map(ExteriorResDto::new).collect(Collectors.toList());
         this.interior = interior.stream().map(InteriorResDto::new).collect(Collectors.toList());
         this.options = new OptionsListResDto(optionsList);
     }
 
-    public void exteriorChoiceCheck(List<ExteriorDto> enableExterior) {
-        for (int i = 0; i < exterior.size(); i++) {
-            System.out.println(exterior.get(i).getId());
-        }
-        System.out.println("***");
-        for (int i = 0; i < enableExterior.size(); i++) {
-            System.out.println(enableExterior.get(i).getId());
-        }
+    public void exteriorChoiceCheck(List<Exterior> enableExterior) {
         exterior.sort(Comparator.comparing(ExteriorResDto::getId));
-        enableExterior.sort(Comparator.comparing(ExteriorDto::getId));
+        enableExterior.sort(Comparator.comparing(Exterior::getId));
         int i = 0;
         int j = 0;
         while (i < this.exterior.size() && j < enableExterior.size()) {
@@ -53,9 +45,16 @@ public class ModelDetailResDto {
         exterior.sort(Comparator.comparing(ExteriorResDto::getId));
     }
 
-    public void interiorChoiceCheck(List<InteriorDto> enableInterior) {
+    public void interiorChoiceCheck(List<Interior> enableInterior) {
+        for (int i = 0; i < interior.size(); i++) {
+            System.out.println(interior.get(i).getId());
+        }
+        System.out.println("***");
+        for (int i = 0; i < enableInterior.size(); i++) {
+            System.out.println(enableInterior.get(i).getId());
+        }
         interior.sort(Comparator.comparing(InteriorResDto::getId));
-        enableInterior.sort(Comparator.comparing(InteriorDto::getId));
+        enableInterior.sort(Comparator.comparing(Interior::getId));
         int i = 0;
         int j = 0;
         while (i < this.interior.size() && j < enableInterior.size()) {
