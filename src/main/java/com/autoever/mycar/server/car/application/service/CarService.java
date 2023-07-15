@@ -1,23 +1,23 @@
 package com.autoever.mycar.server.car.application.service;
 
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.req.ModelFilterReqDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.ModelBasicInfoListDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.ModelDetailResDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.ToolTipListDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.TrimListResDto;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.CarRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.ModelRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.ToolTipsRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.color.ExteriorRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.color.InteriorRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.options.OptionsRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.view.CarResDto;
-import com.autoever.mycar.server.car.adapter.adapter.out.view.ExteriorDto;
-import com.autoever.mycar.server.car.adapter.adapter.out.view.InteriorDto;
-import com.autoever.mycar.server.car.adapter.adapter.out.view.ModelResDto;
-import com.autoever.mycar.server.car.adapter.adapter.out.view.TrimResDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.req.ModelFilterReqDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.res.ModelBasicInfoListDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.res.ModelDetailResDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.res.ToolTipListDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.res.TrimListResDto;
+import com.autoever.mycar.server.car.adapter.out.persistence.CarRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.ModelRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.ToolTipsRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.color.ExteriorRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.color.InteriorRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.options.OptionsRepository;
+import com.autoever.mycar.server.car.adapter.out.view.CarResDto;
+import com.autoever.mycar.server.car.adapter.out.view.InteriorDto;
+import com.autoever.mycar.server.car.adapter.out.view.ModelResDto;
+import com.autoever.mycar.server.car.adapter.out.view.TrimResDto;
 import com.autoever.mycar.server.car.domain.Options;
 import com.autoever.mycar.server.car.domain.code.CarCode;
+import com.autoever.mycar.server.car.domain.color.Exterior;
 import com.autoever.mycar.server.car.exception.ModelNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -65,8 +65,8 @@ public class CarService {
         ModelResDto modelResDto = modelRepository.findByModelId(modelId)
                 .orElseThrow(ModelNotFoundException::new);
         // car 종류별로 선택 가능한 외장, 내장 색상 가져오기
-        List<ExteriorDto> exteriors = exteriorRepository.findAllByCarCode(
-                modelResDto.getCarCode().name());
+        List<Exterior> exteriors = exteriorRepository.findAllByCarCode(
+                modelResDto.getCarCode());
         List<InteriorDto> interiors = interiorRepository.findAllByCarCode(
                 modelResDto.getCarCode().name());
         List<Options> options = optionsRepository.findAllByModelId(modelId);

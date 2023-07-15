@@ -28,7 +28,6 @@ public class Car {
     @Enumerated(EnumType.STRING)
     @NotNull
     private CarType type;
-
     @Column(length = 5, unique = true)
     @Enumerated(EnumType.STRING)
     private CarCode code;

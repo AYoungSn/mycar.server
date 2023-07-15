@@ -40,10 +40,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.METHOD_NOT_ALLOWED);
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleException(Exception ex) {
-        log.error("!!!!!! SERVER ERROR !!!!!!", ex.getMessage());
-        ErrorResponse response = new ErrorResponse(ErrorCode.INTERNAL_SERVER_ERR);
-        return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
-    }
+    //    @ExceptionHandler(Exception.class)
+    //    public ResponseEntity<ErrorResponse> handleException(Exception ex) {
+    //        log.error("!!!!!! SERVER ERROR !!!!!!", ex.getMessage());
+    //        ErrorResponse response = new ErrorResponse(ErrorCode.INTERNAL_SERVER_ERR);
+    //        return new ResponseEntity<>(response, HttpStatus.valueOf(response.getStatus()));
+    //    }
 }

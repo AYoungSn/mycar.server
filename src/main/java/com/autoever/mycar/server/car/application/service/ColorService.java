@@ -1,22 +1,22 @@
 package com.autoever.mycar.server.car.application.service;
 
 
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.req.ColorChangeReqDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.CheckedOptionResDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.color.ExteriorListResDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.color.InteriorListResDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.trim.ChangeTrimInfoDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.trim.ChangeTrimResDto;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.ModelRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.ToolTipsRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.color.ColorCombiRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.color.ExteriorRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.color.InteriorRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.persistence.options.OptionsRepository;
-import com.autoever.mycar.server.car.adapter.adapter.out.view.ModelResDto;
-import com.autoever.mycar.server.car.adapter.adapter.out.view.OptionInteriorDto;
-import com.autoever.mycar.server.car.adapter.adapter.out.view.TrimResDto;
-import com.autoever.mycar.server.car.adapter.adapter.out.view.tooltips.TooltipsIdDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.req.ColorChangeReqDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.res.CheckedOptionResDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.res.color.ExteriorListResDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.res.color.InteriorListResDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.res.trim.ChangeTrimInfoDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.res.trim.ChangeTrimResDto;
+import com.autoever.mycar.server.car.adapter.out.persistence.ModelRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.ToolTipsRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.color.ColorCombiRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.color.ExteriorRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.color.InteriorRepository;
+import com.autoever.mycar.server.car.adapter.out.persistence.options.OptionsRepository;
+import com.autoever.mycar.server.car.adapter.out.view.ModelResDto;
+import com.autoever.mycar.server.car.adapter.out.view.OptionInteriorDto;
+import com.autoever.mycar.server.car.adapter.out.view.TrimResDto;
+import com.autoever.mycar.server.car.adapter.out.view.tooltips.TooltipsIdDto;
 import com.autoever.mycar.server.car.domain.Options;
 import com.autoever.mycar.server.car.domain.code.CarCode;
 import com.autoever.mycar.server.car.domain.code.ExteriorCode;
@@ -66,7 +66,7 @@ public class ColorService {
     public ExteriorListResDto availableExteriorList(InteriorCode interiorCode, TrimCode trimCode,
             CarCode carCode) {
         ExteriorListResDto result = new ExteriorListResDto(
-                exteriorRepository.findAllByCarCode(carCode.name()));
+                exteriorRepository.findAllByCarCode(carCode));
         if (interiorCode == null) {
             result.choiceCheck(exteriorRepository.findAllByTrimCode(trimCode.name()));
         } else {
@@ -109,7 +109,7 @@ public class ColorService {
     public ChangeTrimResDto changeExteriorColor(ColorChangeReqDto reqDto) {
         // 변경하려는 exterior 가 현재 트림에서 선택 가능한 옵션인지
         List<ColorCombi> combis = colorCombiRepository.findAllByExteriorCodeAndModelId(
-                reqDto.getExteriorCode().name(), reqDto.getModelId());
+                reqDto.getExteriorCode(), reqDto.getModelId());
         // y -> 내장 색 변경 요청
         if (!combis.isEmpty()) {
             return new ChangeTrimResDto(true, null);
@@ -129,7 +129,7 @@ public class ColorService {
     public ChangeTrimResDto changeInteriorColor(ColorChangeReqDto reqDto) {
         // 변경하려는 interior 가 현재 트림에서 선택 가능한 옵션인지
         List<ColorCombi> combis = colorCombiRepository.findAllByInteriorCodeAndModelId(
-                reqDto.getInteriorCode().name(), reqDto.getModelId());
+                reqDto.getInteriorCode(), reqDto.getModelId());
         // y -> 외장 색 변경 요청
         if (!combis.isEmpty()) {
             return new ChangeTrimResDto(null, true);
