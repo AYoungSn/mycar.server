@@ -1,14 +1,14 @@
 package com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.color;
 
 import com.autoever.mycar.server.car.adapter.adapter.out.view.InteriorDto;
-import lombok.Getter;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.Getter;
 
 @Getter
 public class InteriorListResDto {
+
     private List<InteriorResDto> interior;
 
     public InteriorListResDto(List<InteriorDto> interior) {
@@ -18,10 +18,11 @@ public class InteriorListResDto {
     public void choiceCheck(List<InteriorDto> enableInterior) {
         interior.sort(Comparator.comparing(InteriorResDto::getId));
         enableInterior.sort(Comparator.comparing(InteriorDto::getId));
-        int i = 0, j = 0;
+        int i = 0;
+        int j = 0;
         while (i < this.interior.size() && j < enableInterior.size()) {
             if (this.interior.get(i).getId().equals(enableInterior.get(j).getId())) {
-                this.interior.get(i).setChoiceYN();
+                this.interior.get(i).setChoiceYn();
                 i++;
                 j++;
             } else {

@@ -56,7 +56,9 @@ public class CarController {
 
     @GetMapping("/{carCode}/trims")
     @Operation(summary = "트림 변경 모달에서 모델 기본 이름 별로 선택 가능한 트림 목록 상세 조회")
-    public TrimListResDto getTrimListByModelName(@PathVariable CarCode carCode, String modelBasicName) {
+    public TrimListResDto getTrimListByModelName(
+            @PathVariable CarCode carCode,
+            String modelBasicName) {
         return carService.findTrimListAndModelName(carCode, modelBasicName);
     }
 }

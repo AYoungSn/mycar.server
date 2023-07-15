@@ -6,20 +6,22 @@ import lombok.Getter;
 
 @Getter
 public class InteriorResDto {
+
     private Long id;
     private String name;
     private String imgUri;
-    private Boolean choiceYN;
+    private Boolean choiceYn;
     private InteriorCode code;
 
     public InteriorResDto(InteriorDto dto) {
         this.id = dto.getId();
         this.name = dto.getName();
         this.imgUri = dto.getImgUri();
-        this.choiceYN = false;
+        this.choiceYn = false;
         this.code = dto.getCode();
     }
-    public void setChoiceYN() {
-        this.choiceYN = true;
+
+    public void setChoiceYn() {
+        this.choiceYn = true;
     }
 }

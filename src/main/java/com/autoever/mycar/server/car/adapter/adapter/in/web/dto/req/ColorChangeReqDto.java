@@ -5,18 +5,18 @@ import com.autoever.mycar.server.car.domain.code.ExteriorCode;
 import com.autoever.mycar.server.car.domain.code.InteriorCode;
 import com.autoever.mycar.server.car.domain.code.OptionCode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
 public class ColorChangeReqDto {
+
     @NotNull(message = "beforeInteriorCode 가 null 입니다.")
     private InteriorCode beforeInteriorCode;
     @NotNull(message = "beforeInteriorCode 가 null 입니다.")
@@ -31,11 +31,13 @@ public class ColorChangeReqDto {
     private CarCode carCode;
     @NotNull(message = "optionCode 가 null 입니다.")
     private String optionCode;
+
     @JsonIgnore
     public List<OptionCode> getOptionCodes() {
         if (optionCode == null || optionCode.isEmpty()) {
             return new ArrayList<>();
         }
-        return Arrays.stream(optionCode.split(",")).map(OptionCode::valueOf).collect(Collectors.toList());
+        return Arrays.stream(optionCode.split(",")).map(OptionCode::valueOf)
+                .collect(Collectors.toList());
     }
 }

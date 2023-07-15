@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.12'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'checkstyle'
 }
 
 group = 'com.autoever'
@@ -35,4 +36,9 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+checkstyle{
+	maxWarnings = 0
+	configFile = file("${rootDir}/config/google_checks.xml")
+	toolVersion = "10.9.0"
 }

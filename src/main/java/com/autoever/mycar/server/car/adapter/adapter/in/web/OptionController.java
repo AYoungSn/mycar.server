@@ -1,7 +1,11 @@
 package com.autoever.mycar.server.car.adapter.adapter.in.web;
 
 import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.req.options.TrimChangeReqDto;
-import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.*;
+import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.ChangeOptionInfoDto;
+import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.CheckedInteriorResDto;
+import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.DisableOptionResDto;
+import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.EnableOptionListResDto;
+import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options.TuixOptionListResDto;
 import com.autoever.mycar.server.car.application.service.OptionService;
 import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.req.options.ChangeOptionReqDto;
 import com.autoever.mycar.server.car.adapter.adapter.in.web.dto.req.options.SelectedOptionsInfoReqDto;
@@ -19,11 +23,13 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class OptionController {
     private final OptionService optionService;
+
     @GetMapping("/disable")
     @Operation(summary = "현재 선택된 옵션에 따라 선택 불가능한 옵션 조회")
     public DisableOptionResDto disableOptions(@Valid SelectedOptionsInfoReqDto reqDto) {
         return optionService.disableOption(reqDto.getModelId(), reqDto.getOptionCodes());
     }
+
     @GetMapping("/enable")
     @Operation(summary = "현재 선택된 옵션에 따라 이제 선택 가능한 옵션 조회")
     public EnableOptionListResDto enableOptions(@Valid SelectedOptionsInfoReqDto reqDto) {
@@ -34,7 +40,8 @@ public class OptionController {
     @GetMapping("/change")
     @Operation(summary = "현재 선택된 옵션에 따라 같이 선택되거나 해제되어야 하는 옵션 조회")
     public ChangeOptionInfoDto checkChangeOption(@Valid ChangeOptionReqDto reqDto) {
-        return optionService.changeCheckOption(reqDto.getModelId(), reqDto.getOptionCodes(), reqDto.getAddOption());
+        return optionService.changeCheckOption(
+                reqDto.getModelId(), reqDto.getOptionCodes(), reqDto.getAddOption());
     }
 
     @GetMapping("/tuix")
@@ -54,6 +61,7 @@ public class OptionController {
     public CheckedInteriorResDto checkedInterior(@Valid SelectedOptionsInfoReqDto reqDto) {
         return optionService.checkedInterior(reqDto.getOptionCodes());
     }
+
     @GetMapping("/trim-change")
     @Operation(summary = "현재 선택된 옵션이 모델을 변경했을 때 선택 해제되는 옵션 목록 조회")
     public DisableOptionResDto trimChange(@Valid TrimChangeReqDto reqDto) {

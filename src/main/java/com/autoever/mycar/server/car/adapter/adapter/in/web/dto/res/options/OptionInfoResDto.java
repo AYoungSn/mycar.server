@@ -2,12 +2,12 @@ package com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options;
 
 import com.autoever.mycar.server.car.domain.Options;
 import com.autoever.mycar.server.car.domain.code.OptionCode;
-import lombok.Getter;
-
 import java.math.BigDecimal;
+import lombok.Getter;
 
 @Getter
 public class OptionInfoResDto {
+
     private OptionCode code;
     private String name;
     private BigDecimal price;
@@ -17,6 +17,6 @@ public class OptionInfoResDto {
         this.code = options.getCode();
         this.name = options.getName();
         this.price = options.getPrice();
-        this.imgUri = options.getImg_uri();
+        this.imgUri = options.getImgUri();
     }
 }

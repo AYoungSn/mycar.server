@@ -4,7 +4,8 @@ import com.autoever.mycar.server.global.exception.ErrorCode;
 import lombok.Getter;
 
 @Getter
-public class NotFoundException extends RuntimeException{
+public class NotFoundException extends RuntimeException {
+
     private ErrorCode errorCode;
 
     public NotFoundException(String message, ErrorCode errorCode) {

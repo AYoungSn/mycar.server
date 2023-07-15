@@ -2,14 +2,14 @@ package com.autoever.mycar.server.car.adapter.adapter.in.web.dto.res.options;
 
 import com.autoever.mycar.server.car.domain.Options;
 import com.autoever.mycar.server.car.domain.type.OptionCategory;
-import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.Getter;
 
 @Getter
 public class OptionsListResDto {
+
     private List<OptionsResDto> hga;
     private List<OptionsResDto> detail;
     private List<OptionsResDto> npf;
@@ -30,7 +30,7 @@ public class OptionsListResDto {
     }
 
     public void optionsChoiceCheck(List<Options> checks) {
-        for (Options options: checks) {
+        for (Options options : checks) {
             if (options.getCategory().equals(OptionCategory.HGA)) {
                 hga = optionUpdate(hga, options);
             } else if (options.getCategory().equals(OptionCategory.DETAIL)) {
@@ -43,8 +43,9 @@ public class OptionsListResDto {
 
     private List<OptionsResDto> optionUpdate(List<OptionsResDto> options, Options check) {
         return options.stream().map(o -> {
-            if (check.getCode().equals(o.getCode()))
-                o.setChoiceYN(false);
+            if (check.getCode().equals(o.getCode())) {
+                o.setChoiceYn(false);
+            }
             return o;
         }).collect(Collectors.toList());
     }
