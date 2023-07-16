@@ -1,6 +1,7 @@
 package com.autoever.mycar.server.car.adapter.in.web.dto.res.color;
 
 import com.autoever.mycar.server.car.domain.color.Interior;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import lombok.Getter;
 @Getter
 public class InteriorListResDto {
 
+    @Schema(description = "인테리어 목록")
     private List<InteriorResDto> interior;
 
     public InteriorListResDto(List<Interior> interior) {

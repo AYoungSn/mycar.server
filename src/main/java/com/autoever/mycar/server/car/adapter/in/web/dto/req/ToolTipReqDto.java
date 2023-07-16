@@ -10,13 +10,12 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class ModelFilterReqDto {
+public class ToolTipReqDto {
 
     @NotNull(message = "carCode 는 필수 값 입니다.")
     @Parameter(name = "carCode", description = "자동차 코드", in = ParameterIn.QUERY)
     private CarCode carCode;
     @Positive(message = "양수만 입력 가능")
-    @NotNull(message = "engineId는 필수 값 입니다.")
     @Parameter(name = "engineId", description = "선택한 엔진의 id", in = ParameterIn.QUERY)
     private Long engineId;
     @Positive(message = "양수만 입력 가능")

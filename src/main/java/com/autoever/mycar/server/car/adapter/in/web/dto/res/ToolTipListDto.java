@@ -2,15 +2,20 @@ package com.autoever.mycar.server.car.adapter.in.web.dto.res;
 
 import com.autoever.mycar.server.car.adapter.out.view.tooltips.ToolTipsInfo;
 import com.autoever.mycar.server.car.domain.type.ToolType;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 
 @Getter
+@Schema(description = "선택 가능한 툴팁 목록")
 public class ToolTipListDto {
 
+    @Schema(description = "엔진 목록")
     private List<ToolTipFilterResDto> engines;
+    @Schema(description = "변속기 목록")
     private List<ToolTipFilterResDto> gearbox;
+    @Schema(description = "구동방식 목록")
     private List<ToolTipFilterResDto> driving;
 
     public ToolTipListDto(List<ToolTipsInfo> toolTips) {

@@ -2,6 +2,7 @@ package com.autoever.mycar.server.car.adapter.in.web.dto.res.options;
 
 import com.autoever.mycar.server.car.domain.Options;
 import com.autoever.mycar.server.car.domain.type.OptionCategory;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,8 +11,11 @@ import lombok.Getter;
 @Getter
 public class OptionsListResDto {
 
+    @Schema(description = "Hyundai Genuine Accessories 옵션 목록")
     private List<OptionsResDto> hga;
+    @Schema(description = "상세 품목 옵션 목록")
     private List<OptionsResDto> detail;
+    @Schema(description = "N Performance Parts 옵션 목록")
     private List<OptionsResDto> npf;
 
     public OptionsListResDto(List<Options> optionsResDtoList) {

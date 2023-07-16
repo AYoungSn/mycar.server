@@ -7,17 +7,23 @@ import com.autoever.mycar.server.car.adapter.out.view.ModelResDto;
 import com.autoever.mycar.server.car.domain.Options;
 import com.autoever.mycar.server.car.domain.color.Exterior;
 import com.autoever.mycar.server.car.domain.color.Interior;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.Getter;
 
 @Getter
+@Schema(description = "모델, 색상, 옵션 상세 정보")
 public class ModelDetailResDto {
 
+    @Schema(description = "모델 상세 정보")
     private ModelResDto model;
+    @Schema(description = "외장 색상 목록")
     private List<ExteriorResDto> exterior;
+    @Schema(description = "내장 색상 목록")
     private List<InteriorResDto> interior;
+    @Schema(description = "옵션 목록")
     private OptionsListResDto options;
 
     public ModelDetailResDto(ModelResDto model, List<Exterior> exterior,

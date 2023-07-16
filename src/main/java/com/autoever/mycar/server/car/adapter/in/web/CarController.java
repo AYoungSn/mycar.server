@@ -1,6 +1,7 @@
 package com.autoever.mycar.server.car.adapter.in.web;
 
 import com.autoever.mycar.server.car.adapter.in.web.dto.req.ModelFilterReqDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.req.ToolTipReqDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.ModelBasicInfoListDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.ModelDetailResDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.ToolTipListDto;
@@ -12,6 +13,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import java.util.List;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.api.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,13 +34,13 @@ public class CarController {
 
     @GetMapping("/model-filter")
     @Operation(summary = "선택 가능한 툴팁 목록 조회")
-    public ToolTipListDto getToolTips(@Valid ModelFilterReqDto reqDto) {
+    public ToolTipListDto getToolTips(@Valid @ParameterObject ToolTipReqDto reqDto) {
         return carService.findToolTips(reqDto);
     }
 
     @GetMapping("/trims")
     @Operation(summary = "선택한 툴팁에 맞는 모델 리스트 조회")
-    public TrimListResDto getTrims(@Valid ModelFilterReqDto reqDto) {
+    public TrimListResDto getTrims(@Valid @ParameterObject ModelFilterReqDto reqDto) {
         return new TrimListResDto(carService.findModelsByToolTips(reqDto));
     }
 

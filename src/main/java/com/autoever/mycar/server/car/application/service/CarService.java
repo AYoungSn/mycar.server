@@ -1,6 +1,7 @@
 package com.autoever.mycar.server.car.application.service;
 
 import com.autoever.mycar.server.car.adapter.in.web.dto.req.ModelFilterReqDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.req.ToolTipReqDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.ModelBasicInfoListDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.ModelDetailResDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.ToolTipListDto;
@@ -40,7 +41,7 @@ public class CarService {
     }
 
     @Transactional(readOnly = true)
-    public ToolTipListDto findToolTips(ModelFilterReqDto reqDto) {
+    public ToolTipListDto findToolTips(ToolTipReqDto reqDto) {
         // engine 선택 안된 경우
         ToolTipListDto result = new ToolTipListDto(
                 toolTipsRepository.findAllToolTips(reqDto.getCarCode().name()));
