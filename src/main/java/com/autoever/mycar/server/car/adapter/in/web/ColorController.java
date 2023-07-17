@@ -10,6 +10,7 @@ import com.autoever.mycar.server.car.adapter.in.web.dto.res.color.InteriorListRe
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.trim.ChangeTrimResDto;
 import com.autoever.mycar.server.car.application.service.ColorService;
 import io.swagger.v3.oas.annotations.Operation;
+import java.util.ArrayList;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.api.annotations.ParameterObject;
@@ -50,9 +51,12 @@ public class ColorController {
     }
 
     @GetMapping("/checked-options")
-    @Operation(summary = "선택한 색상에 따라 선택되어야 하는 옵션 조회")
+    @Operation(summary = "선택한 색상에 따라 선택되어야 하는 모든 옵션 조회")
     public CheckedOptionResDto checkedOptions(
             @Valid @ParameterObject CheckedOptionsInteriorReqDto reqDto) {
+        if (reqDto.getInteriorCode() == null) {
+            return new CheckedOptionResDto(true, new ArrayList<>());
+        }
         return colorService.checkedOption(
                 reqDto.getModelId(), reqDto.getInteriorCode(), reqDto.getOptionCodes());
     }

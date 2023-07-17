@@ -17,12 +17,12 @@ import lombok.Setter;
 @Setter
 public class CheckedOptionsInteriorReqDto {
 
-    @NotNull(message = "interiorCode 가 null 입니다.")
     @Parameter(name = "interiorCode", description = "선택한 인테리어 코드", in = ParameterIn.QUERY)
     private InteriorCode interiorCode;
     @Parameter(name = "optionCode", description = "현재 선택된 옵션 코드 목록",
             in = ParameterIn.QUERY, example = "PLL,HRR,")
     private String optionCode;
+    @NotNull(message = "modelId 가 null 입니다.")
     @Parameter(name = "modelId", description = "현재 모델 id", in = ParameterIn.QUERY)
     private Long modelId;
 
