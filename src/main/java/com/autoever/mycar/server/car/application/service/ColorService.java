@@ -81,14 +81,14 @@ public class ColorService {
             List<OptionCode> optionCodes) {
         Set<OptionCode> optionsSet = new HashSet<>(optionCodes);
         // 선택한 인테리어 색상 -> 옵션 추가, 삭제
-        Optional<Options> options = optionsRepository.findByInteriorCode(interiorCode);
+        Optional<Options> options = optionsRepository.findByInteriorCode(interiorCode, modelId);
         options.ifPresent(value -> optionsSet.add(value.getCode()));
         if (optionsSet.size() > optionCodes.size()) {
             return new CheckedOptionResDto(false, new ArrayList<>(optionsSet));
         }
         // 색상 변경으로 옵션 선택 해제해야하는 경우
         List<OptionInterior> optionInteriors = optionInteriorRepository
-                .findAllByOptionCodeIn(optionCodes);
+                .findAllByOptionCodeIn(optionCodes, modelId);
         if (!optionInteriors.isEmpty()) {
             boolean check = false;
             for (int i = 0; i < optionInteriors.size(); i++) {
@@ -142,7 +142,8 @@ public class ColorService {
             List<Options> delOptions = getDelOptions(reqDto, changeTrimInfoDto);
             // 모델 변경 후에도 선택 가능한 옵션 조회
             List<Options> addOptions = new ArrayList<>();
-            Optional<Options> op = optionsRepository.findByInteriorCode(interior.getCode());
+            Optional<Options> op = optionsRepository.findByInteriorCode(interior.getCode(),
+                    reqDto.getModelId());
             op.ifPresent(addOptions::add);
             return new ChangeTrimResDto(addOptions, delOptions, changeTrimInfoDto);
         }

@@ -91,9 +91,9 @@ public class OptionService {
                 optionsRepository.findDuplicateAllByOptionCodeNotIn(optionCodes));
     }
 
-    public CheckedInteriorResDto checkedInterior(List<OptionCode> optionCodes) {
+    public CheckedInteriorResDto checkedInterior(List<OptionCode> optionCodes, Long modelId) {
         List<OptionInterior> interiors = optionInteriorRepository
-                .findAllByOptionCodeIn(optionCodes);
+                .findAllByOptionCodeIn(optionCodes, modelId);
         return new CheckedInteriorResDto(interiors.size() > 0,
                 interiors.stream().map((OptionInterior::getInteriorCode))
                         .collect(Collectors.toList()));

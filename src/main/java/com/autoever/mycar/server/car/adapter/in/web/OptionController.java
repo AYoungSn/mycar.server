@@ -66,7 +66,7 @@ public class OptionController {
     @Operation(summary = "현재 선택된 옵션 목록에 따라 선택되어야 하는 인테리어 조회")
     public CheckedInteriorResDto checkedInterior(
             @Valid @ParameterObject SelectedOptionsInfoReqDto reqDto) {
-        return optionService.checkedInterior(reqDto.getOptionCodes());
+        return optionService.checkedInterior(reqDto.getOptionCodes(), reqDto.getModelId());
     }
 
     @GetMapping("/trim-change")

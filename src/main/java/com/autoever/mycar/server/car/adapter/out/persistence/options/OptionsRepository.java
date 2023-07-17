@@ -75,8 +75,10 @@ public interface OptionsRepository extends JpaRepository<Options, Long> {
 
     @Query(value = "SELECT o FROM Options o inner join OptionInterior oi "
             + "on o.code = oi.optionCode "
-            + "WHERE oi.interiorCode=:interiorCode")
-    Optional<Options> findByInteriorCode(InteriorCode interiorCode);
+            + "inner join ModelOption mo "
+            + "on oi.optionCode=mo.optionCode "
+            + "WHERE oi.interiorCode=:interiorCode ANd mo.modelId=:modelId")
+    Optional<Options> findByInteriorCode(InteriorCode interiorCode, Long modelId);
 
     @Query(value = "SELECT o FROM ModelOption mo inner join Options o "
             + "on mo.optionCode=o.code "
