@@ -19,6 +19,11 @@
 
 [//]: # (<img src="https://img.shields.io/badge/DOCKER-007396?style=for-the-badge&logo=DOCKER&logoColor=white">)
 
+### DB ERD
+
+<img width="826" alt="스크린샷 2023-07-18 오후 2 34 33" src="https://github.com/AYoungSn/mycar.server/assets/46748334/58dd1c81-26ba-4da1-8a8e-aba6629d2e57">
+
+
 ### 📃 Swagger(API 문서) 주소
 
 - 실행 후 접속 가능합니다.
