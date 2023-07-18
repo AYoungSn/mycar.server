@@ -4,6 +4,15 @@
 
 현대자동차 내차만들기 사이트에서 투싼, 더 뉴 아반떼 차량에 대해 분석하고 기존 사이트와 동일하게 동작하는 사이트를 만들어보는 과제입니다.
 
+폴더 구조는 헥사고날 아키텍처 구조를 기반으로 하고있습니다.
+
+#### 프로젝트 진행 기간
+- 2023.06.12 ~ 2023.07.21
+
+#### 프론트 repo
+https://github.com/AYoungSn/mycar.client
+
+
 ### 🛠️ 사용된 기술 스택
 
 <img src="https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=java&logoColor=white"></a>
