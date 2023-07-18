@@ -44,7 +44,7 @@ public class CarController {
     @Operation(summary = "선택 가능한 툴팁 목록 조회", responses = {
             @ApiResponse(responseCode = "200", description = "선택 가능한 툴팁 목록 조회 성공",
                     content = @Content(schema = @Schema(implementation = ToolTipListDto.class))),
-            @ApiResponse(responseCode = "400", description = "carCode 값이 들어오지 않음",
+            @ApiResponse(responseCode = "400", description = "요청 값이 잘못된 경우",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
     })
     public ToolTipListDto getToolTips(@Valid @ParameterObject ToolTipReqDto reqDto) {
