@@ -25,8 +25,6 @@
 
 http://localhost:8080/api-docs
 
-### 스타일 가이드
-
 ### 🔑 실행 방법
 
 1. git clone
@@ -36,6 +34,14 @@ http://localhost:8080/api-docs
     3. 현재 프로젝트 디렉토리 루트 경로에서 ./MYCAR_20230711_backup.sql 실행
 3. 아래 properties 파일 : ./src/main/resources/application.properties 파일 생성 후 작성
 4. IntelliJ 를 통해 서버 실행
+
+#### 👗 스타일 가이드 실행
+
+```terminal
+$ gradle check
+```
+
+#### application.properties
 
 ```properties
 # swagger

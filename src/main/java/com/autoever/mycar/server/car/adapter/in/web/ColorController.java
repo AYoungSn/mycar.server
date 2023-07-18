@@ -82,7 +82,6 @@ public class ColorController {
                             = @Schema(implementation = CheckedOptionResDto.class))),
             @ApiResponse(responseCode = "400", description = "요청 값이 잘못된 경우",
                     content = @Content(schema = @Schema(implementation = ErrorResponse.class))),
-            @ApiResponse(responseCode = "404")
     })
     public CheckedOptionResDto checkedOptions(
             @Valid @ParameterObject CheckedOptionsInteriorReqDto reqDto) {
