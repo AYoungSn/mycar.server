@@ -53,7 +53,7 @@ public class CarControllerTest {
 
     @Test
     void getModelDetails() throws Exception {
-        Long modelId = 1l;
+        Long modelId = 1L;
         String url = "/cars/models/" + modelId + "/details";
         mockMvc.perform(get(url))
                 .andExpect(status().isOk());
