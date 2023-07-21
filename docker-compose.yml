@@ -1,0 +1,25 @@
+version: "3.0"
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: qwerty123
+      MYSQL_USER: mycar
+      MYSQL_PASSWORD: qwerty123
+      MYSQL_DATABASE: MYCAR
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./MYCAR_20230711_backup.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "33060:3306"
+#  spring:
+#    container_name: spring
+#    build: .
+#    restart: on-failure
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - mysql

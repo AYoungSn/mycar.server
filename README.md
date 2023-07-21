@@ -7,11 +7,12 @@
 폴더 구조는 헥사고날 아키텍처 구조를 기반으로 하고있습니다.
 
 #### 프로젝트 진행 기간
+
 - 2023.06.12 ~ 2023.07.21
 
 #### 프론트 repo
-https://github.com/AYoungSn/mycar.client
 
+https://github.com/AYoungSn/mycar.client
 
 ### 🛠️ 사용된 기술 스택
 
@@ -31,7 +32,6 @@ https://github.com/AYoungSn/mycar.client
 ### DB ERD
 
 <img width="826" alt="스크린샷 2023-07-18 오후 2 34 33" src="https://github.com/AYoungSn/mycar.server/assets/46748334/58dd1c81-26ba-4da1-8a8e-aba6629d2e57">
-
 
 ### 📃 Swagger(API 문서) 주소
 
@@ -54,6 +54,13 @@ http://localhost:8080/api-docs
 ```terminal
 $ gradle check
 ```
+
+#### 🐳 도커 실행 방법
+
+1. ./gradlew build
+2. docker build --tag spring:test .
+3. docker run -d -p 8080:8080 --name server spring:test
+4. docker 실행 후에는 http://localhost:8080 로 접근
 
 #### application.properties
 
