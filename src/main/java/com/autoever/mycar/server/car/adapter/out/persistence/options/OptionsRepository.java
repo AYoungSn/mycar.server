@@ -13,7 +13,7 @@ public interface OptionsRepository extends JpaRepository<Options, Long> {
 
     @Query(value = "select opt from ModelOption mo inner join Options opt "
             + "on opt.code = mo.optionCode "
-            + "where mo.modelId = :modelId order by opt.code")
+            + "where mo.modelId = :modelId order by mo.id")
     List<Options> findAllByModelId(Long modelId);
 
     @Query(value = "select opt from ModelOption mo inner join Options opt "
@@ -21,7 +21,7 @@ public interface OptionsRepository extends JpaRepository<Options, Long> {
             + "where opt.category in "
             + "(com.autoever.mycar.server.car.domain.type.OptionCategory.HGA, "
             + "com.autoever.mycar.server.car.domain.type.OptionCategory.NPF) "
-            + "and mo.modelId = :modelId order by opt.code")
+            + "and mo.modelId = :modelId order by mo.id")
     List<Options> findTuixOptionsAllByModelId(Long modelId);
 
     @Query(value = "SELECT o1 FROM Options o1 inner join DependencyOption do "
@@ -42,9 +42,18 @@ public interface OptionsRepository extends JpaRepository<Options, Long> {
             + "ON o1.code = do.optionCode "
             + "WHERE do.trimCode=:trimCode and o1.category not in "
             + "(com.autoever.mycar.server.car.domain.type.OptionCategory.DETAIL) "
-            + "and do.dependencyCode in (:optionCodes) order by o1.code")
+            + "and do.dependencyCode in (:optionCodes) order by o1.id")
     List<Options> findAllDependencyOptionByOptionCodeAndCategoryDetailNotIn(
             TrimCode trimCode, List<OptionCode> optionCodes);
+
+    @Query(value = "SELECT o1 FROM Options o1 inner join DependencyOption do "
+            + "ON o1.code = do.optionCode "
+            + "WHERE o1.category not in "
+            + "(com.autoever.mycar.server.car.domain.type.OptionCategory.DETAIL) "
+            + "and do.dependencyCode in (:optionCode) and do.optionCode = (:tuixOptionCodes) "
+            + "order by o1.id")
+    List<Options> findAllDependencyOptionByOptionCodeAndCategoryDetailNotInAndOptionCode(
+            List<OptionCode> tuixOptionCodes, OptionCode optionCode);
 
     @Query(value = "SELECT o1 FROM Options o1 inner join DependencyOption do "
             + "on o1.code = do.optionCode "
@@ -82,7 +91,7 @@ public interface OptionsRepository extends JpaRepository<Options, Long> {
 
     @Query(value = "SELECT o FROM ModelOption mo inner join Options o "
             + "on mo.optionCode=o.code "
-            + "WHERE mo.modelId=:modelId and mo.optionCode IN (:optionCode) ")
+            + "WHERE mo.modelId=:modelId and mo.optionCode IN (:optionCode) order by mo.id")
     List<Options> findAllByModelIdAndOptionCode(Long modelId, List<OptionCode> optionCode);
 
     List<Options> findAllByCodeIn(List<OptionCode> optionCodes);

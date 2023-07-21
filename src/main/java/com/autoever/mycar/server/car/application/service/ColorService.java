@@ -143,7 +143,7 @@ public class ColorService {
             // 모델 변경 후에도 선택 가능한 옵션 조회
             List<Options> addOptions = new ArrayList<>();
             Optional<Options> op = optionsRepository.findByInteriorCode(interior.getCode(),
-                    reqDto.getModelId());
+                    changeTrimInfoDto.getChangeModelId());
             op.ifPresent(addOptions::add);
             return new ChangeTrimResDto(addOptions, delOptions, changeTrimInfoDto);
         }
@@ -185,7 +185,6 @@ public class ColorService {
     private TrimResDto findInteriorChangeModel(Long modelId, InteriorCode interiorCode) {
         // 변경하려는 외장, 내장 색 조합에서 가능한 trim 조회
         List<ColorCombi> colorCombis = colorCombiRepository.findAllByInteriorCode(interiorCode);
-        System.out.println(colorCombis);
         return getTrimResDto(modelId, colorCombis);
     }
 

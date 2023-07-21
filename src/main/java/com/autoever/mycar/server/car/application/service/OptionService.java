@@ -86,6 +86,14 @@ public class OptionService {
         return new TuixOptionListResDto(options);
     }
 
+    public TuixOptionListResDto tuixDelOption(
+            OptionCode optionCode, List<OptionCode> tuixOptionCodes) {
+        return new TuixOptionListResDto(optionsRepository
+                .findAllDependencyOptionByOptionCodeAndCategoryDetailNotInAndOptionCode(
+                        tuixOptionCodes,
+                        optionCode));
+    }
+
     public DisableOptionResDto tuixDisableOption(Long modelId, List<OptionCode> optionCodes) {
         return new DisableOptionResDto(
                 optionsRepository.findDuplicateAllByOptionCodeNotIn(optionCodes));

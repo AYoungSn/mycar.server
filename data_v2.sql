@@ -241,7 +241,7 @@ insert into options(id, code, category, name, price) values(30, 'BC2', 'DETAIL',
 insert into options(id, code, category, name, price) values(31, 'CP2', 'DETAIL', '컴포트 Ⅱ', 990000);
 insert into options(id, code, category, name, price) values(32, 'AVP', 'DETAIL', '어드벤처패키지', 790000);
 
-insert into options(id, code, category, name, price) values(33, 'LLP', 'HGA', 'LED 라이팅 패키지', 320000);
+insert into options(id, code, category, name, price) values(33, 'LLP', 'HGA', 'LED 라이팅 패키지 (선루프, 인스퍼레이션 전용)', 320000);
 insert into options(id, code, category, name, price) values(34, 'SST', 'HGA', '사이드 스텝', 340000);
 insert into options(id, code, category, name, price) values(35, 'AST', 'HGA', '어드벤처 전용 사이드 스텝', 340000);
 insert into options(id, code, category, name, price) values(36, 'LGP', 'HGA', '러기지 패키지', 120000);
@@ -265,217 +265,209 @@ insert into model_option(model_id, option_code) values(1, 'HS3');
 insert into model_option(model_id, option_code) values(1, 'AT1');
 
 insert into model_option(model_id, option_code) values(2, 'CV1');
-insert into model_option(model_id, option_code) values(2, 'IFN');
 insert into model_option(model_id, option_code) values(2, 'HRR');
+insert into model_option(model_id, option_code) values(2, 'IFN');
 insert into model_option(model_id, option_code) values(2, 'HS3');
 insert into model_option(model_id, option_code) values(2, 'AT1');
 
-insert into model_option(model_id, option_code) values(3, 'SLP');
 insert into model_option(model_id, option_code) values(3, 'HRR');
-insert into model_option(model_id, option_code) values(3, 'PAP');
 insert into model_option(model_id, option_code) values(3, 'HS1');
 insert into model_option(model_id, option_code) values(3, 'EXD');
+insert into model_option(model_id, option_code) values(3, 'SIC');
+insert into model_option(model_id, option_code) values(3, 'SLP');
+insert into model_option(model_id, option_code) values(3, 'PAP');
 insert into model_option(model_id, option_code) values(3, 'CP1');
 insert into model_option(model_id, option_code) values(3, 'AT2');
-insert into model_option(model_id, option_code) values(3, 'SIC');
 
-insert into model_option(model_id, option_code) values(4, 'SLP');
-insert into model_option(model_id, option_code) values(4, 'HRR');
-insert into model_option(model_id, option_code) values(4, 'PAP');
 insert into model_option(model_id, option_code) values(4, 'HS1');
-insert into model_option(model_id, option_code) values(4, 'EXD');
+insert into model_option(model_id, option_code) values(4, 'HRR');
 insert into model_option(model_id, option_code) values(4, 'AT2');
 insert into model_option(model_id, option_code) values(4, 'SIC');
+insert into model_option(model_id, option_code) values(4, 'SLP');
+insert into model_option(model_id, option_code) values(4, 'PAP');
 insert into model_option(model_id, option_code) values(4, 'CP2');
+insert into model_option(model_id, option_code) values(4, 'EXD');
 
-insert into model_option(model_id, option_code) values(5, 'SLP');
-insert into model_option(model_id, option_code) values(5, 'BC2');
 insert into model_option(model_id, option_code) values(5, 'AT2');
 insert into model_option(model_id, option_code) values(5, 'SIC');
+insert into model_option(model_id, option_code) values(5, 'SLP');
+insert into model_option(model_id, option_code) values(5, 'BC2');
 
-insert into model_option(model_id, option_code) values(6, 'SLP');
 insert into model_option(model_id, option_code) values(6, 'AT2');
 insert into model_option(model_id, option_code) values(6, 'SIC');
+insert into model_option(model_id, option_code) values(6, 'SLP');
 
--- insert into model_option(model_id, option_id) values(7, 'SLP');
--- insert into model_option(model_id, option_id) values(4, 2);
--- insert into model_option(model_id, option_id) values(4, 'PAP');
--- insert into model_option(model_id, option_id) values(4, 'HS1');
--- insert into model_option(model_id, option_id) values(4, 'EXD');
--- insert into model_option(model_id, option_id) values(4, 'AT2');
--- insert into model_option(model_id, option_id) values(4, 'SIC');
--- insert into model_option(model_id, option_id) values('ID1', 'CP2');
 -- tuscon modern
-insert into model_option(model_id, option_code) values(7, 'PLL');
-insert into model_option(model_id, option_code) values(7, 'HRR');
 insert into model_option(model_id, option_code) values(7, 'MN1');
-insert into model_option(model_id, option_code) values(7, 'ID1');
 insert into model_option(model_id, option_code) values(7, 'CVN');
+insert into model_option(model_id, option_code) values(7, 'HSS');
 insert into model_option(model_id, option_code) values(7, 'EX1');
 insert into model_option(model_id, option_code) values(7, 'EXP');
-insert into model_option(model_id, option_code) values(7, 'HSS');
+insert into model_option(model_id, option_code) values(7, 'PLL');
+insert into model_option(model_id, option_code) values(7, 'HRR');
+insert into model_option(model_id, option_code) values(7, 'ID1');
 -- hga
-insert into model_option(model_id, option_code) values(7, 'SST');
 insert into model_option(model_id, option_code) values(7, 'LGP');
-insert into model_option(model_id, option_code) values(7, 'PTM');
+insert into model_option(model_id, option_code) values(7, 'SST');
 insert into model_option(model_id, option_code) values(7, 'KNW');
+insert into model_option(model_id, option_code) values(7, 'PTM');
 
-insert into model_option(model_id, option_code) values(8, 'PLL');
-insert into model_option(model_id, option_code) values(8, 'HRR');
-insert into model_option(model_id, option_code) values(8, 'MN1');
-insert into model_option(model_id, option_code) values(8, 'ID1');
 insert into model_option(model_id, option_code) values(8, 'CVN');
+insert into model_option(model_id, option_code) values(8, 'MN1');
 insert into model_option(model_id, option_code) values(8, 'EX1');
-insert into model_option(model_id, option_code) values(8, 'EXP');
+insert into model_option(model_id, option_code) values(8, 'HRR');
 insert into model_option(model_id, option_code) values(8, 'HSS');
+insert into model_option(model_id, option_code) values(8, 'EXP');
+insert into model_option(model_id, option_code) values(8, 'PLL');
+insert into model_option(model_id, option_code) values(8, 'ID1');
 
-insert into model_option(model_id, option_code) values(8, 'SST');
 insert into model_option(model_id, option_code) values(8, 'LGP');
-insert into model_option(model_id, option_code) values(8, 'PTM');
+insert into model_option(model_id, option_code) values(8, 'SST');
 insert into model_option(model_id, option_code) values(8, 'KNW');
+insert into model_option(model_id, option_code) values(8, 'PTM');
 
-insert into model_option(model_id, option_code) values(9, 'PLL');
-insert into model_option(model_id, option_code) values(9, 'HRR');
 insert into model_option(model_id, option_code) values(9, 'MN1');
-insert into model_option(model_id, option_code) values(9, 'ID1');
 insert into model_option(model_id, option_code) values(9, 'CVN');
+insert into model_option(model_id, option_code) values(9, 'HSS');
 insert into model_option(model_id, option_code) values(9, 'EX1');
 insert into model_option(model_id, option_code) values(9, 'EXP');
-insert into model_option(model_id, option_code) values(9, 'HSS');
+insert into model_option(model_id, option_code) values(9, 'PLL');
+insert into model_option(model_id, option_code) values(9, 'HRR');
+insert into model_option(model_id, option_code) values(9, 'ID1');
 
-insert into model_option(model_id, option_code) values(9, 'SST');
 insert into model_option(model_id, option_code) values(9, 'LGP');
-insert into model_option(model_id, option_code) values(9, 'PTM');
+insert into model_option(model_id, option_code) values(9, 'SST');
 insert into model_option(model_id, option_code) values(9, 'KNW');
+insert into model_option(model_id, option_code) values(9, 'PTM');
 
-insert into model_option(model_id, option_code) values(10, 'PLL');
-insert into model_option(model_id, option_code) values(10, 'HRR');
 insert into model_option(model_id, option_code) values(10, 'MN1');
-insert into model_option(model_id, option_code) values(10, 'ID1');
 insert into model_option(model_id, option_code) values(10, 'CVN');
+insert into model_option(model_id, option_code) values(10, 'HSS');
 insert into model_option(model_id, option_code) values(10, 'EX1');
 insert into model_option(model_id, option_code) values(10, 'EXP');
-insert into model_option(model_id, option_code) values(10, 'HSS');
+insert into model_option(model_id, option_code) values(10, 'PLL');
+insert into model_option(model_id, option_code) values(10, 'HRR');
+insert into model_option(model_id, option_code) values(10, 'ID1');
 
-insert into model_option(model_id, option_code) values(10, 'SST');
 insert into model_option(model_id, option_code) values(10, 'LGP');
-insert into model_option(model_id, option_code) values(10, 'PTM');
+insert into model_option(model_id, option_code) values(10, 'SST');
 insert into model_option(model_id, option_code) values(10, 'KNW');
+insert into model_option(model_id, option_code) values(10, 'PTM');
 -- tuscon premium
 insert into model_option(model_id, option_code) values(11, 'HSS');
+insert into model_option(model_id, option_code) values(11, 'CPT');
 insert into model_option(model_id, option_code) values(11, 'BC1');
+insert into model_option(model_id, option_code) values(11, 'EX2');
 insert into model_option(model_id, option_code) values(11, 'PLI');
 insert into model_option(model_id, option_code) values(11, 'ID2');
-insert into model_option(model_id, option_code) values(11, 'CPT');
-insert into model_option(model_id, option_code) values(11, 'EX2');
 insert into model_option(model_id, option_code) values(11, 'PL2');
 
-insert into model_option(model_id, option_code) values(11, 'SST');
 insert into model_option(model_id, option_code) values(11, 'LGP');
-insert into model_option(model_id, option_code) values(11, 'PTM');
 insert into model_option(model_id, option_code) values(11, 'BAC');
+insert into model_option(model_id, option_code) values(11, 'SST');
 insert into model_option(model_id, option_code) values(11, 'KNW');
+insert into model_option(model_id, option_code) values(11, 'PTM');
 
+insert into model_option(model_id, option_code) values(12, 'CPT');
 insert into model_option(model_id, option_code) values(12, 'HSS');
 insert into model_option(model_id, option_code) values(12, 'BC1');
+insert into model_option(model_id, option_code) values(12, 'EX2');
 insert into model_option(model_id, option_code) values(12, 'PLI');
 insert into model_option(model_id, option_code) values(12, 'ID2');
-insert into model_option(model_id, option_code) values(12, 'CPT');
-insert into model_option(model_id, option_code) values(12, 'EX2');
 insert into model_option(model_id, option_code) values(12, 'PL2');
 
-insert into model_option(model_id, option_code) values(12, 'SST');
 insert into model_option(model_id, option_code) values(12, 'LGP');
-insert into model_option(model_id, option_code) values(12, 'PTM');
 insert into model_option(model_id, option_code) values(12, 'BAC');
+insert into model_option(model_id, option_code) values(12, 'SST');
 insert into model_option(model_id, option_code) values(12, 'KNW');
+insert into model_option(model_id, option_code) values(12, 'PTM');
 
 insert into model_option(model_id, option_code) values(13, 'HSS');
+insert into model_option(model_id, option_code) values(13, 'CPT');
 insert into model_option(model_id, option_code) values(13, 'BC1');
+insert into model_option(model_id, option_code) values(13, 'EX2');
 insert into model_option(model_id, option_code) values(13, 'PLI');
 insert into model_option(model_id, option_code) values(13, 'ID2');
-insert into model_option(model_id, option_code) values(13, 'CPT');
-insert into model_option(model_id, option_code) values(13, 'EX2');
 insert into model_option(model_id, option_code) values(13, 'PL1');
 
-insert into model_option(model_id, option_code) values(13, 'SST');
 insert into model_option(model_id, option_code) values(13, 'LGP');
-insert into model_option(model_id, option_code) values(13, 'PTM');
 insert into model_option(model_id, option_code) values(13, 'BAC');
+insert into model_option(model_id, option_code) values(13, 'SST');
 insert into model_option(model_id, option_code) values(13, 'KNW');
+insert into model_option(model_id, option_code) values(13, 'PTM');
 
 insert into model_option(model_id, option_code) values(14, 'HSS');
+insert into model_option(model_id, option_code) values(14, 'CPT');
 insert into model_option(model_id, option_code) values(14, 'BC1');
+insert into model_option(model_id, option_code) values(14, 'EX2');
 insert into model_option(model_id, option_code) values(14, 'PLI');
 insert into model_option(model_id, option_code) values(14, 'ID2');
-insert into model_option(model_id, option_code) values(14, 'CPT');
-insert into model_option(model_id, option_code) values(14, 'EX2');
 insert into model_option(model_id, option_code) values(14, 'PL1');
 
-insert into model_option(model_id, option_code) values(14, 'SST');
 insert into model_option(model_id, option_code) values(14, 'LGP');
-insert into model_option(model_id, option_code) values(14, 'PTM');
 insert into model_option(model_id, option_code) values(14, 'BAC');
+insert into model_option(model_id, option_code) values(14, 'SST');
 insert into model_option(model_id, option_code) values(14, 'KNW');
+insert into model_option(model_id, option_code) values(14, 'PTM');
 
 -- tuscon inspiration
 
+insert into model_option(model_id, option_code) values(15, 'PL4');
 insert into model_option(model_id, option_code) values(15, 'BC1');
 insert into model_option(model_id, option_code) values(15, 'PSL');
-insert into model_option(model_id, option_code) values(15, 'PL4');
 insert into model_option(model_id, option_code) values(15, 'AVP');
 
 insert into model_option(model_id, option_code) values(15, 'LLP');
-insert into model_option(model_id, option_code) values(15, 'SST');
 insert into model_option(model_id, option_code) values(15, 'LGP');
-insert into model_option(model_id, option_code) values(15, 'PTM');
 insert into model_option(model_id, option_code) values(15, 'BAC');
+insert into model_option(model_id, option_code) values(15, 'SST');
 insert into model_option(model_id, option_code) values(15, 'KNW');
+insert into model_option(model_id, option_code) values(15, 'PTM');
 
 insert into model_option(model_id, option_code) values(15, 'NX1');
 insert into model_option(model_id, option_code) values(15, 'NX2');
 
-insert into model_option(model_id, option_code) values(16, 'BC1');
-insert into model_option(model_id, option_code) values(16, 'PSL');
 insert into model_option(model_id, option_code) values(16, 'PL4');
+insert into model_option(model_id, option_code) values(16, 'PSL');
+insert into model_option(model_id, option_code) values(16, 'BC1');
 insert into model_option(model_id, option_code) values(16, 'AVP');
 
 insert into model_option(model_id, option_code) values(16, 'LLP');
-insert into model_option(model_id, option_code) values(16, 'SST');
 insert into model_option(model_id, option_code) values(16, 'LGP');
-insert into model_option(model_id, option_code) values(16, 'PTM');
 insert into model_option(model_id, option_code) values(16, 'BAC');
+insert into model_option(model_id, option_code) values(16, 'SST');
 insert into model_option(model_id, option_code) values(16, 'KNW');
+insert into model_option(model_id, option_code) values(16, 'PTM');
 
 insert into model_option(model_id, option_code) values(16, 'NX1');
 insert into model_option(model_id, option_code) values(16, 'NX2');
 
+insert into model_option(model_id, option_code) values(17, 'PL3');
 insert into model_option(model_id, option_code) values(17, 'BC1');
 insert into model_option(model_id, option_code) values(17, 'PSL');
-insert into model_option(model_id, option_code) values(17, 'PL3');
 insert into model_option(model_id, option_code) values(17, 'AVP');
 
 insert into model_option(model_id, option_code) values(17, 'LLP');
-insert into model_option(model_id, option_code) values(17, 'SST');
 insert into model_option(model_id, option_code) values(17, 'LGP');
-insert into model_option(model_id, option_code) values(17, 'PTM');
 insert into model_option(model_id, option_code) values(17, 'BAC');
+insert into model_option(model_id, option_code) values(17, 'SST');
 insert into model_option(model_id, option_code) values(17, 'KNW');
+insert into model_option(model_id, option_code) values(17, 'PTM');
 
 insert into model_option(model_id, option_code) values(17, 'NX1');
 insert into model_option(model_id, option_code) values(17, 'NX2');
 
+insert into model_option(model_id, option_code) values(18, 'PL3');
 insert into model_option(model_id, option_code) values(18, 'BC1');
 insert into model_option(model_id, option_code) values(18, 'PSL');
-insert into model_option(model_id, option_code) values(18, 'PL3');
 insert into model_option(model_id, option_code) values(18, 'AVP');
 
 insert into model_option(model_id, option_code) values(18, 'LLP');
-insert into model_option(model_id, option_code) values(18, 'SST');
 insert into model_option(model_id, option_code) values(18, 'LGP');
-insert into model_option(model_id, option_code) values(18, 'PTM');
 insert into model_option(model_id, option_code) values(18, 'BAC');
+insert into model_option(model_id, option_code) values(18, 'SST');
 insert into model_option(model_id, option_code) values(18, 'KNW');
+insert into model_option(model_id, option_code) values(18, 'PTM');
 
 insert into model_option(model_id, option_code) values(18, 'NX1');
 insert into model_option(model_id, option_code) values(18, 'NX2');

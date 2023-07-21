@@ -3,6 +3,7 @@ package com.autoever.mycar.server.car.adapter.in.web;
 import com.autoever.mycar.server.car.adapter.in.web.dto.req.options.ChangeOptionReqDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.req.options.SelectedOptionsInfoReqDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.req.options.TrimChangeReqDto;
+import com.autoever.mycar.server.car.adapter.in.web.dto.req.options.TuixCheckOptionsReqDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.options.ChangeOptionInfoDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.options.CheckedInteriorResDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.options.DisableOptionResDto;
@@ -88,6 +89,20 @@ public class OptionController {
     public TuixOptionListResDto getTuixList(
             @Valid @ParameterObject SelectedOptionsInfoReqDto reqDto) {
         return optionService.findTuixOptionList(reqDto.getModelId(), reqDto.getOptionCodes());
+    }
+
+    @GetMapping("/tuix-check")
+    @Operation(summary = "현재 선택해제 하려는 옵션에 종속된 tuix 옵션을 조회", responses = {
+            @ApiResponse(responseCode = "200", description = "tuix 옵션 목록 조회 성공",
+                    content = @Content(schema
+                            = @Schema(implementation = TuixOptionListResDto.class))),
+            @ApiResponse(responseCode = "404", description = "model id 를 찾을 수 없는 경우",
+                    content = @Content(schema = @Schema(implementation = ErrorResponse.class)))
+    })
+    public TuixOptionListResDto tuixCheck(
+            @Valid @ParameterObject TuixCheckOptionsReqDto reqDto) {
+        return optionService.tuixDelOption(reqDto.getOptionCode(),
+                reqDto.getTuixOptionCodes());
     }
 
     @GetMapping("/tuix/disable")
