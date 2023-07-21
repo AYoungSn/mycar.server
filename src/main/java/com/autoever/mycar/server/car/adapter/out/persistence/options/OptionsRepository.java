@@ -50,7 +50,7 @@ public interface OptionsRepository extends JpaRepository<Options, Long> {
             + "ON o1.code = do.optionCode "
             + "WHERE o1.category not in "
             + "(com.autoever.mycar.server.car.domain.type.OptionCategory.DETAIL) "
-            + "and do.dependencyCode in (:optionCode) and do.optionCode = (:tuixOptionCodes) "
+            + "and do.dependencyCode in (:optionCode) and do.optionCode in (:tuixOptionCodes) "
             + "order by o1.id")
     List<Options> findAllDependencyOptionByOptionCodeAndCategoryDetailNotInAndOptionCode(
             List<OptionCode> tuixOptionCodes, OptionCode optionCode);
