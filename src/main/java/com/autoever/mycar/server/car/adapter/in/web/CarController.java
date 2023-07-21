@@ -7,6 +7,7 @@ import com.autoever.mycar.server.car.adapter.in.web.dto.res.ModelDetailResDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.ToolTipListDto;
 import com.autoever.mycar.server.car.adapter.in.web.dto.res.TrimListResDto;
 import com.autoever.mycar.server.car.adapter.out.view.CarResDto;
+import com.autoever.mycar.server.car.adapter.out.view.ModelResDto;
 import com.autoever.mycar.server.car.application.service.CarService;
 import com.autoever.mycar.server.car.domain.code.CarCode;
 import com.autoever.mycar.server.car.exception.ModelNotFoundException;
@@ -58,6 +59,18 @@ public class CarController {
     })
     public TrimListResDto getTrims(@Valid @ParameterObject ModelFilterReqDto reqDto) {
         return new TrimListResDto(carService.findModelsByToolTips(reqDto));
+    }
+
+    @GetMapping("/models/{modelId}")
+    @Operation(summary = "차량 모델 기본 정보 조회", responses = {
+            @ApiResponse(responseCode = "200", description = "차량 모델 정보 조회 성공",
+                    content = @Content(schema = @Schema(implementation = ModelResDto.class))),
+            @ApiResponse(responseCode = "404", description = "존재하지 않는 모델 id",
+                    content = @Content(schema
+                            = @Schema(implementation = ModelNotFoundException.class)))
+    })
+    public ModelResDto getModelInfo(@PathVariable Long modelId) {
+        return carService.getModelInfo(modelId);
     }
 
     @GetMapping("/models/{modelId}/details")

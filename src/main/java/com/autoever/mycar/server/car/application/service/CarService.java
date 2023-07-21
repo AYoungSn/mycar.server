@@ -62,9 +62,13 @@ public class CarService {
                 reqDto.getEngineId(), reqDto.getGearboxId(), reqDto.getDrivingId());
     }
 
-    public ModelDetailResDto myCarInit(Long modelId) {
-        ModelResDto modelResDto = modelRepository.findByModelId(modelId)
+    public ModelResDto getModelInfo(Long modelId) {
+        return modelRepository.findByModelId(modelId)
                 .orElseThrow(ModelNotFoundException::new);
+    }
+
+    public ModelDetailResDto myCarInit(Long modelId) {
+        ModelResDto modelResDto = getModelInfo(modelId);
         // car 종류별로 선택 가능한 외장, 내장 색상 가져오기
         List<Exterior> exteriors = exteriorRepository.findAllByCarCode(modelResDto.getCarCode());
         List<Interior> interiors = interiorRepository.findAllByCarCode(modelResDto.getCarCode());
